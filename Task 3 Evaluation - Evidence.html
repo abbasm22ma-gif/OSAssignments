@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3 Evaluation · Unified Mark Scheme & Exemplars</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: #eef2f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem 4rem;
+        }
+
+        .page-wrapper {
+            max-width: 1400px;
+            width: 100%;
+            background: white;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+            border-radius: 24px;
+            padding: 2.2rem 2rem 2.5rem;
+            border: 1px solid #d9e2ec;
+        }
+
+        /* Pearson-style Header */
+        .doc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 4px solid #333;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .doc-header .logo-area {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            color: #333;
+        }
+
+        .doc-header .t-levels {
+            font-size: 1.6rem;
+            font-weight: 900;
+            font-style: italic;
+            color: #000;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #0b2b44;
+            margin-bottom: 0.4rem;
+        }
+
+        .subhead {
+            font-size: 0.95rem;
+            color: #4a5f73;
+            margin-bottom: 1.8rem;
+            font-weight: 400;
+            border-bottom: 1px solid #d0dde9;
+            padding-bottom: 0.8rem;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.4rem;
+            background: #e3eaf2;
+            padding: 0.4rem;
+            border-radius: 60px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 130px;
+            padding: 0.85rem 1.2rem;
+            border: none;
+            background: transparent;
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: #1f3a4e;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            letter-spacing: 0.01em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn i { font-style: normal; font-size: 1.1rem; }
+        .tab-btn:hover { background: #cfdbe7; color: #0b2b44; }
+        .tab-btn.active {
+            background: #ffffff;
+            color: #0a3b5c;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            font-weight: 700;
+        }
+
+        .panel { display: none; animation: fade 0.18s ease; }
+        .panel.active { display: block; }
+        @keyframes fade { from { opacity: 0.4; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Exemplar Typography */
+        h2 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: #000;
+            margin: 2rem 0 0.8rem;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 0.3rem;
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #000;
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        p {
+            color: #111;
+            line-height: 1.7;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            text-align: justify;
+        }
+
+        .eval-block {
+            margin-bottom: 1.5rem;
+        }
+
+        .eval-block strong {
+            color: #000;
+            font-weight: 700;
+        }
+
+        .info-box {
+            background: #f4f9ff;
+            border: 1px solid #c5d9eb;
+            border-radius: 12px;
+            padding: 1rem 1.4rem;
+            margin: 1.2rem 0;
+            font-size: 0.94rem;
+        }
+
+        .info-box strong { color: #0d3e60; }
+
+        /* Unified Mark Scheme Table */
+        .mark-scheme-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.85rem;
+            table-layout: fixed;
+        }
+        .mark-scheme-table th { 
+            background: #1e4b6b; 
+            color: white; 
+            padding: 0.8rem 0.6rem; 
+            text-align: left; 
+            border: 1px solid #1e4b6b; 
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+        .mark-scheme-table td { 
+            border: 1px solid #c5d9eb; 
+            padding: 0.8rem 0.6rem; 
+            vertical-align: top; 
+            color: #111; 
+            line-height: 1.5;
+        }
+        .mark-scheme-table tr:nth-child(even) td { background-color: #f9fcff; }
+        
+        /* Column widths for the unified table */
+        .col-band { width: 6%; text-align: center; }
+        .col-marks { width: 6%; text-align: center; }
+        .col-generic { width: 28%; }
+        .col-a { width: 20%; }
+        .col-b { width: 20%; }
+        .col-c { width: 20%; }
+
+        .footer-note {
+            margin-top: 3rem;
+            font-size: 0.75rem;
+            color: #5d7488;
+            text-align: left;
+            border-top: 1px solid #d2dfeb;
+            padding-top: 1.6rem;
+        }
+
+        @media (max-width: 1100px) {
+            .page-wrapper { padding: 1.2rem; overflow-x: auto; }
+            h1 { font-size: 1.5rem; }
+            .tab-btn { min-width: 100px; font-size: 0.82rem; padding: 0.65rem 0.7rem; }
+            .mark-scheme-table { min-width: 950px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        
+        <div class="doc-header">
+            <div class="logo-area">❯ Pearson</div>
+            <div class="t-levels">T-LEVELS</div>
+        </div>
+
+        <h1>Task 3: Evaluate the system</h1>
+        <div class="subhead">Unified mark scheme and Distinction-level exemplar responses for Assignments A, B and C.</div>
+
+        <!-- TABS -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="tabScheme"><i>📋</i> Unified Mark Scheme</button>
+            <button class="tab-btn" data-tab="tabA"><i>🔒</i> A — Security</button>
+            <button class="tab-btn" data-tab="tabB"><i>🌐</i> B — Infrastructure</button>
+            <button class="tab-btn" data-tab="tabC"><i>📚</i> C — Continuity</button>
+        </div>
+
+        <!-- ========== UNIFIED MARK SCHEME TAB ========== -->
+        <div id="tabScheme" class="panel active">
+            <h2>Unified Mark Scheme — Task 3 Evaluation (18 marks)</h2>
+            <p>This single-page mark scheme displays the generic banding criteria alongside the specific, contextualised requirements for Assignments A, B, and C. The Distinction-level responses in the other tabs are designed to meet the Band 4 criteria across all columns.</p>
+
+            <table class="mark-scheme-table">
+                <tr>
+                    <th class="col-band">Band</th>
+                    <th class="col-marks">Marks</th>
+                    <th class="col-generic">Generic Assessment Criteria (All Assignments)</th>
+                    <th class="col-a">Assignment A (Security)</th>
+                    <th class="col-b">Assignment B (Infrastructure)</th>
+                    <th class="col-c">Assignment C (Continuity)</th>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>4</strong></td>
+                    <td class="col-marks"><strong>15–18</strong></td>
+                    <td class="col-generic">Comprehensive evaluation of all three elements (risk assessment, requirements, test network). Strengths and weaknesses critically analysed. Impact on functionality, usability and security fully evaluated. Well-reasoned improvements proposed.</td>
+                    <td class="col-a">Evaluates the security effectiveness against the <strong>CIA triad</strong>. Proposes hardening via <strong>MFA, CA, IDS/IPS, VLAN hardening</strong>.</td>
+                    <td class="col-b">Evaluates <strong>Availability and usability</strong>. Proposes <strong>HA/clustering, load balancing, QoS, SDN, cloud trade-offs</strong>.</td>
+                    <td class="col-c">Evaluates <strong>Availability and integrity</strong>. Proposes <strong>off-site replication, RPO tightening, cloud backup, ITIL CSI</strong>. <strong>Critically evaluates sources</strong> for bias, corroboration, reliability.</td>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>3</strong></td>
+                    <td class="col-marks"><strong>11–14</strong></td>
+                    <td class="col-generic">Detailed evaluation of most elements. Strengths and weaknesses analysed. Impact mostly evaluated. Some improvements proposed.</td>
+                    <td class="col-a">Covers some security impacts but lacks depth in evaluating CIA trade-offs or advanced hardening.</td>
+                    <td class="col-b">Covers availability but may miss performance metrics or advanced infrastructure improvements.</td>
+                    <td class="col-c">Covers continuity but source evaluation is superficial or lacks critical analysis of bias.</td>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>2</strong></td>
+                    <td class="col-marks"><strong>6–10</strong></td>
+                    <td class="col-generic">Adequate evaluation of some elements. Some strengths/weaknesses. Some impact evaluation. Limited improvements.</td>
+                    <td class="col-a">Descriptive rather than analytical; misses key security trade-offs.</td>
+                    <td class="col-b">Descriptive rather than analytical; misses key performance trade-offs.</td>
+                    <td class="col-c">Descriptive rather than analytical; fails to critically evaluate sources.</td>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>1</strong></td>
+                    <td class="col-marks"><strong>1–5</strong></td>
+                    <td class="col-generic">Limited evaluation. Few strengths/weaknesses. Little impact evaluation.</td>
+                    <td class="col-a">Minimal security analysis.</td>
+                    <td class="col-b">Minimal infrastructure analysis.</td>
+                    <td class="col-c">Minimal continuity analysis.</td>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>0</strong></td>
+                    <td class="col-marks"><strong>0</strong></td>
+                    <td class="col-generic" colspan="4">No creditable response.</td>
+                </tr>
+            </table>
+
+            <div class="info-box">
+                <strong>How the exemplars achieve Band 4 (Distinction):</strong>
+                <ul style="margin-top:0.4rem;">
+                    <li><strong>Structure:</strong> They are split into the three required elements (Risk Assessment, Requirements, Test Network).</li>
+                    <li><strong>Critical Tone:</strong> They do not just describe what was done; they analyse the trade-offs (e.g., security vs usability) and acknowledge specific weaknesses or errors made during the build.</li>
+                    <li><strong>Impact:</strong> They explicitly link design decisions to their impact on functionality, usability, and security (or CIA/Availability/Integrity).</li>
+                    <li><strong>Contextual Improvements:</strong> The proposed improvements are highly specific to the scenario (e.g., MFA for healthcare, QoS for logistics, ITIL CSI for media continuity).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========== ASSIGNMENT A ========== -->
+        <div id="tabA" class="panel">
+            <div class="info-box">
+                <strong>Assignment A (Northgate Health Trust):</strong> Focuses on evaluating security controls, the CIA triad, and hardening the domain (MFA, PKI, IDS/IPS, VLAN hopping).
+            </div>
+
+            <h2>Risk assessment (Northgate Health Trust)</h2>
+            <div class="eval-block">
+                <p><strong>Strengths:</strong> The risk assessment comprehensively covered a wide range of security threats specific to a healthcare clinic, such as phishing targeting clinical staff, ransomware, and insider threats. By explicitly linking each risk to the <strong>risk management process</strong> (identify → probability → impact → prioritise → mitigate) and applying <strong>control types</strong> (preventative, detective, corrective), the register provided a highly structured approach. It ensured that critical assets, like patient-adjacent records, were mapped directly to legislative requirements under <strong>UK GDPR and DPA 2018</strong>, as well as NCSC Cyber Essentials. Prioritising risks by likelihood and impact allowed resources to be focused on the highest-risk areas, such as ransomware and unauthorised data access.</p>
+                <p><strong>Weaknesses:</strong> While the assessment covered digital threats well, it initially underrepresented "Shadow IT" risks—such as staff using unauthorised personal cloud storage for patient data. Furthermore, the assessment did not fully quantify the potential downtime caused by a ransomware attack; it focused heavily on the data breach (confidentiality) aspect but overlooked the operational impact (availability) if the fileserver was encrypted. The risk levels were also qualitative (e.g., "High") rather than based on quantitative metrics (e.g., "expected once every two years"), which limits financial justification for expensive controls like MFA.</p>
+                <p><strong>Impact of decisions:</strong> Categorising the risks allowed the trust to prioritise <strong>Confidentiality</strong> and <strong>Integrity</strong>, resulting in the implementation of strict RBAC and auditing policies. However, the lack of focus on availability risks meant the initial design relied on a single server. If that server failed or was encrypted, the clinic would halt. While the chosen <strong>risk responses</strong> (Mitigate and Transfer) were appropriate, the lack of a detailed incident response plan (a corrective control) meant the organisation might struggle to recover quickly from a successful attack.</p>
+                <p><strong>Further improvements:</strong> To strengthen the risk assessment, I would introduce quantitative risk analysis (e.g., calculating the Annualised Loss Expectancy). I would also explicitly include "Shadow IT" and "IoT/Medical Device Compromise" as specific threats. Finally, I would map every risk directly to a specific policy (e.g., Acceptable Use Policy, Incident Response Plan) to ensure the transition from risk identification to active policy enforcement is clearer for the trust.</p>
+            </div>
+
+            <h2>Infrastructure requirements (Northgate Health Trust)</h2>
+            <div class="eval-block">
+                <p><strong>Strengths:</strong> The requirements document effectively translated the risks into tangible security controls. Specifying a domain architecture with Active Directory, DNS, and DHCP, alongside a clear RBAC permission matrix, ensured that the principle of least privilege was built into the network design. The choice of WPA2-Enterprise (with RADIUS) instead of a pre-shared key significantly improved wireless security. Furthermore, detailing a strict password policy and account lockout settings directly mitigated the risk of brute-force attacks and credential theft.</p>
+                <p><strong>Weaknesses:</strong> The hardware specification was somewhat generic. While it identified the need for a server and switch, it did not detail specific RAM, storage IOPS, or switch backplane capacity, which are crucial for handling clinical database traffic. Additionally, the IPv4 scheme used /24 subnets (254 hosts) for all VLANs; while easy to manage, this is larger than necessary for the 20 users and unnecessarily expands the broadcast domain.</p>
+                <p><strong>Impact of decisions:</strong> The decision to separate the Clinical and Finance departments using VLANs had a highly positive impact on security, preventing lateral movement between departments. However, applying highly restrictive GPOs (such as blocking USB storage and restricting Control Panel access) created a trade-off with <strong>usability</strong>. While it enhanced security, it frustrated clinical staff who needed to transfer data securely or adjust monitor settings, potentially leading to workarounds that could introduce new risks. The use of static IPs for servers and DHCP for clients improved both manageability and reliability.</p>
+                <p><strong>Further improvements:</strong> The requirements could be enhanced by specifying a <strong>Certificate Authority (CA)</strong> to issue certificates for EAP-TLS Wi-Fi authentication, removing the reliance on passwords entirely. I would also specify a <strong>Network Access Control (NAC)</strong> solution to ensure only compliant devices can join the wired network, and upgrade the IPv4 scheme to use /26 or /27 subnets for tighter security boundaries.</p>
+            </div>
+
+            <h2>Test Network (Northgate Health Trust)</h2>
+            <div class="eval-block">
+                <p><strong>Strengths:</strong> I successfully implemented all requirements of the test network, creating a fully operational domain environment. Using a virtual environment allowed me to test destructive scenarios, such as locking out accounts, without disrupting real users. The iterative testing process proved that the security controls were functional; negative testing confirmed that the RBAC matrix successfully denied access to unauthorised folders, and the GPOs correctly enforced the account lockout and USB restriction policies. Setting a strong Administrator password and separating users into groups demonstrated an understanding of least privilege and efficient management.</p>
+                <p><strong>Weaknesses:</strong> The test network was built on basic virtual hardware, meaning network performance and throughput were not stress-tested with realistic clinical traffic (e.g., large imaging files). Additionally, the backup process was tested locally but did not verify an off-site restore, meaning the full disaster recovery timeline (RTO) could not be validated. The naming convention for test users (User1, User2) was also poor practice, as it lacked meaningful context for administration.</p>
+                <p><strong>Impact of decisions:</strong> The domain-based design significantly improved central control and <strong>Confidentiality</strong>. The successful enforcement of account lockouts and password policies proved the network was hardened against basic credential attacks. However, the strict GPOs (specifically the USB block) demonstrated a clear negative impact on <strong>Usability</strong>, showing that security must be balanced with clinical workflow needs. The decision to isolate the VLANs in the configuration was successful, but it required careful routing rules to allow shared printer access while blocking direct PC-to-PC traffic.</p>
+                <p><strong>Further improvements:</strong> To enhance the test network, I would implement Multi-Factor Authentication (MFA) for all domain logins to drastically reduce the risk of phishing. I would also deploy an Intrusion Detection System (IDS) on the network to monitor for lateral movement between VLANs, and harden the switch configuration by disabling DTP and changing native VLANs to prevent VLAN hopping attacks. Finally, I would rename users to a standard convention (e.g., JSmith-Clinician) to improve administrative clarity.</p>
+            </div>
+        </div>
+
+        <!-- ========== ASSIGNMENT B ========== -->
+        <div id="tabB" class="panel">
+            <div class="info-box">
+                <strong>Assignment B (Meridian Logistics):</strong> Focuses on evaluating infrastructure functionality, availability, usability, and performance (HA/clustering, load balancing, QoS, SDN, cloud trade-offs).
+            </div>
+
+            <h2>Infrastructure risk assessment (Meridian Logistics)</h2>
+            <div class="eval-block">
+                <p><strong>Strengths:</strong> The risk assessment was highly focused on the operational reality of a logistics firm, zeroing in on technical and environmental threats such as single points of failure, ISP dropouts, server capacity exhaustion, and power/cooling failures. By identifying both the likelihood and potential impact of these specific threats, I could prioritise resources effectively—for example, justifying the investment in a UPS and a secondary ISP link to protect operational uptime. The identification of the core switch as a single point of failure was critical to driving the redundancy strategy.</p>
+                <p><strong>Weaknesses:</strong> The assessment was heavily weighted towards hardware and connectivity failures and did not adequately cover "soft" failures, such as a misconfiguration during a firmware upgrade or a network loop caused by a user plugging in an unmanaged switch. Furthermore, I relied heavily on qualitative descriptions (e.g., "High" impact) rather than quantifying the financial loss per hour of downtime, which would have provided a stronger business case for high-availability infrastructure.</p>
+                <p><strong>Impact of decisions:</strong> Categorising the risks highlighted that <strong>Availability</strong> was the paramount concern for Meridian. The decision to prioritise mitigating SPOFs directly improved network resilience. However, the lack of focus on configuration management risks means the network could still be brought down by human error. The risk assessment successfully guided the choice to implement redundant links, ensuring that a single cable cut or switch failure would not halt the logistics operations.</p>
+                <p><strong>Further improvements:</strong> To strengthen the assessment, I would introduce a quantitative downtime cost analysis (e.g., "£5,000 per hour of lost logistics processing"). I would also add configuration management risks and the threat of broadcast storms, linking them to preventative controls such as Spanning Tree Protocol (STP) and BPDU Guard. Linking every risk to a specific monitoring alert (e.g., SNMP traps for switch failure) would also move the assessment from passive to active monitoring.</p>
+            </div>
+
+            <h2>Infrastructure requirements (Meridian Logistics)</h2>
+            <div class="eval-block">
+                <p><strong>Strengths:</strong> The requirements document provided a well-structured, scalable topology (Star/Client-Server). The device selection was justified based on the need for Layer 3 routing and VLAN support. The comparison of remote access methods (RDP, VPN, SSH, LOM) was a major strength; selecting a VPN over exposing RDP directly to the internet ensured secure remote administration while maintaining functionality. The IPv4 subnetting plan clearly defined the address ranges, gateways, and DHCP scopes for the Operations and Finance VLANs.</p>
+                <p><strong>Weaknesses:</strong> The hardware specifications were somewhat generic. While I specified a server and a managed switch, I did not detail the required switch backplane capacity or the IOPS required for the server, which are critical for performance. Additionally, using /24 subnets for every VLAN, including the server VLAN, is inefficient and unnecessarily expands the broadcast domain. Finally, the backup criteria specified daily incrementals but did not specify the retention period, which is essential for compliance and recovery.</p>
+                <p><strong>Impact of decisions:</strong> The choice of a client-server model with centralised DHCP and DNS improved <strong>Usability</strong>, as users can plug in and get immediate network access. The use of VLANs improved security and reduced broadcast traffic, enhancing network <strong>Performance</strong>. However, specifying standard Cat 6 cabling without considering the physical environment (e.g., using shielded cable near heavy machinery) could lead to interference issues. The remote access decision improved security, but relying on VPNs for all remote workers means the VPN concentrator becomes a single point of failure if not clustered.</p>
+                <p><strong>Further improvements:</strong> The requirements should be enhanced by specifying hardware with <strong>High Availability (HA)</strong> features, such as dual power supplies and hot-swappable fans. I would also detail a <strong>Quality of Service (QoS)</strong> policy on the switch to prioritise voice and critical logistics traffic, and specify a cloud-hosted backup solution with a defined retention policy to ensure data is held off-site.</p>
+            </div>
+
+            <h2>Test Network (Meridian Logistics)</h2>
+            <div class="eval-block">
+                <p><strong>Strengths:</strong> I successfully deployed the core infrastructure, including AD DS, DNS, DHCP, and a web server. Functional testing (ping, nslookup, DHCP lease checks) proved that the network services were robust and that inter-VLAN routing was working correctly. The remote access testing successfully demonstrated that the VPN could securely tunnel traffic to the server, while direct RDP access was successfully blocked. The service reachability test (accessing the intranet site) proved that the DNS records and IIS configuration were correct, demonstrating a fully operational application layer.</p>
+                <p><strong>Weaknesses:</strong> The test network was tested with a maximum of two simultaneous connections, which did not simulate the traffic load of 20 users. While I tested a 1GB file transfer to check server capacity, this was done in isolation. It did not account for the impact of multiple users accessing the server concurrently, nor did it test the QoS prioritisation during a simulated high-bandwidth operation. The initial ping test failure was due to a switchport incorrectly assigned to the wrong VLAN, which highlighted a lack of configuration verification.</p>
+                <p><strong>Impact of decisions:</strong> The topology and addressing choices significantly improved the network's <strong>Usability</strong>, allowing seamless communication between clients and servers. The decision to use a VPN for remote access improved security but added a layer of complexity for users. The failure of the initial ping test demonstrated that without strict change control, configuration errors can directly impact <strong>Availability</strong>. Once corrected, the VLAN isolation ensured that broadcast traffic from the Operations department did not degrade the performance of the Finance department.</p>
+                <p><strong>Further improvements:</strong> To improve the infrastructure, I would implement <strong>High Availability (HA)</strong> by adding a second server and configuring a failover cluster for DHCP and DNS, eliminating the single point of failure. I would also configure <strong>QoS</strong> on the switch to manage bandwidth during peak times. Finally, I would implement a <strong>Software-Defined Networking (SDN)</strong> approach to automate VLAN provisioning and reduce the risk of human error during configuration, ensuring the network remains consistently available.</p>
+            </div>
+        </div>
+
+        <!-- ========== ASSIGNMENT C ========== -->
+        <div id="tabC" class="panel">
+            <div class="info-box">
+                <strong>Assignment C (Harbourview Media):</strong> Focuses on evaluating the DRP/BCP, availability, integrity, backup/restore, and <strong>critically evaluating the sources used</strong> (bias, corroboration, reliability).
+            </div>
+
+            <h2>DRP/BCP risk assessment (Harbourview Media)</h2>
+            <div class="eval-block">
+                <p><strong>Strengths:</strong> Framing the risk assessment around Disaster Recovery Planning (DRP) and Business Continuity Planning (BCP) was highly appropriate given the recent disk failure. The explicit definition of the DRP scope (organisational) provided clear boundaries. Calculating and justifying <strong>RTO (Recovery Time Objective), RPO (Recovery Point Objective), MTBF, and MTTR</strong> provided concrete, measurable targets for the design. Identifying the threat of ransomware targeting connected backup drives was a critical insight, leading to the requirement for offline, immutable backups. Addressing both data at rest (BitLocker) and data in transit (TLS/VPN) ensured comprehensive coverage of encryption risks.</p>
+                <p><strong>Weaknesses:</strong> The risk assessment assumed that the off-site cloud backup would always be immediately available and fast to download. It did not adequately account for the "recovery time" required to download terabytes of media files over the internet, which could easily exceed the stated RTO of 4 hours. Furthermore, while the assessment covered environmental risks like fire and flood, it did not consider the physical theft of high-value media assets (e.g., an unencrypted production laptop).</p>
+                <p><strong>Impact of decisions:</strong> The focus on backup and off-site replication heavily improved data <strong>Availability</strong> and <strong>Integrity</strong>. By prioritising the RPO, the organisation ensures that minimal work is lost during a disaster. However, the decision to rely on a single fileserver with RAID 1 improved availability but left a single point of failure if the server chassis itself failed. The risk responses (Mitigate and Transfer) were appropriate, using cloud backup providers to transfer the risk of physical media destruction.</p>
+                <p><strong>Further improvements:</strong> To strengthen the assessment, I would introduce a more granular risk analysis for "Cloud Sync Failure," where ransomware encrypts local files and the cloud sync instantly overwrites the good backups. I would also include a threat for "Theft of High-Value Physical Assets" and recommend full-disk encryption (BitLocker) on all production laptops, alongside a strict policy for reporting lost devices.</p>
+            </div>
+
+            <h2>Requirements with source justification (Harbourview Media)</h2>
+            <div class="eval-block">
+                <p><strong>Strengths:</strong> The mandatory sources-of-knowledge log was a major strength, ensuring every design decision was evidence-based and validated. By citing at least two sources per decision (e.g., NCSC guidance and TIA/EIA-568), I was able to apply reliability and validity factors (authority, date, version, corroboration) to justify the choices. The decision to use Cat 6 UTP with TIA/EIA-568-B pinout was robustly justified, as was the choice of hourly incremental + weekly full backups, directly supporting the RPO of 1 hour.</p>
+                <p><strong>Weaknesses and Source Critique:</strong> While the sources were reliable, there was a heavy reliance on vendor documentation (e.g., Microsoft Windows Server Backup) for configuration steps. These sources carry inherent <strong>bias</strong>—they are designed to promote their own ecosystem and may omit the limitations of their tools. For example, the Microsoft documentation did not adequately highlight the file size limitations of FAT32, which led to a test failure. The NCSC guidance, while neutral and highly authoritative, was sometimes generic and required careful interpretation to apply to the specific media workflow of Harbourview.</p>
+                <p><strong>Impact of decisions:</strong> Sourcing the cable standard from TIA/EIA ensured physical reliability and <strong>Integrity</strong> of data transmission. The rigorous evaluation of sources improved the <strong>Usability</strong> of the design by ensuring the chosen backup solution was both practical and standards-compliant. However, relying on vendor documentation meant the backup configuration was initially overly complex, which negatively impacted the testing phase and delayed the RTO validation. The specification of /24 subnets was adequate but lacked scalability for future growth.</p>
+                <p><strong>Further improvements:</strong> The requirements could be enhanced by conducting a more critical evaluation of the sources, specifically comparing the <strong>bias</strong> of commercial vendor documentation against independent, peer-reviewed industry frameworks (like ITIL). I would also specify a hybrid backup approach (local SAN + cloud) rather than relying solely on the cloud, mitigating the risk of ISP failure during a restore. Finally, detailing a cross-site replication strategy would further reduce the RTO.</p>
+            </div>
+
+            <h2>Test Network (Harbourview Media)</h2>
+            <div class="eval-block">
+                <p><strong>Strengths:</strong> The iterative testing of the backup and restore process was the most successful element of the test network. The initial failure due to the external drive being formatted as FAT32 was a valuable learning experience. It forced me to troubleshoot the issue, identify the file size limitation, reformat the drive to NTFS, and apply BitLocker encryption before successfully retesting. This proved that the backup was not only functional but secure and capable of handling large media files. The DRP tabletop walkthrough, which simulated a disk failure, provided a realistic validation of the recovery process, confirming the MTTR and highlighting the bottleneck of the cloud download speed.</p>
+                <p><strong>Weaknesses:</strong> The test network was built using virtual machines, so the physical aspects of the network—such as cable testing to TIA/EIA-568 and physical server maintenance—were only partially simulated. The cable test itself initially failed because the RJ45 pins were not fully pushed down. While I corrected this and re-crimped the cable, this highlighted how prone to human error physical tasks are. Additionally, the off-site cloud backup was simulated; I did not actually transfer terabytes of data over the internet, so the true RTO under disaster conditions is still unproven.</p>
+                <p><strong>Impact of decisions:</strong> The decision to use NTFS and BitLocker on the backup drive ensured that data at rest was secure, maintaining <strong>Integrity</strong> and <strong>Confidentiality</strong>. The successful file-level and folder-level restores proved the backup strategy worked, significantly improving <strong>Availability</strong>. However, the failure of the cable test demonstrated that without rigorous quality control, physical failures could undermine the entire network. The DRP walkthrough revealed that our reliance on the cloud download meant the RTO might be missed in a real scenario, impacting business continuity.</p>
+                <p><strong>Further improvements:</strong> To enhance the testing and reliability, I would implement a hybrid backup strategy, using a local backup for fast restores and a cloud copy for disaster recovery, reducing the MTTR. I would conduct a full bare-metal restore to test the complete system recovery, not just file-level restores. Finally, I would perform quarterly DRP tabletop exercises using the ITIL Continual Service Improvement (CSI) model, updating the runbook and RTO/RPO targets based on actual performance data and lessons learned.</p>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-note">
+            Copyright in this document belongs to, and is used under licence from the Department for Education, © 2026.<br>
+            'T-LEVELS' and 'T Level' are registered trademarks of the Department for Education. Pearson is authorised by the Department for Education to develop and deliver this T Level Technical Qualification.
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT TABS -->
+    <script>
+        const tabs = document.querySelectorAll('.tab-btn');
+        const panels = document.querySelectorAll('.panel');
+
+        tabs.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+
+                btn.classList.add('active');
+                const targetId = btn.dataset.tab;
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

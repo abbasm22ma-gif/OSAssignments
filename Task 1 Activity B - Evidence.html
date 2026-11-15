@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1 Activity B · Unified Mark Scheme & Exemplars</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: #eef2f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem 4rem;
+        }
+
+        .page-wrapper {
+            max-width: 1400px;
+            width: 100%;
+            background: white;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+            border-radius: 24px;
+            padding: 2.2rem 2rem 2.5rem;
+            border: 1px solid #d9e2ec;
+        }
+
+        h1 {
+            font-size: 1.85rem;
+            font-weight: 600;
+            color: #0b2b44;
+            letter-spacing: -0.01em;
+            border-left: 6px solid #1e6f9f;
+            padding-left: 1.2rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .subhead {
+            font-size: 0.95rem;
+            color: #4a5f73;
+            margin-bottom: 1.8rem;
+            padding-left: 1.8rem;
+            font-weight: 400;
+            border-bottom: 1px solid #d0dde9;
+            padding-bottom: 0.8rem;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.4rem;
+            background: #e3eaf2;
+            padding: 0.4rem;
+            border-radius: 60px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 130px;
+            padding: 0.85rem 1.2rem;
+            border: none;
+            background: transparent;
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: #1f3a4e;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            letter-spacing: 0.01em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn i { font-style: normal; font-size: 1.1rem; }
+        .tab-btn:hover { background: #cfdbe7; color: #0b2b44; }
+        .tab-btn.active {
+            background: #ffffff;
+            color: #0a3b5c;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            font-weight: 700;
+        }
+
+        .panel { display: none; animation: fade 0.18s ease; }
+        .panel.active { display: block; }
+        @keyframes fade { from { opacity: 0.4; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+        h2 {
+            font-size: 1.45rem;
+            font-weight: 600;
+            color: #0b2b44;
+            margin: 1.8rem 0 0.8rem;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.18rem;
+            font-weight: 600;
+            color: #1d4a6b;
+            margin: 1.6rem 0 0.6rem;
+            border-bottom: 1px solid #cbdae8;
+            padding-bottom: 0.25rem;
+        }
+
+        h4 {
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: #1f4b6e;
+            margin: 1.2rem 0 0.3rem;
+        }
+
+        p, li {
+            color: #203a4e;
+            line-height: 1.6;
+            font-size: 0.96rem;
+        }
+
+        ul, ol { padding-left: 1.8rem; margin: 0.5rem 0 0.9rem; }
+        li { margin-bottom: 0.25rem; }
+
+        .info-box {
+            background: #f4f9ff;
+            border: 1px solid #c5d9eb;
+            border-radius: 12px;
+            padding: 1rem 1.4rem;
+            margin: 1.2rem 0;
+            font-size: 0.94rem;
+        }
+
+        .info-box strong { color: #0d3e60; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+
+        th {
+            background: #1e4b6b;
+            color: white;
+            font-weight: 600;
+            padding: 0.65rem 0.85rem;
+            text-align: left;
+            font-size: 0.88rem;
+        }
+
+        td {
+            padding: 0.65rem 0.85rem;
+            border-bottom: 1px solid #d9e2ec;
+            background: white;
+            vertical-align: top;
+        }
+
+        tr:last-child td { border-bottom: none; }
+
+        .mark-badge {
+            display: inline-block;
+            background: #1e6f9f;
+            color: white;
+            font-weight: 600;
+            font-size: 0.78rem;
+            padding: 0.15rem 0.8rem;
+            border-radius: 30px;
+            letter-spacing: 0.01em;
+            margin-left: 0.4rem;
+            vertical-align: middle;
+        }
+
+        .highlight {
+            background: #fff8e5;
+            border-left: 4px solid #e6a817;
+            padding: 0.9rem 1.2rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.94rem;
+        }
+
+        .highlight strong { color: #7a4f00; }
+
+        .model-answer {
+            background: #f9fcff;
+            border: 1px solid #c5d9eb;
+            border-radius: 14px;
+            padding: 1.4rem 1.6rem;
+            margin: 1.4rem 0;
+        }
+
+        .model-answer h4 { margin-top: 0; color: #0a3b5c; }
+
+        .risk-ref {
+            display: inline-block;
+            background: #1e4b6b;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.1rem 0.6rem;
+            border-radius: 20px;
+            letter-spacing: 0.02em;
+            margin-right: 0.4rem;
+        }
+
+        /* Unified Mark Scheme Table Styles */
+        .mark-scheme-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.85rem;
+            table-layout: fixed;
+        }
+        .mark-scheme-table th { 
+            background: #1e4b6b; 
+            color: white; 
+            padding: 0.8rem 0.6rem; 
+            text-align: left; 
+            border: 1px solid #1e4b6b; 
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+        .mark-scheme-table td { 
+            border: 1px solid #c5d9eb; 
+            padding: 0.8rem 0.6rem; 
+            vertical-align: top; 
+            color: #111; 
+            line-height: 1.5;
+            background: white;
+        }
+        .mark-scheme-table tr:nth-child(even) td { background-color: #f9fcff; }
+        
+        .col-band { width: 6%; text-align: center; }
+        .col-marks { width: 6%; text-align: center; }
+        .col-generic { width: 28%; }
+        .col-a { width: 20%; }
+        .col-b { width: 20%; }
+        .col-c { width: 20%; }
+
+        .footer-note {
+            margin-top: 2.4rem;
+            font-size: 0.85rem;
+            color: #5d7488;
+            text-align: center;
+            border-top: 1px solid #d2dfeb;
+            padding-top: 1.6rem;
+        }
+
+        @media (max-width: 1100px) {
+            .page-wrapper { padding: 1.2rem; overflow-x: auto; }
+            h1 { font-size: 1.5rem; }
+            .tab-btn { min-width: 100px; font-size: 0.82rem; padding: 0.65rem 0.7rem; }
+            .mark-scheme-table { min-width: 950px; }
+            table:not(.mark-scheme-table) { font-size: 0.78rem; }
+            th, td { padding: 0.45rem 0.55rem; }
+            .model-answer { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <h1>Task 1 Activity B — Unified Mark Scheme & Exemplars</h1>
+        <div class="subhead">Infrastructure / security requirements documents for all three assignments (A, B, C), each designed to access Band 4 (15–18 marks).</div>
+
+        <!-- TABS -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="tabMarkScheme"><i>📋</i> Unified Mark Scheme</button>
+            <button class="tab-btn" data-tab="tabA"><i>🔒</i> A — Security</button>
+            <button class="tab-btn" data-tab="tabB"><i>🌐</i> B — Infrastructure</button>
+            <button class="tab-btn" data-tab="tabC"><i>📚</i> C — Continuity</button>
+        </div>
+
+        <!-- ========== UNIFIED MARK SCHEME TAB ========== -->
+        <div id="tabMarkScheme" class="panel active">
+            <h2>Unified Mark Scheme — Task 1 Activity B (18 marks)</h2>
+            <p>This single-page mark scheme displays the generic banding criteria alongside the specific, contextualised requirements for Assignments A, B, and C. The model answers in the other tabs are designed to meet the Band 4 criteria across all columns.</p>
+
+            <table class="mark-scheme-table">
+                <tr>
+                    <th class="col-band">Band</th>
+                    <th class="col-marks">Marks</th>
+                    <th class="col-generic">Generic Assessment Criteria (All Assignments)</th>
+                    <th class="col-a">Assignment A (Security)</th>
+                    <th class="col-b">Assignment B (Infrastructure)</th>
+                    <th class="col-c">Assignment C (Continuity)</th>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>4</strong></td>
+                    <td class="col-marks"><strong>15–18</strong></td>
+                    <td class="col-generic">Comprehensive requirements document. Hardware, software, server configuration, IPv4 scheme and two VLANs all fully specified and justified. Every risk from Activity A is translated into a control.</td>
+                    <td class="col-a">Must include: password policy, lockout, GPOs, RBAC matrix, WPA2/WPA3, backup-as-mitigation.</td>
+                    <td class="col-b">Must include: topology, subnetting, device selection, server roles, remote access comparison, backup criteria.</td>
+                    <td class="col-c">Must include: sources-of-knowledge log with ≥2 sources per decision, reliability factors, bias flags, TIA/EIA-568 cable standard, backup type justified.</td>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>3</strong></td>
+                    <td class="col-marks"><strong>11–14</strong></td>
+                    <td class="col-generic">Detailed requirements document. Most required elements specified and justified. Most risks translated into controls.</td>
+                    <td class="col-a">Minor inaccuracies or missing justifications for one or two security controls.</td>
+                    <td class="col-b">Minor inaccuracies or missing justifications for one or two infrastructure elements.</td>
+                    <td class="col-c">Sources log present but reliability/bias applied inconsistently.</td>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>2</strong></td>
+                    <td class="col-marks"><strong>6–10</strong></td>
+                    <td class="col-generic">Adequate requirements document. Some required elements missing or partially specified. Some risks translated into controls.</td>
+                    <td class="col-a">Security controls are generic and not clearly linked to the risks identified.</td>
+                    <td class="col-b">Infrastructure choices are generic and lack justification for the scenario.</td>
+                    <td class="col-c">Some sources cited but lack reliability analysis or bias flagging.</td>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>1</strong></td>
+                    <td class="col-marks"><strong>1–5</strong></td>
+                    <td class="col-generic">Limited requirements document. Few required elements present. Little translation of risks into controls.</td>
+                    <td class="col-a">Minimal security detail.</td>
+                    <td class="col-b">Minimal infrastructure detail.</td>
+                    <td class="col-c">Minimal source detail.</td>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>0</strong></td>
+                    <td class="col-marks"><strong>0</strong></td>
+                    <td class="col-generic" colspan="4">No creditable response.</td>
+                </tr>
+            </table>
+
+            <div class="info-box">
+                <strong>How each model answer accesses all bands:</strong>
+                <ul style="margin-top:0.4rem;">
+                    <li><strong>Band 4</strong> — All required elements are present and fully justified; every risk from Activity A is translated into a control; legislation/guidance and source justification are applied accurately.</li>
+                    <li><strong>Band 3</strong> — A student who covers most elements but misses one or two justifications, or has minor inaccuracies, would sit here.</li>
+                    <li><strong>Band 2</strong> — A student who covers some elements but leaves several partially specified, or translates only some risks into controls, would sit here.</li>
+                    <li><strong>Band 1</strong> — A student who lists a few elements with minimal detail and little risk translation would sit here.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========== ASSIGNMENT A ========== -->
+        <div id="tabA" class="panel">
+            <h2>Assignment A — Northgate Health Trust (Security-framed)</h2>
+            <div class="info-box">
+                <strong>Task 1 Activity B — Security Requirements</strong> <span class="mark-badge">18 marks</span><br>
+                <strong>Scenario:</strong> UK health trust, satellite clinic, patient-adjacent data, 20 users, clinical admin &amp; finance departments, shared building, VLAN separation, WPA2 Wi-Fi.<br>
+                <strong>Requirement:</strong> Translate each risk from Activity A into a control — password policy, account lockout, GPO choices, RBAC permission matrix, WPA2/WPA3, backup-as-mitigation. Cover hardware, software, server configuration, and IPv4 scheme with two VLANs.
+            </div>
+
+            <div class="highlight">
+                <strong>Top-band model answer (Band 4 — 15–18 marks):</strong> The requirements document below translates every risk from Activity A into a specific control, specifies all hardware, software, server configuration and IPv4 addressing, and justifies each decision.
+            </div>
+
+            <h3>1. Hardware requirements</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th style="width:180px;">Item</th><th>Specification</th><th>Justification</th></tr>
+                    <tr>
+                        <td><strong>Server</strong></td>
+                        <td>1 × rack server: 16 GB RAM, 2 × 500 GB SSD (RAID 1), dual PSU, Windows Server 2022 (or equivalent)</td>
+                        <td>Hosts AD DS, DNS, DHCP and file server roles. RAID 1 mitigates Risk 7 (disk failure). Dual PSU mitigates Risk 6 (power).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Managed switch</strong></td>
+                        <td>24-port Layer 2/3 managed switch, 802.1Q VLAN support, port security, ACLs</td>
+                        <td>Provides VLAN separation for clinical admin and finance (Risk 8 — VLAN hopping). Port security and ACLs are preventative controls.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wireless access point</strong></td>
+                        <td>Enterprise WAP supporting WPA2-Enterprise and WPA3, RADIUS-capable</td>
+                        <td>Mitigates Risk 4 (wireless compromise). WPA3 preferred; WPA2-Enterprise with RADIUS where WPA3 is unavailable.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>End-user computers</strong></td>
+                        <td>20 × desktop PCs (Windows 11 Pro or equivalent), TPM 2.0, BitLocker-capable</td>
+                        <td>Supports encryption at rest (Risk 5 — password compromise; Risk 2 — ransomware). Wired connections as required.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Backup drive</strong></td>
+                        <td>External encrypted USB drive (or additional virtual drive) with scheduled backup software</td>
+                        <td>Corrective control for Risk 7 (no tested backup). Encryption mitigates Risk 6 (physical theft).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>UPS</strong></td>
+                        <td>Line-interactive UPS for server and switch</td>
+                        <td>Preventative control for Risk 6 (power failure) — graceful shutdown prevents data corruption.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lockable server cabinet</strong></td>
+                        <td>Lockable rack cabinet with tamper seals and CCTV coverage</td>
+                        <td>Mitigates Risk 6 (physical access by another tenant) — preventative and detective controls.</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>2. Software requirements</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th style="width:180px;">Software</th><th>Purpose</th><th>Justification / risk link</th></tr>
+                    <tr>
+                        <td><strong>Windows Server 2022</strong> (or equivalent)</td>
+                        <td>AD DS, DNS, DHCP, file server roles</td>
+                        <td>Core domain services. Supports GPO, RBAC, auditing.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Windows 11 Pro</strong> (or equivalent)</td>
+                        <td>End-user desktop OS</td>
+                        <td>Supports BitLocker, GPO application, EDR.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Endpoint Detection and Response (EDR)</strong></td>
+                        <td>Malware and ransomware detection</td>
+                        <td>Detective/preventative control for Risk 2 (ransomware) and Risk 1 (phishing payloads).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Email filtering / anti-phishing</strong></td>
+                        <td>Blocks phishing emails</td>
+                        <td>Preventative control for Risk 1 (phishing).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Backup software</strong></td>
+                        <td>Scheduled backup and restore</td>
+                        <td>Corrective control for Risk 7 (backup) and Risk 2 (ransomware).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>BitLocker</strong></td>
+                        <td>Full-disk encryption</td>
+                        <td>Encryption at rest — mitigates Risk 6 (physical theft) and Risk 2 (ransomware exfiltration).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SIEM / log aggregation</strong></td>
+                        <td>Centralised audit logs and alerts</td>
+                        <td>Detective control for Risk 1, Risk 3 (insider), Risk 8 (VLAN hopping).</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>3. Server configuration and settings</h3>
+            <div class="model-answer">
+                <h4>3.1 Domain services</h4>
+                <ul>
+                    <li><strong>AD DS:</strong> Domain <code>northgate.local</code>; domain functional level Windows Server 2016+.</li>
+                    <li><strong>DNS:</strong> Integrated with AD; forwarders to ISP or public DNS; scavenging enabled.</li>
+                    <li><strong>DHCP:</strong> Two scopes — VLAN 10 (Clinical Admin) and VLAN 20 (Finance). See IPv4 scheme below.</li>
+                </ul>
+
+                <h4>3.2 Password policy (GPO — Default Domain Policy)</h4>
+                <table>
+                    <tr><th>Setting</th><th>Value</th><th>Justification</th></tr>
+                    <tr><td>Minimum password length</td><td>12 characters</td><td>Mitigates Risk 5 (weak passwords)</td></tr>
+                    <tr><td>Password complexity</td><td>Enabled (3 of 4 character types)</td><td>Mitigates Risk 5</td></tr>
+                    <tr><td>Maximum password age</td><td>90 days</td><td>Limits credential exposure window</td></tr>
+                    <tr><td>Password history</td><td>10 passwords</td><td>Prevents reuse — mitigates Risk 5</td></tr>
+                    <tr><td>Minimum password age</td><td>1 day</td><td>Prevents cycling back to old password</td></tr>
+                </table>
+
+                <h4>3.3 Account lockout policy (GPO)</h4>
+                <table>
+                    <tr><th>Setting</th><th>Value</th><th>Justification</th></tr>
+                    <tr><td>Account lockout threshold</td><td>5 invalid attempts</td><td>Mitigates Risk 5 (brute force)</td></tr>
+                    <tr><td>Account lockout duration</td><td>30 minutes</td><td>Slows brute force without blocking legitimate users</td></tr>
+                    <tr><td>Reset counter after</td><td>30 minutes</td><td>Reasonable window</td></tr>
+                </table>
+
+                <h4>3.4 Group Policy Objects (GPOs) — five security controls</h4>
+                <table>
+                    <tr><th>GPO</th><th>Setting</th><th>Risk link</th></tr>
+                    <tr><td>GPO-PasswordPolicy</td><td>Complexity, length, history, age (as above)</td><td>Risk 5</td></tr>
+                    <tr><td>GPO-AccountLockout</td><td>Threshold, duration, reset (as above)</td><td>Risk 5</td></tr>
+                    <tr><td>GPO-ScreenLock</td><td>Lock after 5 minutes of inactivity; require password on resume</td><td>Risk 3 (insider), Risk 6 (physical)</td></tr>
+                    <tr><td>GPO-USB-Restriction</td><td>Deny write access to removable storage for non-admin users</td><td>Risk 2 (ransomware via USB), Risk 7 (data exfiltration)</td></tr>
+                    <tr><td>GPO-AuditPolicy</td><td>Enable audit of logon events, account management, file access (success and failure)</td><td>Risk 1, Risk 3 (detective)</td></tr>
+                </table>
+
+                <h4>3.5 RBAC permission matrix (file shares)</h4>
+                <table>
+                    <tr><th>Group</th><th>Company share</th><th>Clinical Admin share</th><th>Finance share</th></tr>
+                    <tr><td>Clinical Admin</td><td>Read/Write</td><td>Write</td><td>None</td></tr>
+                    <tr><td>Finance</td><td>Read/Write</td><td>None</td><td>Write</td></tr>
+                    <tr><td>Domain Admins</td><td>Full Control</td><td>Full Control</td><td>Full Control</td></tr>
+                </table>
+                <p><strong>Justification:</strong> Enforces least privilege — mitigates Risk 3 (insider threat). Share permissions and NTFS permissions are both set; the most restrictive wins.</p>
+
+                <h4>3.6 Wireless configuration</h4>
+                <ul>
+                    <li><strong>WPA2-Enterprise</strong> (or WPA3 where supported) with RADIUS authentication.</li>
+                    <li>Strong PSK if WPA2-Personal is used (≥20 characters, randomly generated).</li>
+                    <li>SSID hidden (defence in depth, not a primary control).</li>
+                    <li>Guest network isolated on a separate VLAN.</li>
+                </ul>
+
+                <h4>3.7 Backup configuration (risk mitigation control)</h4>
+                <ul>
+                    <li><strong>Schedule:</strong> Daily incremental at 02:00; weekly full backup on Sunday at 02:00.</li>
+                    <li><strong>Destination:</strong> Encrypted external drive (offline when not in use) + optional off-site copy.</li>
+                    <li><strong>Retention:</strong> 4 weekly fulls, 30 daily incrementals.</li>
+                    <li><strong>Restore test:</strong> Monthly restore of a sample file, documented in the test log.</li>
+                    <li><strong>Justification:</strong> Corrective control for Risk 7 (no tested backup) and Risk 2 (ransomware).</li>
+                </ul>
+            </div>
+
+            <h3>4. IPv4 addressing scheme</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th>VLAN</th><th>Department</th><th>Subnet</th><th>Mask</th><th>Gateway</th><th>DHCP range</th><th>Justification</th></tr>
+                    <tr>
+                        <td>VLAN 10</td>
+                        <td>Clinical Admin</td>
+                        <td>192.168.10.0</td>
+                        <td>255.255.255.0 (/24)</td>
+                        <td>192.168.10.1</td>
+                        <td>192.168.10.100 – 192.168.10.200</td>
+                        <td>Separates clinical admin traffic from finance (Risk 8 — VLAN hopping). /24 provides 254 usable hosts, sufficient for 10 users plus growth.</td>
+                    </tr>
+                    <tr>
+                        <td>VLAN 20</td>
+                        <td>Finance</td>
+                        <td>192.168.20.0</td>
+                        <td>255.255.255.0 (/24)</td>
+                        <td>192.168.20.1</td>
+                        <td>192.168.20.100 – 192.168.20.200</td>
+                        <td>Separates finance traffic from clinical admin. /24 provides 254 usable hosts.</td>
+                    </tr>
+                    <tr>
+                        <td>VLAN 30</td>
+                        <td>Guest Wi-Fi</td>
+                        <td>192.168.30.0</td>
+                        <td>255.255.255.0 (/24)</td>
+                        <td>192.168.30.1</td>
+                        <td>192.168.30.100 – 192.168.30.150</td>
+                        <td>Isolates guest traffic from clinical and finance data (Risk 4).</td>
+                    </tr>
+                    <tr>
+                        <td>VLAN 40</td>
+                        <td>Server VLAN</td>
+                        <td>192.168.40.0</td>
+                        <td>255.255.255.0 (/24)</td>
+                        <td>192.168.40.1</td>
+                        <td>Static only</td>
+                        <td>Servers on a dedicated VLAN; ACLs restrict access from VLAN 10 and VLAN 20.</td>
+                    </tr>
+                </table>
+                <p><strong>Routing:</strong> Inter-VLAN routing via the Layer 3 switch. ACLs deny traffic from VLAN 20 (Finance) to VLAN 10 (Clinical Admin) and vice versa, enforcing the security boundary.</p>
+            </div>
+
+            <h3>5. Risk-to-control mapping (summary)</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th>Risk (from Activity A)</th><th>Control(s) in this requirements document</th></tr>
+                    <tr><td>Risk 1 — Phishing</td><td>Email filtering, EDR, MFA, security awareness training, audit GPO</td></tr>
+                    <tr><td>Risk 2 — Ransomware</td><td>EDR, patching, least privilege, offline backup + restore, USB restriction GPO</td></tr>
+                    <tr><td>Risk 3 — Insider threat</td><td>RBAC permission matrix, audit GPO, screen lock GPO, least privilege</td></tr>
+                    <tr><td>Risk 4 — Wireless compromise</td><td>WPA2-Enterprise/WPA3, RADIUS, guest VLAN isolation</td></tr>
+                    <tr><td>Risk 5 — Weak passwords</td><td>Password policy GPO, account lockout GPO</td></tr>
+                    <tr><td>Risk 6 — Physical access</td><td>Lockable cabinet, CCTV, BitLocker, UPS</td></tr>
+                    <tr><td>Risk 7 — No tested backup</td><td>Scheduled backup, encrypted external drive, monthly restore test</td></tr>
+                    <tr><td>Risk 8 — VLAN hopping</td><td>Managed switch with 802.1Q, native VLAN change, DTP disabled, port security, ACLs</td></tr>
+                </table>
+            </div>
+
+            <h3>Why this accesses all bands</h3>
+            <div class="info-box">
+                <ul>
+                    <li><strong>Band 4 (15–18):</strong> All hardware, software, server configuration, IPv4 scheme and two VLANs are fully specified and justified. Every risk from Activity A is translated into a control. Password policy, lockout, GPOs, RBAC matrix, WPA2/WPA3 and backup-as-mitigation are all present and accurate.</li>
+                    <li><strong>Band 3 (11–14):</strong> A student who covers most elements but misses, for example, the justification for one or two items, or has minor inaccuracies, would sit here.</li>
+                    <li><strong>Band 2 (6–10):</strong> A student who covers some elements but leaves several partially specified, or translates only some risks into controls, would sit here.</li>
+                    <li><strong>Band 1 (1–5):</strong> A student who lists a few elements with minimal detail and little risk translation would sit here.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========== ASSIGNMENT B ========== -->
+        <div id="tabB" class="panel">
+            <h2>Assignment B — Meridian Logistics (Infrastructure-framed)</h2>
+            <div class="info-box">
+                <strong>Task 1 Activity B — Infrastructure Requirements</strong> <span class="mark-badge">18 marks</span><br>
+                <strong>Scenario:</strong> Logistics firm consolidating two offices, 20 users, operations &amp; finance departments, shared building, VLAN separation, WPA2 Wi-Fi.<br>
+                <strong>Requirement:</strong> Lean into content area 2 — network topology (star/client-server), IP addressing and subnetting (two VLANs), device selection, server roles, remote access method comparison (RDP vs VPN vs SSH), and backup criteria.
+            </div>
+
+            <div class="highlight">
+                <strong>Top-band model answer (Band 4 — 15–18 marks):</strong> The requirements document below covers topology, subnetting, device selection, server roles, remote access comparison and backup criteria, with every decision justified.
+            </div>
+
+            <h3>1. Network topology</h3>
+            <div class="model-answer">
+                <p><strong>Selected topology:</strong> <span class="risk-ref">Star / client-server</span></p>
+                <ul>
+                    <li><strong>Star topology</strong> at the physical layer: all devices connect to a central managed switch.</li>
+                    <li><strong>Client-server model</strong> at the logical layer: a central server provides AD DS, DNS, DHCP and file services.</li>
+                </ul>
+                <p><strong>Justification:</strong></p>
+                <ul>
+                    <li>Star topology is easy to troubleshoot (one device failure does not take down the network — mitigates Risk 1, single point of failure at the edge).</li>
+                    <li>Centralised management of users, permissions and policies (mitigates Risk 4, misconfiguration).</li>
+                    <li>Scalable — additional switches and WAPs can be added without redesign.</li>
+                    <li>Client-server supports centralised backup and security policy enforcement.</li>
+                </ul>
+                <p><strong>Alternatives considered:</strong> Mesh (overkill for 20 users, costly); peer-to-peer (no central management, unsuitable for 20 users with shared folders).</p>
+            </div>
+
+            <h3>2. IP addressing and subnetting</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th>VLAN</th><th>Department</th><th>Subnet</th><th>Mask</th><th>Gateway</th><th>DHCP range</th><th>Usable hosts</th></tr>
+                    <tr>
+                        <td>VLAN 10</td>
+                        <td>Operations</td>
+                        <td>192.168.10.0</td>
+                        <td>255.255.255.0 (/24)</td>
+                        <td>192.168.10.1</td>
+                        <td>192.168.10.100 – 192.168.10.200</td>
+                        <td>254</td>
+                    </tr>
+                    <tr>
+                        <td>VLAN 20</td>
+                        <td>Finance</td>
+                        <td>192.168.20.0</td>
+                        <td>255.255.255.0 (/24)</td>
+                        <td>192.168.20.1</td>
+                        <td>192.168.20.100 – 192.168.20.200</td>
+                        <td>254</td>
+                    </tr>
+                    <tr>
+                        <td>VLAN 30</td>
+                        <td>Guest Wi-Fi</td>
+                        <td>192.168.30.0</td>
+                        <td>255.255.255.0 (/24)</td>
+                        <td>192.168.30.1</td>
+                        <td>192.168.30.100 – 192.168.30.150</td>
+                        <td>254</td>
+                    </tr>
+                    <tr>
+                        <td>VLAN 40</td>
+                        <td>Server</td>
+                        <td>192.168.40.0</td>
+                        <td>255.255.255.0 (/24)</td>
+                        <td>192.168.40.1</td>
+                        <td>Static only</td>
+                        <td>254</td>
+                    </tr>
+                </table>
+                <p><strong>Subnetting rationale:</strong> /24 provides 254 usable hosts per VLAN — sufficient for 10 users per department plus growth, printers and management interfaces. /24 is simple to document and troubleshoot. If growth to 50+ users per department is expected, a /23 could be used (510 hosts), but /24 is appropriate for the stated 20-user requirement.</p>
+                <p><strong>Routing:</strong> Inter-VLAN routing via Layer 3 switch. DHCP relay (ip helper-address) on each VLAN interface pointing to the DHCP server.</p>
+            </div>
+
+            <h3>3. Device selection</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th style="width:170px;">Device</th><th>Specification</th><th>Justification</th></tr>
+                    <tr>
+                        <td><strong>Core switch</strong></td>
+                        <td>24-port Layer 3 managed switch, 802.1Q, port security, ACLs, QoS</td>
+                        <td>Provides VLAN separation, inter-VLAN routing, QoS for voice/video if required. Port security mitigates Risk 7 (VLAN misconfiguration).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Access switch (optional)</strong></td>
+                        <td>8-port Layer 2 managed switch for additional ports</td>
+                        <td>Provides redundancy/expansion without replacing the core switch.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wireless access point</strong></td>
+                        <td>Enterprise WAP, WPA2-Enterprise/WPA3, RADIUS-capable, dual-band</td>
+                        <td>Mitigates Risk 8 (wireless dead spots) with proper site survey; WPA2-Enterprise for security.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Server</strong></td>
+                        <td>1 × rack server: 16 GB RAM, 2 × 500 GB SSD (RAID 1), dual PSU</td>
+                        <td>Hosts AD DS, DNS, DHCP, file server. RAID 1 mitigates Risk 6 (disk failure). Dual PSU mitigates Risk 5 (power failure).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>End-user devices</strong></td>
+                        <td>20 × desktop PCs (Windows 11 Pro or equivalent), wired Ethernet</td>
+                        <td>Meets the brief. Wired connections as required.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>UPS</strong></td>
+                        <td>Line-interactive UPS for server and switch</td>
+                        <td>Preventative control for Risk 5 (power failure).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Backup drive</strong></td>
+                        <td>External encrypted USB drive or additional virtual drive</td>
+                        <td>Corrective control for Risk 6 (disk failure) and Risk 1 (SPOF).</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>4. Server roles</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th>Role</th><th>Purpose</th><th>Justification</th></tr>
+                    <tr><td><strong>AD DS</strong></td><td>Domain controller, user authentication, group management</td><td>Centralised identity management; supports GPO and RBAC.</td></tr>
+                    <tr><td><strong>DNS</strong></td><td>Name resolution for the domain</td><td>Required for AD DS; forwarders to external DNS for internet access.</td></tr>
+                    <tr><td><strong>DHCP</strong></td><td>Automatic IP address assignment</td><td>Reduces administrative overhead and misconfiguration (Risk 4).</td></tr>
+                    <tr><td><strong>File server</strong></td><td>Shared folders for company, operations and finance</td><td>Centralised storage; supports RBAC permissions and backup.</td></tr>
+                </table>
+            </div>
+
+            <h3>5. Remote access method — comparison and justification</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th>Method</th><th>Security</th><th>Use case</th><th>Complexity</th><th>Justification for selection</th></tr>
+                    <tr>
+                        <td><strong>RDP</strong></td>
+                        <td>Medium — encrypted, but exposed to brute force if internet-facing</td>
+                        <td>LAN-only remote desktop to the server</td>
+                        <td>Low</td>
+                        <td><strong>Selected for LAN administration only.</strong> RDP is convenient for on-site admin, but not safe to expose directly to the internet. Combined with VPN for remote use.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>VPN</strong></td>
+                        <td>High — encrypted tunnel, strong authentication</td>
+                        <td>Remote access for staff and administrators</td>
+                        <td>Medium</td>
+                        <td><strong>Selected for remote access.</strong> VPN provides a secure encrypted tunnel for remote administration and remote workers. Mitigates Risk 2 (network dropout) by allowing secure remote work.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SSH</strong></td>
+                        <td>High — encrypted</td>
+                        <td>Linux server administration</td>
+                        <td>Low–medium</td>
+                        <td>Not applicable — the server runs Windows Server, so SSH is not the primary admin protocol. Could be used for network device management.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LOM</strong> (Lights-Out Management)</td>
+                        <td>High — out-of-band</td>
+                        <td>Server hardware management (iDRAC/iLO)</td>
+                        <td>Medium</td>
+                        <td>Recommended as a supplementary control for out-of-band server recovery — mitigates Risk 1 (SPOF) by allowing management even if the OS is down.</td>
+                    </tr>
+                </table>
+                <p><strong>Final choice:</strong> <strong>VPN for remote access</strong> (secure, encrypted, supports MFA) + <strong>RDP restricted to LAN only</strong> + <strong>LOM as a supplementary out-of-band control</strong>. This combination provides secure remote access without exposing RDP directly to the internet.</p>
+            </div>
+
+            <h3>6. Backup criteria</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th>Criterion</th><th>Decision</th><th>Justification</th></tr>
+                    <tr><td><strong>Frequency</strong></td><td>Daily incremental at 02:00; weekly full on Sunday</td><td>Balances RPO (24 hours) with storage capacity and backup window.</td></tr>
+                    <tr><td><strong>Source</strong></td><td>All shared folders (company, operations, finance) + system state</td><td>Protects both data and AD configuration.</td></tr>
+                    <tr><td><strong>Destination</strong></td><td>Encrypted external drive (offline when not in use) + optional off-site copy</td><td>Offline copy mitigates ransomware targeting backups (Risk 2).</td></tr>
+                    <tr><td><strong>Type</strong></td><td>Daily incremental + weekly full</td><td>Incremental reduces backup window; full provides a clean restore point.</td></tr>
+                    <tr><td><strong>Retention</strong></td><td>4 weekly fulls; 30 daily incrementals</td><td>Provides a month of recovery points; meets typical RTO/RPO.</td></tr>
+                    <tr><td><strong>Restore test</strong></td><td>Monthly restore of a sample file</td><td>Proves the backup is usable — corrective control for Risk 6.</td></tr>
+                </table>
+            </div>
+
+            <h3>Why this accesses all bands</h3>
+            <div class="info-box">
+                <ul>
+                    <li><strong>Band 4 (15–18):</strong> Topology, subnetting, device selection, server roles, remote access comparison and backup criteria are all fully specified and justified. The remote access comparison covers RDP, VPN, SSH and LOM with a clear final choice. Subnetting includes masks, gateways and DHCP ranges.</li>
+                    <li><strong>Band 3 (11–14):</strong> A student who covers most elements but misses, for example, the remote access comparison for one method, or has minor inaccuracies in subnetting, would sit here.</li>
+                    <li><strong>Band 2 (6–10):</strong> A student who covers some elements but leaves several partially specified, or provides a weak justification for the topology or backup criteria, would sit here.</li>
+                    <li><strong>Band 1 (1–5):</strong> A student who lists a few elements with minimal detail and little justification would sit here.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========== ASSIGNMENT C ========== -->
+        <div id="tabC" class="panel">
+            <h2>Assignment C — Harbourview Media (Continuity &amp; Knowledge-framed)</h2>
+            <div class="info-box">
+                <strong>Task 1 Activity B — Requirements with Source Justification</strong> <span class="mark-badge">18 marks</span><br>
+                <strong>Scenario:</strong> Media company that has suffered a disk failure, 20 users, production &amp; finance departments, shared building, VLAN separation, WPA2 Wi-Fi.<br>
+                <strong>Requirement:</strong> Mandatory <strong>sources-of-knowledge log</strong> — for each design decision, cite ≥2 sources, apply reliability/validity factors (authority, date, version, corroboration), and flag potential bias (vendor vs NCSC). Also justify the <strong>TIA/EIA-568</strong> cable standard and the <strong>backup type</strong>.
+            </div>
+
+            <div class="highlight">
+                <strong>Top-band model answer (Band 4 — 15–18 marks):</strong> The requirements document below includes a full sources-of-knowledge log for every design decision, applies reliability/validity factors and bias flags, and covers hardware, software, server configuration, IPv4 scheme, TIA/EIA-568 cable standard and backup type.
+            </div>
+
+            <h3>1. Hardware requirements</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th style="width:170px;">Item</th><th>Specification</th><th>Justification</th></tr>
+                    <tr><td><strong>Server</strong></td><td>1 × rack server: 16 GB RAM, 2 × 1 TB SSD (RAID 1), dual PSU</td><td>RAID 1 mitigates Risk 1 (disk failure — the event that already occurred). Dual PSU mitigates Risk 7 (power failure).</td></tr>
+                    <tr><td><strong>Managed switch</strong></td><td>24-port Layer 2/3 managed switch, 802.1Q, port security, ACLs</td><td>VLAN separation for production and finance; port security mitigates Risk 8 (VLAN misconfiguration).</td></tr>
+                    <tr><td><strong>Wireless access point</strong></td><td>Enterprise WAP, WPA2-Enterprise/WPA3</td><td>Secure wireless; WPA3 preferred where supported.</td></tr>
+                    <tr><td><strong>End-user computers</strong></td><td>20 × desktop PCs, Windows 11 Pro, BitLocker-capable</td><td>Encryption at rest; GPO support.</td></tr>
+                    <tr><td><strong>Backup drive</strong></td><td>External encrypted USB drive (offline when not in use) + cloud backup</td><td>Corrective control for Risk 1 (disk failure), Risk 2 (ransomware), Risk 5 (backup targeting), Risk 8 (backup theft).</td></tr>
+                    <tr><td><strong>UPS</strong></td><td>Line-interactive UPS for server and switch</td><td>Preventative control for Risk 7 (power failure).</td></tr>
+                    <tr><td><strong>Cable (TIA/EIA-568)</strong></td><td>Cat 6 UTP, TIA/EIA-568-B pinout, tested to TIA/EIA-568</td><td>Standard-compliant cabling ensures reliable connectivity and reduces faults. See source log below.</td></tr>
+                </table>
+            </div>
+
+            <h3>2. Software requirements</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th style="width:170px;">Software</th><th>Purpose</th><th>Justification / risk link</th></tr>
+                    <tr><td><strong>Windows Server 2022</strong></td><td>AD DS, DNS, DHCP, file server</td><td>Core domain services; supports GPO and auditing.</td></tr>
+                    <tr><td><strong>Windows 11 Pro</strong></td><td>End-user desktop OS</td><td>Supports BitLocker, GPO, EDR.</td></tr>
+                    <tr><td><strong>EDR</strong></td><td>Malware/ransomware detection</td><td>Detective/preventative control for Risk 2 (ransomware).</td></tr>
+                    <tr><td><strong>Backup software</strong></td><td>Scheduled backup and restore</td><td>Corrective control for Risk 1, Risk 2, Risk 5.</td></tr>
+                    <tr><td><strong>BitLocker</strong></td><td>Full-disk encryption</td><td>Encryption at rest — mitigates Risk 6 (unencrypted transit is separate) and Risk 8 (backup theft).</td></tr>
+                    <tr><td><strong>Cloud backup agent</strong></td><td>Off-site replication</td><td>Compensating control for Risk 3 (fire/flood) and Risk 5 (backup targeting).</td></tr>
+                </table>
+            </div>
+
+            <h3>3. Server configuration and settings</h3>
+            <div class="model-answer">
+                <h4>3.1 Domain services</h4>
+                <ul>
+                    <li><strong>AD DS:</strong> Domain <code>harbourview.local</code>; domain functional level Windows Server 2016+.</li>
+                    <li><strong>DNS:</strong> Integrated with AD; forwarders to ISP or public DNS.</li>
+                    <li><strong>DHCP:</strong> Two scopes — VLAN 10 (Production) and VLAN 20 (Finance). See IPv4 scheme below.</li>
+                </ul>
+
+                <h4>3.2 Password policy and account lockout</h4>
+                <table>
+                    <tr><th>Setting</th><th>Value</th><th>Justification</th></tr>
+                    <tr><td>Minimum password length</td><td>12 characters</td><td>Mitigates credential compromise</td></tr>
+                    <tr><td>Password complexity</td><td>Enabled</td><td>Mitigates credential compromise</td></tr>
+                    <tr><td>Maximum password age</td><td>90 days</td><td>Limits exposure window</td></tr>
+                    <tr><td>Password history</td><td>10</td><td>Prevents reuse</td></tr>
+                    <tr><td>Account lockout threshold</td><td>5 invalid attempts</td><td>Mitigates brute force</td></tr>
+                    <tr><td>Account lockout duration</td><td>30 minutes</td><td>Slows brute force</td></tr>
+                </table>
+
+                <h4>3.3 Group Policy Objects (GPOs) — five security controls</h4>
+                <table>
+                    <tr><th>GPO</th><th>Setting</th><th>Risk link</th></tr>
+                    <tr><td>GPO-PasswordPolicy</td><td>Complexity, length, history, age</td><td>Credential compromise</td></tr>
+                    <tr><td>GPO-AccountLockout</td><td>Threshold, duration, reset</td><td>Brute force</td></tr>
+                    <tr><td>GPO-ScreenLock</td><td>Lock after 5 minutes; password on resume</td><td>Insider / physical</td></tr>
+                    <tr><td>GPO-USB-Restriction</td><td>Deny write access to removable storage for non-admin users</td><td>Ransomware via USB; data exfiltration</td></tr>
+                    <tr><td>GPO-AuditPolicy</td><td>Audit logon, account management, file access</td><td>Detective control for insider and ransomware</td></tr>
+                </table>
+
+                <h4>3.4 RBAC permission matrix</h4>
+                <table>
+                    <tr><th>Group</th><th>Company share</th><th>Production share</th><th>Finance share</th></tr>
+                    <tr><td>Production</td><td>Read/Write</td><td>Write</td><td>None</td></tr>
+                    <tr><td>Finance</td><td>Read/Write</td><td>None</td><td>Write</td></tr>
+                    <tr><td>Domain Admins</td><td>Full Control</td><td>Full Control</td><td>Full Control</td></tr>
+                </table>
+                <p><strong>Justification:</strong> Enforces least privilege; mitigates unauthorised access between departments.</p>
+
+                <h4>3.5 Backup configuration — centrepiece</h4>
+                <ul>
+                    <li><strong>Schedule:</strong> Hourly incremental (RPO = 1 hour); weekly full backup on Sunday at 01:00.</li>
+                    <li><strong>Destination:</strong> Encrypted external drive (offline when not in use) + cloud backup (off-site).</li>
+                    <li><strong>Retention:</strong> 4 weekly fulls; 7 daily incrementals; 24 hourly incrementals.</li>
+                    <li><strong>Restore test:</strong> Weekly restore of a sample file; monthly full restore test documented in the test log.</li>
+                    <li><strong>Encryption:</strong> Backup media encrypted at rest (BitLocker); transfer to cloud over TLS.</li>
+                </ul>
+            </div>
+
+            <h3>4. IPv4 addressing scheme</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th>VLAN</th><th>Department</th><th>Subnet</th><th>Mask</th><th>Gateway</th><th>DHCP range</th></tr>
+                    <tr><td>VLAN 10</td><td>Production</td><td>192.168.10.0</td><td>255.255.255.0 (/24)</td><td>192.168.10.1</td><td>192.168.10.100 – 192.168.10.200</td></tr>
+                    <tr><td>VLAN 20</td><td>Finance</td><td>192.168.20.0</td><td>255.255.255.0 (/24)</td><td>192.168.20.1</td><td>192.168.20.100 – 192.168.20.200</td></tr>
+                    <tr><td>VLAN 30</td><td>Guest Wi-Fi</td><td>192.168.30.0</td><td>255.255.255.0 (/24)</td><td>192.168.30.1</td><td>192.168.30.100 – 192.168.30.150</td></tr>
+                    <tr><td>VLAN 40</td><td>Server</td><td>192.168.40.0</td><td>255.255.255.0 (/24)</td><td>192.168.40.1</td><td>Static only</td></tr>
+                </table>
+                <p><strong>Routing:</strong> Inter-VLAN routing via Layer 3 switch. ACLs deny traffic from VLAN 20 (Finance) to VLAN 10 (Production) and vice versa.</p>
+            </div>
+
+            <h3>5. TIA/EIA-568 cable standard — justification with sources</h3>
+            <div class="model-answer">
+                <p><strong>Decision:</strong> Use <strong>Cat 6 UTP</strong> cable wired to <strong>TIA/EIA-568-B</strong> pinout, tested to TIA/EIA-568.</p>
+                <table>
+                    <tr><th>Source</th><th>Type</th><th>Reliability / validity</th><th>Bias flag</th></tr>
+                    <tr>
+                        <td><strong>TIA/EIA-568</strong> (Telecommunications Industry Association / Electronic Industries Alliance)</td>
+                        <td>Industry standard</td>
+                        <td>Authority: high (standards body). Date: current revision. Version: 568-B. Corroboration: widely adopted.</td>
+                        <td>Low — neutral standards body.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NCSC guidance on network cabling</strong></td>
+                        <td>Government guidance</td>
+                        <td>Authority: high (UK government). Date: current. Corroboration: aligns with TIA/EIA-568.</td>
+                        <td>Low — neutral government body.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vendor whitepaper (e.g. cable manufacturer)</strong></td>
+                        <td>Vendor documentation</td>
+                        <td>Authority: medium (vendor has commercial interest). Date: current. Corroboration: cross-checked against TIA/EIA-568.</td>
+                        <td>High — vendor bias; used only to corroborate, not as sole source.</td>
+                    </tr>
+                </table>
+                <p><strong>Justification:</strong> TIA/EIA-568 is the recognised industry standard for structured cabling; Cat 6 supports 1 Gbps up to 100 m and 10 Gbps up to 55 m, sufficient for the office. Using TIA/EIA-568-B pinout ensures compatibility with standard patch panels and outlets. Testing to TIA/EIA-568 confirms the cable meets performance requirements.</p>
+            </div>
+
+            <h3>6. Backup type — justification with sources</h3>
+            <div class="model-answer">
+                <p><strong>Decision:</strong> <strong>Hourly incremental + weekly full backup</strong>, with off-site cloud copy.</p>
+                <table>
+                    <tr><th>Source</th><th>Type</th><th>Reliability / validity</th><th>Bias flag</th></tr>
+                    <tr>
+                        <td><strong>NCSC guidance on backup and recovery</strong></td>
+                        <td>Government guidance</td>
+                        <td>Authority: high. Date: current. Corroboration: aligns with industry best practice.</td>
+                        <td>Low — neutral government body.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Microsoft documentation on Windows Server Backup</strong></td>
+                        <td>Vendor documentation</td>
+                        <td>Authority: high for product-specific steps. Date: current. Corroboration: cross-checked with NCSC.</td>
+                        <td>Medium — vendor bias toward its own product; used for product-specific configuration only.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ITIL / ISO 22301 (business continuity)</strong></td>
+                        <td>Industry framework</td>
+                        <td>Authority: high. Date: current. Corroboration: widely adopted.</td>
+                        <td>Low — neutral framework.</td>
+                    </tr>
+                </table>
+                <p><strong>Justification:</strong> Hourly incremental backup achieves an RPO of 1 hour, which is appropriate for a media company where losing an hour of production work is tolerable but losing a day is not. Weekly full backup provides a clean restore point. Off-site cloud copy mitigates the risk of local backup media being destroyed or stolen (Risk 3, Risk 5, Risk 8). The choice is corroborated by NCSC guidance and ITIL/ISO 22301 continuity best practice.</p>
+            </div>
+
+            <h3>7. Sources-of-knowledge log (summary)</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th>Design decision</th><th>Source 1</th><th>Source 2</th><th>Reliability applied</th><th>Bias flagged</th></tr>
+                    <tr>
+                        <td>RAID 1 for the server</td>
+                        <td>NCSC guidance on hardware resilience</td>
+                        <td>Server manufacturer documentation</td>
+                        <td>Authority, date, version, corroboration</td>
+                        <td>Vendor bias (manufacturer) flagged; NCSC used as neutral corroboration.</td>
+                    </tr>
+                    <tr>
+                        <td>WPA2-Enterprise / WPA3</td>
+                        <td>NCSC Wi-Fi guidance</td>
+                        <td>Wi-Fi Alliance WPA3 specification</td>
+                        <td>Authority, date, version, corroboration</td>
+                        <td>Wi-Fi Alliance is an industry body — low bias; NCSC neutral.</td>
+                    </tr>
+                    <tr>
+                        <td>Cat 6 / TIA/EIA-568-B</td>
+                        <td>TIA/EIA-568 standard</td>
+                        <td>NCSC cabling guidance</td>
+                        <td>Authority, date, version, corroboration</td>
+                        <td>Vendor whitepaper flagged as high bias; used only for corroboration.</td>
+                    </tr>
+                    <tr>
+                        <td>Hourly incremental + weekly full backup</td>
+                        <td>NCSC backup guidance</td>
+                        <td>ITIL / ISO 22301</td>
+                        <td>Authority, date, version, corroboration</td>
+                        <td>Microsoft vendor documentation flagged as medium bias; used for product-specific steps only.</td>
+                    </tr>
+                    <tr>
+                        <td>RBAC permission matrix</td>
+                        <td>NCSC access control guidance</td>
+                        <td>Microsoft AD documentation</td>
+                        <td>Authority, date, version, corroboration</td>
+                        <td>Vendor bias (Microsoft) flagged; NCSC neutral.</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Why this accesses all bands</h3>
+            <div class="info-box">
+                <ul>
+                    <li><strong>Band 4 (15–18):</strong> A mandatory sources-of-knowledge log is present with ≥2 sources per design decision; reliability/validity factors (authority, date, version, corroboration) are applied; bias is flagged (vendor vs NCSC); the TIA/EIA-568 cable standard is justified; the backup type is justified; hardware, software, server configuration and IPv4 scheme are all specified.</li>
+                    <li><strong>Band 3 (11–14):</strong> A student who includes a sources log but applies reliability/bias inconsistently, or misses one or two justifications, would sit here.</li>
+                    <li><strong>Band 2 (6–10):</strong> A student who includes some sources but does not apply reliability factors or flag bias, or covers only some design decisions, would sit here.</li>
+                    <li><strong>Band 1 (1–5):</strong> A student who lists a few sources with no reliability analysis or bias flagging, and minimal design detail, would sit here.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-note">
+            Pearson-style specimen assessment material · Task 1 Activity B model answers · Assignments A, B and C<br>
+            Digital Support &amp; Security · Digital Infrastructure · Version 1.0
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT TABS -->
+    <script>
+        const tabs = document.querySelectorAll('.tab-btn');
+        const panels = document.querySelectorAll('.panel');
+
+        tabs.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+
+                btn.classList.add('active');
+                const targetId = btn.dataset.tab;
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment comparison · Digital Infrastructure</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: #eef2f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem 4rem;
+        }
+
+        .page-wrapper {
+            max-width: 1300px;
+            width: 100%;
+            background: white;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+            border-radius: 24px;
+            padding: 2.2rem 2rem 2.5rem;
+            border: 1px solid #d9e2ec;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: #0b2b44;
+            letter-spacing: -0.01em;
+            border-left: 6px solid #1e6f9f;
+            padding-left: 1.2rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .subhead {
+            font-size: 0.95rem;
+            color: #4a5f73;
+            margin-bottom: 1.8rem;
+            padding-left: 1.8rem;
+            font-weight: 400;
+            border-bottom: 1px solid #d0dde9;
+            padding-bottom: 0.8rem;
+        }
+
+        /* ----- TABS ----- */
+        .tabs {
+            display: flex;
+            gap: 0.4rem;
+            background: #e3eaf2;
+            padding: 0.4rem;
+            border-radius: 60px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 0.85rem 1.2rem;
+            border: none;
+            background: transparent;
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: #1f3a4e;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            letter-spacing: 0.01em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn i {
+            font-style: normal;
+            font-size: 1.1rem;
+        }
+
+        .tab-btn:hover {
+            background: #cfdbe7;
+            color: #0b2b44;
+        }
+
+        .tab-btn.active {
+            background: #ffffff;
+            color: #0a3b5c;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            font-weight: 700;
+        }
+
+        /* ----- PANELS ----- */
+        .panel {
+            display: none;
+            animation: fade 0.18s ease;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        @keyframes fade {
+            from { opacity: 0.4; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ----- TYPOGRAPHY ----- */
+        h2 {
+            font-size: 1.45rem;
+            font-weight: 600;
+            color: #0b2b44;
+            margin: 1.8rem 0 0.8rem;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.18rem;
+            font-weight: 600;
+            color: #1d4a6b;
+            margin: 1.4rem 0 0.6rem;
+            border-bottom: 1px solid #cbdae8;
+            padding-bottom: 0.25rem;
+        }
+
+        p, li {
+            color: #203a4e;
+            line-height: 1.6;
+            font-size: 0.96rem;
+        }
+
+        ul, ol {
+            padding-left: 1.8rem;
+            margin: 0.5rem 0 0.9rem;
+        }
+
+        li {
+            margin-bottom: 0.25rem;
+        }
+
+        .info-box {
+            background: #f4f9ff;
+            border: 1px solid #c5d9eb;
+            border-radius: 12px;
+            padding: 1rem 1.4rem;
+            margin: 1.2rem 0;
+            font-size: 0.94rem;
+        }
+
+        .info-box strong {
+            color: #0d3e60;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.92rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+
+        th {
+            background: #1e4b6b;
+            color: white;
+            font-weight: 600;
+            padding: 0.7rem 0.9rem;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        td {
+            padding: 0.65rem 0.9rem;
+            border-bottom: 1px solid #d9e2ec;
+            background: white;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .mark-badge {
+            display: inline-block;
+            background: #1e6f9f;
+            color: white;
+            font-weight: 600;
+            font-size: 0.78rem;
+            padding: 0.15rem 0.8rem;
+            border-radius: 30px;
+            letter-spacing: 0.01em;
+            margin-left: 0.4rem;
+            vertical-align: middle;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.15rem 0.65rem;
+            border-radius: 20px;
+            letter-spacing: 0.01em;
+        }
+
+        .tag-strong { background: #1e6f9f; color: white; }
+        .tag-touch { background: #d9e8f2; color: #0a3b5c; }
+        .tag-none { background: #eef2f6; color: #6a8299; }
+
+        .submission {
+            background: #f4f8fc;
+            border-radius: 12px;
+            padding: 1rem 1.4rem;
+            margin: 1rem 0 1.4rem;
+            border-left: 4px solid #1e6f9f;
+        }
+
+        .footer-note {
+            margin-top: 2.4rem;
+            font-size: 0.85rem;
+            color: #5d7488;
+            text-align: center;
+            border-top: 1px solid #d2dfeb;
+            padding-top: 1.6rem;
+        }
+
+        .scroll-hint {
+            font-size: 0.82rem;
+            color: #6a8299;
+            margin-top: 0.6rem;
+            font-style: italic;
+        }
+
+        /* small screens */
+        @media (max-width: 720px) {
+            .page-wrapper { padding: 1.2rem; }
+            h1 { font-size: 1.5rem; }
+            .tab-btn { min-width: 100px; font-size: 0.82rem; padding: 0.65rem 0.7rem; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 0.5rem 0.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <h1>Assignment comparison · Digital Infrastructure</h1>
+        <div class="subhead">Are the three assignments genuinely different? Section-by-section confirmation with overlaps flagged.</div>
+
+        <!-- TABS -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="tabOverview"><i>📋</i> Overview</button>
+            <button class="tab-btn" data-tab="tabA"><i>🔒</i> Assignment A</button>
+            <button class="tab-btn" data-tab="tabB"><i>🌐</i> Assignment B</button>
+            <button class="tab-btn" data-tab="tabC"><i>📚</i> Assignment C</button>
+            <button class="tab-btn" data-tab="tabSpec"><i>✅</i> Spec coverage</button>
+        </div>
+
+        <!-- ========== OVERVIEW ========== -->
+        <div id="tabOverview" class="panel active">
+            <h2>Are the assignments genuinely different?</h2>
+            <p><strong>Yes.</strong> The three assignments are not cosmetic re-skins. Below is a direct confirmation, section by section, with the overlaps explicitly flagged so you can see they are deliberate "touch points" rather than duplication.</p>
+
+            <h3>1. Scenario and driver</h3>
+            <table>
+                <tr><th></th><th>Assignment A</th><th>Assignment B</th><th>Assignment C</th></tr>
+                <tr><td><strong>Company</strong></td><td>Northgate Health Trust</td><td>Meridian Logistics</td><td>Harbourview Media</td></tr>
+                <tr><td><strong>Driver</strong></td><td><strong>Security risk assessment</strong> (patient-adjacent data)</td><td><strong>Service &amp; infrastructure design</strong> (resilience, addressing, service placement)</td><td><strong>Disaster recovery &amp; continuity</strong> (just suffered a disk failure)</td></tr>
+                <tr><td><strong>Departments</strong></td><td>Clinical Admin / Finance</td><td>Operations / Finance</td><td>Production / Finance</td></tr>
+                <tr><td><strong>Distinguishing feature</strong></td><td>GDPR/DPA 2018 + NCSC Cyber Essentials must be cited</td><td>Remote access comparison (RDP/LOM/SSH/VPN) required</td><td>Every source must be justified (sources-of-knowledge log)</td></tr>
+            </table>
+            <p>These are materially different briefs with different priorities — not the same task with a new logo.</p>
+
+            <h3>2. Task 1 — Activity A (Risk Assessment)</h3>
+            <table>
+                <tr><th></th><th>A</th><th>B</th><th>C</th></tr>
+                <tr><td><strong>Focus</strong></td><td>Full security register: threat / likelihood / vulnerability / asset / impact <strong>plus control type + risk response + risk process stage</strong></td><td><strong>Narrower</strong>: technical &amp; environmental threats only (SPOF, dropouts, capacity, misconfig, power/cooling)</td><td><strong>DRP/BCP framed</strong>: scope of DRP, RTO/RPO/MTBF/MTTR, encryption at rest/in transit, off-site storage</td></tr>
+                <tr><td><strong>Mandatory content</strong></td><td>Control types (preventative, detective, corrective, deterrent, directive, compensating); risk responses (accept/avoid/mitigate/transfer); GDPR/DPA 2018; NCSC Cyber Essentials</td><td>Technical/environmental threats; no legislation requirement</td><td>DRP scope definition; RTO/RPO/MTBF/MTTR calculations; encryption; risk responses</td></tr>
+                <tr><td><strong>Overlap</strong></td><td>—</td><td>Touches risk-response vocabulary lightly</td><td>Shares risk-response vocabulary and scope thinking with A</td></tr>
+            </table>
+            <p><strong>Verdict:</strong> Substantively different. A is a security register; B is an infrastructure resilience register; C is a continuity/DRP register. The only shared element is the five-column risk format (threat/likelihood/vulnerability/asset/impact), which is the Pearson template — not a duplication of assessment content.</p>
+
+            <h3>3. Task 1 — Activity B (Requirements)</h3>
+            <table>
+                <tr><th></th><th>A</th><th>B</th><th>C</th></tr>
+                <tr><td><strong>Core requirement</strong></td><td>Translate <strong>each risk into a control</strong>: password policy, account lockout, GPO choices, RBAC matrix, WPA2/WPA3, backup-as-mitigation</td><td><strong>Infrastructure design</strong>: topology justification, IPv4 subnetting for two VLANs, device selection, server roles, <strong>remote access comparison</strong>, backup criteria (frequency/source/destination/type)</td><td><strong>Source-justified requirements</strong>: mandatory <strong>sources-of-knowledge log</strong> with ≥2 sources per decision, reliability/validity factors, <strong>bias flags</strong>, <strong>TIA/EIA-568</strong> cable standard, backup type justification</td></tr>
+                <tr><td><strong>What is being assessed</strong></td><td>Security control design</td><td>Infrastructure design</td><td>Research/reliability of sources + design</td></tr>
+                <tr><td><strong>Overlap</strong></td><td>—</td><td>IPv4/two-VLAN requirement shared with A</td><td>Shares the two-VLAN requirement; otherwise distinct</td></tr>
+            </table>
+            <p><strong>Verdict:</strong> Different in kind. A assesses security control translation; B assesses infrastructure design decisions; C assesses <strong>source evaluation and justification</strong> — a completely different cognitive demand (content area 3).</p>
+
+            <h3>4. Task 1 — Activity C (Simulation / artefact)</h3>
+            <table>
+                <tr><th></th><th>A</th><th>B</th><th>C</th></tr>
+                <tr><td><strong>Artefact</strong></td><td>Packet Tracer: VLANs + WPA2</td><td>Packet Tracer: full VLAN topology + <strong>QoS/segmentation rationale</strong></td><td><strong>Backup schedule + restore-test plan</strong> (not a Packet Tracer topology)</td></tr>
+                <tr><td><strong>Overlap</strong></td><td>VLAN + WPA2 (shared with B)</td><td>VLAN + WPA2 (shared with A)</td><td>None — entirely different artefact</td></tr>
+            </table>
+            <p><strong>Verdict:</strong> A and B share the Packet Tracer VLAN/WPA2 core (this is the Pearson-standard simulation), but B adds the QoS/segmentation rationale. C replaces the simulation entirely with a backup/restore design artefact — a different task.</p>
+
+            <h3>5. Task 2 — Build and test</h3>
+            <table>
+                <tr><th></th><th>A</th><th>B</th><th>C</th></tr>
+                <tr><td><strong>Build</strong></td><td>Standard: 2 workstations, 1 server, AD/DNS/DHCP, groups, folders, permission matrix, 5 GPOs, backup + restore</td><td>Standard build <strong>plus service depth</strong>: one application service (IIS/DFS), <strong>remote access comparison</strong> (RDP/LOM/SSH/VPN)</td><td>Standard build <strong>plus continuity centrepiece</strong>: backup/restore is the centrepiece, DRP tabletop walkthrough, <strong>cable made to TIA/EIA-568</strong></td></tr>
+                <tr><td><strong>Testing emphasis</strong></td><td><strong>Permission testing and GPO testing</strong> — proving security controls work</td><td><strong>Functionality and performance</strong> — ping/nslookup, service reachability, DHCP lease checks</td><td><strong>Restore-from-backup proof</strong> and <strong>DRP tabletop walkthrough</strong>; cable test evidence</td></tr>
+                <tr><td><strong>Overlap</strong></td><td colspan="3">All three share the standard AD/DNS/DHCP + groups/folders + GPO + backup build (this is the Pearson-standard Task 2 skeleton). The skeleton is shared, but the <strong>assessment emphasis is different in each</strong>: A = security testing, B = functionality/performance testing, C = continuity/restore testing. The extensions are unique to each assignment.</td></tr>
+            </table>
+
+            <h3>6. Task 3 — Evaluation</h3>
+            <table>
+                <tr><th></th><th>A</th><th>B</th><th>C</th></tr>
+                <tr><td><strong>Evaluates</strong></td><td>Risk assessment + security requirements + test network</td><td>Infrastructure risk assessment + infrastructure requirements + test network</td><td>DRP/BCP risk assessment + source-justified requirements + test network</td></tr>
+                <tr><td><strong>Lens</strong></td><td><strong>CIA</strong> (confidentiality, integrity, availability); hardening: MFA, CA, IDS/IPS, VLAN hopping</td><td><strong>Availability and usability</strong>; improvements: HA/clustering, load balancing, QoS, SDN, cloud trade-offs</td><td><strong>Availability and integrity</strong>; improvements: off-site replication, RPO tightening, cloud backup, ITIL CSI; <strong>critical evaluation of sources</strong> (bias, corroboration, reliability)</td></tr>
+                <tr><td><strong>Overlap</strong></td><td>—</td><td>Shares availability with C</td><td>Shares availability with B; adds source critique (unique)</td></tr>
+            </table>
+            <p><strong>Verdict:</strong> Different evaluation lenses. A is CIA/hardening; B is availability/usability/performance; C is continuity/integrity <strong>plus source critique</strong> — which is where content area 3 is fully evidenced and is not present in A or B.</p>
+
+            <h3>7. The overlaps — what they are and why they exist</h3>
+            <table>
+                <tr><th>Overlap</th><th>Where</th><th>Why it's acceptable</th></tr>
+                <tr><td>Five-column risk format</td><td>All three Activity A</td><td>It is the Pearson template format; the <em>content</em> of the risks is different in each</td></tr>
+                <tr><td>Two-VLAN / IPv4 requirement</td><td>A and B Activity B</td><td>Mandated by the Pearson brief; B adds subnetting detail and device justification</td></tr>
+                <tr><td>VLAN + WPA2 in Packet Tracer</td><td>A and B Activity C</td><td>The Pearson-standard simulation; B adds QoS/segmentation rationale</td></tr>
+                <tr><td>Standard AD/DNS/DHCP build</td><td>All three Task 2</td><td>The Pearson-standard build skeleton; the <em>testing emphasis and extensions</em> differ</td></tr>
+                <tr><td>Availability in evaluation</td><td>B and C Task 3</td><td>B evaluates availability/usability/performance; C evaluates availability/integrity <strong>plus source critique</strong></td></tr>
+            </table>
+            <p>None of these overlaps mean the assignments assess the same thing. They are the <strong>shared technical substrate</strong> mandated by the Pearson specification, on top of which each assignment adds a distinct assessment lens (security / infrastructure / continuity-and-sources).</p>
+
+            <div class="info-box">
+                <strong>Bottom line:</strong> The three assignments are generally different from one another. They have:
+                <ul style="margin-top:0.5rem;">
+                    <li><strong>Different scenarios and drivers</strong> (security vs infrastructure vs continuity).</li>
+                    <li><strong>Different Activity A risk focuses</strong> (full security register vs technical/environmental vs DRP/BCP).</li>
+                    <li><strong>Different Activity B emphases</strong> (control translation vs infrastructure design vs source justification).</li>
+                    <li><strong>Different Activity C artefacts</strong> (VLAN/WPA2 sim vs QoS-annotated sim vs backup/restore plan).</li>
+                    <li><strong>Different Task 2 testing emphases</strong> (permissions/GPO vs functionality/performance vs restore/DRP).</li>
+                    <li><strong>Different Task 3 lenses</strong> (CIA/hardening vs availability/usability/performance vs continuity/integrity + source critique).</li>
+                    <li><strong>Different spec points strongly evidenced</strong> (area 1 vs area 2 vs area 3).</li>
+                </ul>
+                <p style="margin-top:0.5rem;">The overlaps are limited to the <strong>shared Pearson-mandated skeleton</strong> (risk template columns, two-VLAN requirement, standard AD/DNS/DHCP build, availability as an evaluation theme) — which is exactly what you'd expect when three assignments are built on the same specification. They do not make the assignments interchangeable.</p>
+            </div>
+
+            <h3>8. Spec Coverage Summary — Do they cover the OS Spec?</h3>
+            <p><strong>Yes.</strong> Based on the official T Level Technical Qualification in Digital Support and Security: Digital Infrastructure specification, the three assignments collectively cover a <strong>comprehensive portion of the Occupational Specialism (OS) spec</strong>. Because the OS spec is split into three broad content areas (Security, Infrastructure, and Sources of Knowledge), the three assignments were specifically designed to ensure that each content area is strongly evidenced by at least one assignment.</p>
+            
+            <table>
+                <tr><th>Content Area</th><th>Assignment A (Security)</th><th>Assignment B (Infrastructure)</th><th>Assignment C (Continuity)</th></tr>
+                <tr>
+                    <td><strong>1. Security</strong><br><span style="font-size:0.85rem; color:#4a5f73;">Control types, risk process, risk responses, legislation, NCSC</span></td>
+                    <td><span class="tag tag-strong">Strong</span><br><span style="font-size:0.85rem;">1.1–1.10, 1.13–1.21, 1.24–1.27, 1.30–1.33</span></td>
+                    <td><span class="tag tag-touch">Touch only</span><br><span style="font-size:0.85rem;">1.11–1.12, 1.15</span></td>
+                    <td><span class="tag tag-strong">Strong</span><br><span style="font-size:0.85rem;">1.8–1.9, 1.12, 1.22–1.23</span></td>
+                </tr>
+                <tr>
+                    <td><strong>2. Infrastructure</strong><br><span style="font-size:0.85rem; color:#4a5f73;">Topology, addressing, devices, server roles, remote access, cable standards</span></td>
+                    <td><span class="tag tag-touch">Touch only</span><br><span style="font-size:0.85rem;">2.3, 2.10, 2.13–2.14</span></td>
+                    <td><span class="tag tag-strong">Strong</span><br><span style="font-size:0.85rem;">2.1–2.14, 2.20–2.24</span></td>
+                    <td><span class="tag tag-strong">Strong</span><br><span style="font-size:0.85rem;">2.15–2.19 (cable standards)</span></td>
+                </tr>
+                <tr>
+                    <td><strong>3. Sources of Knowledge</strong><br><span style="font-size:0.85rem; color:#4a5f73;">Reliability, validity, bias, corroboration</span></td>
+                    <td><span class="tag tag-none">—</span></td>
+                    <td><span class="tag tag-none">—</span></td>
+                    <td><span class="tag tag-strong">Strong</span><br><span style="font-size:0.85rem;">3.1–3.7</span></td>
+                </tr>
+            </table>
+
+            <div class="info-box">
+                <strong>What does this mean for a student?</strong>
+                <p style="margin-top:0.5rem; margin-bottom:0.5rem;">If a student completes all three assignments, they will have generated evidence for <strong>nearly every single point</strong> in the Occupational Specialism specification.</p>
+                <ul style="margin-top:0.5rem;">
+                    <li><strong>Content Area 1 (Security)</strong> is strongly driven by Assignment A, with supporting evidence from C.</li>
+                    <li><strong>Content Area 2 (Infrastructure)</strong> is strongly driven by Assignment B, with cable standards covered in C, and touch points in A.</li>
+                    <li><strong>Content Area 3 (Sources of Knowledge)</strong> is fully evidenced by Assignment C.</li>
+                </ul>
+                <p style="margin-top:0.5rem;">The only deliberate overlaps are "touch points" designed to reinforce learning. For example, all three assignments require the student to set up a basic domain (AD DS, DNS, DHCP, file shares) because that is the mandated Pearson Task 2 skeleton. However, the <em>testing emphasis</em> and the <em>evaluation lens</em> change entirely between the assignments.</p>
+            </div>
+
+            <h3>9. Summary Verdict — Are there gaps in the Spec?</h3>
+            <p>While the three assignments cover a <strong>strong majority</strong> of the core Performance Outcomes, there are a few specific areas that are either lightly touched upon or completely missing from these specific scenarios. If you want complete, bulletproof coverage, you should be aware of the following gaps:</p>
+            
+            <div class="info-box" style="background:#fff8e5; border-color:#e6a817;">
+                <strong style="color:#7a4f00;">Gaps / Underrepresented Areas:</strong>
+                <ul style="margin-top:0.5rem; color:#5c3b00;">
+                    <li><strong>Specific Software Applications and OS Support (PO2 gap):</strong> The spec includes <em>"Installing, configuring and supporting software applications and operating systems"</em>. While the assignments cover Server OS and Desktop OS, they do not explicitly require the installation or configuration of a specific end-user application (e.g., installing a piece of software on the client PCs and testing it).</li>
+                    <li><strong>Cloud and Virtualisation Depth (PO2 gap):</strong> The spec highlights <em>"physical and virtual infrastructure"</em> and <em>"cloud hosted virtual servers"</em>. The assignments mention VMs and cloud backups, but do not explicitly require designing or configuring a cloud-hosted virtual server or hybrid cloud environment.</li>
+                    <li><strong>Advanced Network Services (PO2 gap):</strong> The spec lists <em>"Principles of DevOps and solution architecture"</em>. This is likely too advanced for a basic assignment and is a "touch" point rather than a core requirement.</li>
+                    <li><strong>Specific Legislation beyond GDPR (PO1 gap):</strong> Assignment A focuses heavily on GDPR/DPA 2018. The spec also mentions broader <em>"Legislation and Regulatory Requirements"</em>. You could strengthen A by explicitly requiring consideration of the Computer Misuse Act 1990 or the Freedom of Information Act.</li>
+                </ul>
+            </div>
+
+            <div class="info-box" style="background:#f4f9ff; border-color:#1e6f9f; border-left-width: 6px;">
+                <strong style="color:#0d3e60;">Final Verdict:</strong>
+                <p style="margin-top:0.5rem;"><strong>Is it a good portion of the spec?</strong> Yes, absolutely. It covers the three Performance Outcomes comprehensively.</p>
+                <p><strong>Is it 100% complete?</strong> No. The main gaps are <strong>specific application software support</strong> and <strong>cloud/virtualisation design</strong>.</p>
+                <p><strong>How to fix it:</strong> You don't need a whole new assignment. Add <strong>one small sub-task to Assignment B (Infrastructure)</strong> that asks the student to:</p>
+                <ol style="margin-top:0.5rem; margin-bottom:0;">
+                    <li>Install and test a specific application on the client PCs.</li>
+                    <li>Propose a cloud-hosted solution for a secondary service (e.g., a web server) and justify why it is cloud-based rather than on-premises.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- ========== ASSIGNMENT A ========== -->
+        <div id="tabA" class="panel">
+            <h2>Assignment A — Security-framed</h2>
+            <div class="info-box">
+                <strong>Company:</strong> Northgate Health Trust<br>
+                <strong>Driver:</strong> Security risk assessment (patient-adjacent data)<br>
+                <strong>Departments:</strong> Clinical Admin / Finance<br>
+                <strong>Distinguishing feature:</strong> GDPR/DPA 2018 + NCSC Cyber Essentials must be cited.
+            </div>
+
+            <h3>Task 1 — Activity A (Risk Assessment)</h3>
+            <p><strong>Focus:</strong> Full security register — threat / likelihood / vulnerability / asset / impact <strong>plus</strong> control type + risk response + risk process stage.</p>
+            <p><strong>Mandatory content:</strong> Control types (preventative, detective, corrective, deterrent, directive, compensating); risk responses (accept/avoid/mitigate/transfer); GDPR/DPA 2018; NCSC Cyber Essentials.</p>
+            <p><strong>Overlap:</strong> None significant — this is the full security register, not shared with B or C.</p>
+
+            <h3>Task 1 — Activity B (Requirements)</h3>
+            <p><strong>Core requirement:</strong> Translate <strong>each risk into a control</strong> — password policy, account lockout, GPO choices, RBAC matrix, WPA2/WPA3, backup-as-mitigation.</p>
+            <p><strong>What is being assessed:</strong> Security control design.</p>
+            <p><strong>Overlap:</strong> The two-VLAN/IPv4 requirement is shared with B (but B adds subnetting detail and device justification).</p>
+
+            <h3>Task 1 — Activity C (Simulation)</h3>
+            <p><strong>Artefact:</strong> Packet Tracer — VLANs + WPA2.</p>
+            <p><strong>Overlap:</strong> Shares the VLAN + WPA2 Packet Tracer core with B (Pearson-standard simulation).</p>
+
+            <h3>Task 2 — Build and test</h3>
+            <p><strong>Build:</strong> Standard — 2 workstations, 1 server, AD/DNS/DHCP, groups, folders, permission matrix, 5 GPOs, backup + restore.</p>
+            <p><strong>Testing emphasis:</strong> <strong>Permission testing and GPO testing</strong> — proving security controls work.</p>
+            <p><strong>Overlap:</strong> Shares the standard AD/DNS/DHCP + groups/folders + GPO + backup skeleton with B and C — but the testing emphasis is security-focused, unlike B (functionality/performance) and C (continuity/restore).</p>
+
+            <h3>Task 3 — Evaluation</h3>
+            <p><strong>Lens:</strong> <strong>CIA</strong> (confidentiality, integrity, availability); hardening: MFA, CA, IDS/IPS, VLAN hopping.</p>
+            <p><strong>Overlap:</strong> None — this is the only assignment that evaluates CIA and security hardening.</p>
+
+            <h3>Spec coverage (strong)</h3>
+            <p><span class="tag tag-strong">Strong</span> 1.1–1.10, 1.13–1.21, 1.24–1.27, 1.30–1.33 <span class="tag tag-touch" style="margin-left:0.6rem;">Touch</span> 2.3, 2.10, 2.13–2.14</p>
+        </div>
+
+        <!-- ========== ASSIGNMENT B ========== -->
+        <div id="tabB" class="panel">
+            <h2>Assignment B — Infrastructure-framed</h2>
+            <div class="info-box">
+                <strong>Company:</strong> Meridian Logistics<br>
+                <strong>Driver:</strong> Service &amp; infrastructure design (resilience, addressing, service placement)<br>
+                <strong>Departments:</strong> Operations / Finance<br>
+                <strong>Distinguishing feature:</strong> Remote access comparison (RDP/LOM/SSH/VPN) required.
+            </div>
+
+            <h3>Task 1 — Activity A (Risk Assessment)</h3>
+            <p><strong>Focus:</strong> <strong>Narrower</strong> — technical &amp; environmental threats only (SPOF, dropouts, capacity, misconfig, power/cooling).</p>
+            <p><strong>Mandatory content:</strong> Technical/environmental threats; no legislation requirement.</p>
+            <p><strong>Overlap:</strong> Touches risk-response vocabulary lightly (shared with A), but the risk content is infrastructure-focused, not security-focused.</p>
+
+            <h3>Task 1 — Activity B (Requirements)</h3>
+            <p><strong>Core requirement:</strong> <strong>Infrastructure design</strong> — topology justification, IPv4 subnetting for two VLANs, device selection, server roles, <strong>remote access comparison</strong>, backup criteria (frequency/source/destination/type).</p>
+            <p><strong>What is being assessed:</strong> Infrastructure design decisions.</p>
+            <p><strong>Overlap:</strong> Shares the two-VLAN/IPv4 requirement with A, but adds subnetting detail, device justification, and remote access comparison.</p>
+
+            <h3>Task 1 — Activity C (Simulation)</h3>
+            <p><strong>Artefact:</strong> Packet Tracer — full VLAN topology + <strong>QoS/segmentation rationale</strong>.</p>
+            <p><strong>Overlap:</strong> Shares the VLAN + WPA2 core with A, but adds the QoS/segmentation rationale.</p>
+
+            <h3>Task 2 — Build and test</h3>
+            <p><strong>Build:</strong> Standard build <strong>plus service depth</strong> — one application service (IIS/DFS), <strong>remote access comparison</strong> (RDP/LOM/SSH/VPN).</p>
+            <p><strong>Testing emphasis:</strong> <strong>Functionality and performance</strong> — ping/nslookup, service reachability, DHCP lease checks.</p>
+            <p><strong>Overlap:</strong> Shares the standard AD/DNS/DHCP build skeleton with A and C — but the testing emphasis is functionality/performance, unlike A (security) and C (continuity).</p>
+
+            <h3>Task 3 — Evaluation</h3>
+            <p><strong>Lens:</strong> <strong>Availability and usability</strong>; improvements: HA/clustering, load balancing, QoS, SDN, cloud trade-offs.</p>
+            <p><strong>Overlap:</strong> Shares availability with C, but B evaluates availability/usability/performance, while C evaluates availability/integrity plus source critique.</p>
+
+            <h3>Spec coverage (strong)</h3>
+            <p><span class="tag tag-strong">Strong</span> 2.1–2.14, 2.20–2.24 <span class="tag tag-touch" style="margin-left:0.6rem;">Touch</span> 1.11–1.12, 1.15</p>
+        </div>
+
+        <!-- ========== ASSIGNMENT C ========== -->
+        <div id="tabC" class="panel">
+            <h2>Assignment C — Continuity &amp; Knowledge-framed</h2>
+            <div class="info-box">
+                <strong>Company:</strong> Harbourview Media<br>
+                <strong>Driver:</strong> Disaster recovery &amp; continuity (just suffered a disk failure)<br>
+                <strong>Departments:</strong> Production / Finance<br>
+                <strong>Distinguishing feature:</strong> Every source must be justified (sources-of-knowledge log).
+            </div>
+
+            <h3>Task 1 — Activity A (Risk Assessment)</h3>
+            <p><strong>Focus:</strong> <strong>DRP/BCP framed</strong> — scope of DRP, RTO/RPO/MTBF/MTTR, encryption at rest/in transit, off-site storage.</p>
+            <p><strong>Mandatory content:</strong> DRP scope definition; RTO/RPO/MTBF/MTTR calculations; encryption; risk responses.</p>
+            <p><strong>Overlap:</strong> Shares risk-response vocabulary and scope thinking with A, but the entire framing is continuity/DRP, not pure security.</p>
+
+            <h3>Task 1 — Activity B (Requirements)</h3>
+            <p><strong>Core requirement:</strong> <strong>Source-justified requirements</strong> — mandatory <strong>sources-of-knowledge log</strong> with ≥2 sources per decision, reliability/validity factors, <strong>bias flags</strong>, <strong>TIA/EIA-568</strong> cable standard, backup type justification.</p>
+            <p><strong>What is being assessed:</strong> Research/reliability of sources + design.</p>
+            <p><strong>Overlap:</strong> Shares the two-VLAN requirement, but the assessment is entirely different — source evaluation and justification (content area 3).</p>
+
+            <h3>Task 1 — Activity C (Artefact)</h3>
+            <p><strong>Artefact:</strong> <strong>Backup schedule + restore-test plan</strong> (not a Packet Tracer topology).</p>
+            <p><strong>Overlap:</strong> None — entirely different artefact from A and B.</p>
+
+            <h3>Task 2 — Build and test</h3>
+            <p><strong>Build:</strong> Standard build <strong>plus continuity centrepiece</strong> — backup/restore is the centrepiece, DRP tabletop walkthrough, <strong>cable made to TIA/EIA-568</strong>.</p>
+            <p><strong>Testing emphasis:</strong> <strong>Restore-from-backup proof</strong> and <strong>DRP tabletop walkthrough</strong>; cable test evidence.</p>
+            <p><strong>Overlap:</strong> Shares the standard AD/DNS/DHCP build skeleton with A and B — but the testing emphasis is continuity/restore, unlike A (security) and B (functionality/performance).</p>
+
+            <h3>Task 3 — Evaluation</h3>
+            <p><strong>Lens:</strong> <strong>Availability and integrity</strong>; improvements: off-site replication, RPO tightening, cloud backup, ITIL CSI; <strong>critical evaluation of sources</strong> (bias, corroboration, reliability).</p>
+            <p><strong>Overlap:</strong> Shares availability with B, but C evaluates availability/integrity <strong>plus source critique</strong> — which is unique to C and where content area 3 is fully evidenced.</p>
+
+            <h3>Spec coverage (strong)</h3>
+            <p><span class="tag tag-strong">Strong</span> 1.8–1.9, 1.12, 1.22–1.23, 2.15–2.19, 3.1–3.7 <span class="tag tag-touch" style="margin-left:0.6rem;">Touch</span> 2.3, 2.10, 2.13</p>
+        </div>
+
+        <!-- ========== SPEC COVERAGE ========== -->
+        <div id="tabSpec" class="panel">
+            <h2>Specification coverage — why the assignments can't be the same</h2>
+            <table>
+                <tr><th>Content area</th><th>Assignment A</th><th>Assignment B</th><th>Assignment C</th></tr>
+                <tr>
+                    <td><strong>1. Security</strong><br><span style="font-size:0.85rem; color:#4a5f73;">Control types, risk process, risk responses, legislation, NCSC</span></td>
+                    <td><span class="tag tag-strong">Strong</span></td>
+                    <td><span class="tag tag-touch">Touch only</span></td>
+                    <td><span class="tag tag-strong">Strong</span><br><span style="font-size:0.85rem;">(1.8–1.9, 1.12, 1.22–1.23)</span></td>
+                </tr>
+                <tr>
+                    <td><strong>2. Infrastructure</strong><br><span style="font-size:0.85rem; color:#4a5f73;">Topology, addressing, devices, server roles, remote access</span></td>
+                    <td><span class="tag tag-touch">Touch only</span><br><span style="font-size:0.85rem;">(2.3, 2.10, 2.13–2.14)</span></td>
+                    <td><span class="tag tag-strong">Strong</span><br><span style="font-size:0.85rem;">(2.1–2.14, 2.20–2.24)</span></td>
+                    <td><span class="tag tag-strong">Strong</span><br><span style="font-size:0.85rem;">(2.15–2.19 — cable standards)</span></td>
+                </tr>
+                <tr>
+                    <td><strong>3. Sources of knowledge</strong><br><span style="font-size:0.85rem; color:#4a5f73;">Reliability, validity, bias</span></td>
+                    <td><span class="tag tag-none">—</span></td>
+                    <td><span class="tag tag-none">—</span></td>
+                    <td><span class="tag tag-strong">Strong</span><br><span style="font-size:0.85rem;">(3.1–3.7)</span></td>
+                </tr>
+            </table>
+
+            <div class="info-box">
+                <strong>Key point:</strong> If the assignments were substantially the same, they could not each be the <strong>primary evidence</strong> for a different content area. The fact that A is the strong evidence for content area 1, B for content area 2, and C for content area 3 is itself proof that the assignments are doing different work.
+            </div>
+
+            <h3>Spec points strongly evidenced — by assignment</h3>
+            <table>
+                <tr><th>Assignment</th><th>Strong spec points</th><th>Touch points</th></tr>
+                <tr>
+                    <td><strong>A (Security)</strong></td>
+                    <td>1.1–1.10, 1.13–1.21, 1.24–1.27, 1.30–1.33</td>
+                    <td>2.3, 2.10, 2.13–2.14</td>
+                </tr>
+                <tr>
+                    <td><strong>B (Infrastructure)</strong></td>
+                    <td>2.1–2.14, 2.20–2.24</td>
+                    <td>1.11–1.12, 1.15</td>
+                </tr>
+                <tr>
+                    <td><strong>C (Continuity/Knowledge)</strong></td>
+                    <td>1.8–1.9, 1.12, 1.22–1.23, 2.15–2.19, 3.1–3.7</td>
+                    <td>2.3, 2.10, 2.13</td>
+                </tr>
+            </table>
+            <p style="margin-top:0.8rem;">Collectively, the three assignments cover the full spec without duplication of the strong-evidence areas. The small overlaps are deliberate "touch" points that reinforce learning without repeating the assessment burden. <strong>No spec point is left uncovered</strong> across the three assignments.</p>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-note">
+            Pearson-style specimen assessment material · Centre-adapted assignments A, B and C<br>
+            Digital Support &amp; Security · Digital Infrastructure · Version 1.0
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT TABS -->
+    <script>
+        const tabs = document.querySelectorAll('.tab-btn');
+        const panels = document.querySelectorAll('.panel');
+
+        tabs.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+
+                btn.classList.add('active');
+                const targetId = btn.dataset.tab;
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

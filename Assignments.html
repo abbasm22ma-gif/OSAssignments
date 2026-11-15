@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Infrastructure · 3 Assignments (A, B, C) – Pearson-style</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: #eef2f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem 4rem;
+        }
+
+        .page-wrapper {
+            max-width: 1100px;
+            width: 100%;
+            background: white;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+            padding: 2rem 2rem 2.5rem;
+            transition: all 0.2s;
+            border: 1px solid #d9e2ec;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: #0b2b44;
+            letter-spacing: -0.01em;
+            border-left: 6px solid #1e6f9f;
+            padding-left: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subhead {
+            font-size: 0.95rem;
+            color: #4a5f73;
+            margin-bottom: 2rem;
+            padding-left: 1.8rem;
+            font-weight: 400;
+            border-bottom: 1px solid #d0dde9;
+            padding-bottom: 0.8rem;
+        }
+
+        /* ----- TABS ----- */
+        .tabs {
+            display: flex;
+            gap: 0.4rem;
+            background: #e3eaf2;
+            padding: 0.4rem;
+            border-radius: 60px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 160px;
+            padding: 0.9rem 1.2rem;
+            border: none;
+            background: transparent;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f3a4e;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            letter-spacing: 0.01em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn i {
+            font-style: normal;
+            font-size: 1.1rem;
+        }
+
+        .tab-btn:hover {
+            background: #cfdbe7;
+            color: #0b2b44;
+        }
+
+        .tab-btn.active {
+            background: #ffffff;
+            color: #0a3b5c;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            font-weight: 700;
+        }
+
+        /* ----- PANELS ----- */
+        .panel {
+            display: none;
+            animation: fade 0.2s ease;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        @keyframes fade {
+            from { opacity: 0.5; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ----- TYPOGRAPHY (exam-like) ----- */
+        .exam-block {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 0.2rem 0 0.2rem;
+        }
+
+        .cover-line {
+            background: #f4f8fe;
+            border-left: 4px solid #1e6f9f;
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            margin: 1.2rem 0 1.8rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #1a3448;
+        }
+
+        .cover-line strong {
+            color: #0a3b5c;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #0b2b44;
+            margin: 2.2rem 0 0.8rem;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1d4a6b;
+            margin: 1.8rem 0 0.6rem;
+            border-bottom: 1px solid #cbdae8;
+            padding-bottom: 0.3rem;
+        }
+
+        h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #1f4b6e;
+            margin: 1.4rem 0 0.4rem;
+        }
+
+        p, li {
+            color: #203a4e;
+            line-height: 1.6;
+            font-size: 0.98rem;
+        }
+
+        ul, ol {
+            padding-left: 1.8rem;
+            margin: 0.6rem 0 1rem;
+        }
+
+        li {
+            margin-bottom: 0.25rem;
+        }
+
+        .info-box {
+            background: #f4f9ff;
+            border: 1px solid #c5d9eb;
+            border-radius: 12px;
+            padding: 1.2rem 1.6rem;
+            margin: 1.5rem 0;
+            font-size: 0.96rem;
+        }
+
+        .info-box strong {
+            color: #0d3e60;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.4rem 0;
+            font-size: 0.95rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+
+        th {
+            background: #1e4b6b;
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+
+        td {
+            padding: 0.7rem 1rem;
+            border-bottom: 1px solid #d9e2ec;
+            background: white;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .mark-badge {
+            display: inline-block;
+            background: #1e6f9f;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            letter-spacing: 0.01em;
+            margin-left: 0.6rem;
+            vertical-align: middle;
+        }
+
+        .page-break-marker {
+            text-align: center;
+            margin: 2.4rem 0 1.8rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: #7a94aa;
+            border-top: 1px dashed #b8ccde;
+            padding-top: 0.6rem;
+            opacity: 0.8;
+        }
+
+        .submission {
+            background: #f4f8fc;
+            border-radius: 12px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.2rem 0 1.8rem;
+            border-left: 4px solid #1e6f9f;
+        }
+
+        .footer-note {
+            margin-top: 2.8rem;
+            font-size: 0.85rem;
+            color: #5d7488;
+            text-align: center;
+            border-top: 1px solid #d2dfeb;
+            padding-top: 1.8rem;
+        }
+
+        .kw {
+            font-weight: 600;
+            color: #0b3b5c;
+        }
+
+        /* small screens */
+        @media (max-width: 650px) {
+            .page-wrapper {
+                padding: 1.2rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .tab-btn {
+                min-width: 100px;
+                font-size: 0.85rem;
+                padding: 0.7rem 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <h1>Digital Support &amp; Security · Digital Infrastructure</h1>
+        <div class="subhead">Specimen assessment material — centre-adapted assignments (Pearson-style booklet)</div>
+
+        <!-- TABS -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="tabA"><i>🔒</i> Assignment A · Security</button>
+            <button class="tab-btn" data-tab="tabB"><i>🌐</i> Assignment B · Infrastructure</button>
+            <button class="tab-btn" data-tab="tabC"><i>📚</i> Assignment C · Continuity</button>
+        </div>
+
+        <!-- ========== ASSIGNMENT A ========== -->
+        <div id="tabA" class="panel active">
+            <div class="exam-block">
+
+                <!-- COVER PAGE -->
+                <div class="cover-line">
+                    <strong>T Level Technical Qualification in Digital Support and Security: Digital Infrastructure</strong><br>
+                    Specimen Assessment Material — Centre-Adapted Assignment<br><br>
+                    <strong>Time: 15 hours (Task 1) + 20 hours (Task 2) + 2.5 hours (Task 3)</strong><br>
+                    <strong>Paper Reference:</strong> XXXX/XX<br>
+                    <strong>Occupational Specialism:</strong> Digital Infrastructure<br><br>
+                    <strong>Assignment A — “Northgate Health Trust” (Security-framed)</strong><br>
+                    <strong>TASK 1 – Analysing the problem and designing a solution</strong><br><br>
+                    <strong>Task Booklet</strong><br><br>
+                    <strong>You must have:</strong><br>
+                    • Task 1_DI_NHT_RiskAssessment.doc<br>
+                    • Task 1_DI_NHT_Requirements.docx<br><br>
+                    <strong>Information</strong><br>
+                    • This booklet contains material for the completion of the set task under supervised conditions.<br>
+                    • This booklet is specific to each series and this material must only be issued to students who have been entered to undertake the task in the relevant series.<br>
+                    • This booklet must be kept securely until the start of the 1-week assessment window.
+                </div>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <!-- INSTRUCTIONS -->
+                <h3>Instructions for Students</h3>
+                <p>You must complete <strong>ALL</strong> parts of the activity within the assessment.</p>
+                <p>The task must be undertaken at the time and on the date specified by your centre.</p>
+                <p>You will be given <strong>15 hours</strong> for producing the outcomes for this task.</p>
+                <p>Your provider will advise you of when any supervised breaks have been scheduled.</p>
+                <p>The task must be completed under supervised conditions.</p>
+                <p>You are allowed monitored access to the internet during the scheduled supervised sessions.</p>
+                <p>During this task you are not permitted to use AI or any other tool designed to automate producing a solution.</p>
+                <div class="info-box">
+                    <strong>Files provided for use during this task:</strong><br>
+                    • Task 1_DI_NHT_RiskAssessment.doc<br>
+                    • Task 1_DI_NHT_Requirements.docx
+                </div>
+                <p>Your work and any material provided must be kept securely at all times.</p>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <!-- TASK 1 BRIEF -->
+                <h3>Task 1 Brief</h3>
+                <p>You work for a service provider which has been contracted to set up the IT infrastructure for a UK health trust, <strong>Northgate Health Trust</strong>, which is opening a satellite clinic. The clinic handles <strong>patient-adjacent data</strong>, so the design must be driven by a <strong>security risk assessment</strong>.</p>
+                <p>The clinic will need to provide computing facilities for <strong>20 people</strong>, working in two main departments: <strong>clinical administration</strong> and <strong>finance/billing</strong>.</p>
+                <p>The clinical administration department stores <strong>patient-adjacent records</strong> (names, addresses, appointment data). The finance department stores <strong>sensitive financial data</strong>. Both are subject to <strong>UK GDPR and the Data Protection Act 2018</strong>, and the trust is expected to align with <strong>NCSC Cyber Essentials</strong>.</p>
+                <p>A fileserver will be needed with:</p>
+                <ul>
+                    <li>a common shared area for all users</li>
+                    <li>a shared area for clinical administration users only</li>
+                    <li>a shared area for finance users only</li>
+                </ul>
+                <p>The building is a shared building; Northgate Health Trust will occupy <strong>one floor</strong>, with other tenants on other floors.</p>
+                <p>All users require <strong>wired connections</strong> to desktop computers. Clinical administration and finance users must be on <strong>separate VLANs</strong>. A <strong>secure Wi-Fi network</strong> is required (WPA2 minimum; WPA3 preferred where supported).</p>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <!-- ACTIVITIES -->
+                <h3>Activities</h3>
+                <h4>Quality of Communication <span class="mark-badge">6 marks</span></h4>
+                <p>When producing evidence in these activities, you should use high-quality communication that:</p>
+                <ul>
+                    <li>includes common vocabulary that will be understood within the digital industry</li>
+                    <li>is suitable for the target audience</li>
+                    <li>ensures the different elements of your design are clear, allowing a third party to easily interpret them.</li>
+                </ul>
+
+                <h4>Activity A — Risk Assessment <span class="mark-badge">18 marks</span> <span style="font-weight:400; font-size:0.9rem; color:#3d5b73;">(Suggested Time: 5 Hours)</span></h4>
+                <p>Complete a risk assessment using the file <strong>Task1_DI_NHT_RiskAssessment.doc</strong>.</p>
+                <p>You should ensure your risk assessment includes a <strong>range of risks</strong>, explicitly biased toward <strong>security control types</strong> and the <strong>risk management process</strong>.</p>
+                <p>For each risk, your risk assessment must cover:</p>
+                <ul>
+                    <li>the <strong>threat</strong> that could cause harm</li>
+                    <li>the <strong>likelihood</strong> of the threat occurring</li>
+                    <li>the <strong>vulnerabilities or weaknesses</strong> in the security</li>
+                    <li>the <strong>asset</strong> that needs to be protected</li>
+                    <li>the <strong>possible impact or damage</strong> if the threat occurs</li>
+                    <li>the <strong>control type(s)</strong> applied — preventative, detective, corrective, deterrent, directive, or compensating</li>
+                    <li>the <strong>risk response</strong> — accept, avoid, mitigate, or transfer</li>
+                    <li>the <strong>risk management process stage</strong> — identify → probability → impact → prioritise → mitigate</li>
+                </ul>
+                <p>Your risk assessment must <strong>cite GDPR/DPA 2018</strong> and <strong>NCSC Cyber Essentials</strong> where relevant.</p>
+
+                <h4>Activity B — Security Requirements <span class="mark-badge">18 marks</span> <span style="font-weight:400; font-size:0.9rem; color:#3d5b73;">(Suggested Time: 5 Hours)</span></h4>
+                <p>Complete the infrastructure requirements template using the file <strong>Task1_DI_NHT_Requirements.docx</strong>.</p>
+                <p>You should ensure your requirements <strong>protect against the risks you identified</strong> in Activity A. Each risk must translate into a <strong>control</strong>.</p>
+                <p>This should cover:</p>
+                <ul>
+                    <li><strong>hardware</strong> required, including network devices, end-user computers and a server</li>
+                    <li><strong>software</strong> required</li>
+                    <li><strong>server configuration and settings</strong> to provide the required functionality</li>
+                    <li><strong>IPv4 addressing scheme</strong>, providing for two VLANs for clinical administration and finance users</li>
+                    <li><strong>password policy</strong> and <strong>account lockout</strong> settings</li>
+                    <li><strong>GPO choices</strong> that enforce security</li>
+                    <li><strong>folder permission matrix</strong> using <strong>Role-Based Access Control (RBAC)</strong></li>
+                    <li><strong>WPA2/WPA3</strong> configuration for the wireless network</li>
+                    <li><strong>backup</strong> configured as a <strong>risk mitigation control</strong></li>
+                </ul>
+
+                <h4>Activity C — Cisco Packet Tracer Simulation <span class="mark-badge">9 marks</span> <span style="font-weight:400; font-size:0.9rem; color:#3d5b73;">(Optional, Suggested Time: 5 Hours)</span></h4>
+                <p>Simulate the network using <strong>Cisco Packet Tracer</strong>.</p>
+                <p>Your network should include:</p>
+                <ul>
+                    <li>all network devices</li>
+                    <li>all end-user computers</li>
+                    <li>the requirements in the Task 1 Brief section</li>
+                </ul>
+                <p>Meet these requirements:</p>
+                <ul>
+                    <li>use <strong>VLANs</strong> to separate clinical administration and finance departments</li>
+                    <li>use <strong>wireless security</strong> by configuring <strong>WPA2</strong></li>
+                </ul>
+                <p><strong>Total for Task 1 = 51 marks (45 task marks + 6 quality of communication)</strong></p>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <!-- SUBMISSION -->
+                <h3>Outcomes for submission (Task 1)</h3>
+                <div class="submission">
+                    <p>You must submit:</p>
+                    <ol>
+                        <li><strong>A completed risk assessment template</strong><br>Save as a PDF file. Naming convention: <code>Task 1_DI_RiskAssessment_[document name]_[Registration number #]_[surname]_[first letter of first name]</code></li>
+                        <li><strong>A completed requirements template</strong><br>Save as a PDF file. Naming convention: <code>Task 1_DI_Requirements_[Registration number #]_[surname]_[first letter of first name]</code></li>
+                        <li><strong>A Cisco Packet Tracer network simulation</strong> (if Activity C completed)<br>Save as a <code>.pkt</code> file. Naming convention: <code>Task 1_DI_NetworkSimulation_[Registration number #]_[surname]_[first letter of first name]</code></li>
+                    </ol>
+                </div>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <!-- TASK 2 -->
+                <h2>TASK 2 – Developing the solution</h2>
+                <p><strong>Time: 20 hours</strong> &nbsp;|&nbsp; <strong>Paper Reference:</strong> XXXX/XX</p>
+                <p><strong>Occupational Specialism:</strong> Digital Infrastructure</p>
+                <p><strong>You must have:</strong> Task 2_DI_NHT_TestLog.doc</p>
+                <p><strong>Information:</strong> This booklet contains material for the completion of the set task under supervised conditions. This booklet must be kept securely until the start of the 2-week assessment window.</p>
+
+                <h3>Instructions for Students (Task 2)</h3>
+                <p>You must complete <strong>ALL</strong> parts of the activity within the assessment.</p>
+                <p>You will be given <strong>20 hours</strong> for producing the outcomes for this task.</p>
+                <p>The task must be completed under supervised conditions. You are allowed monitored access to the internet during the scheduled supervised sessions.</p>
+                <p>During this task you are not permitted to use AI or any other tool designed to automate producing a solution.</p>
+                <div class="info-box"><strong>Files provided:</strong> Task 2_DI_NHT_TestLog.doc</div>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <h3>Task 2 Brief</h3>
+                <p>Northgate Health Trust has asked you to implement a version of the network for their new satellite clinic to be used for <strong>testing</strong>.</p>
+                <p>The test network needs to include:</p>
+                <ul>
+                    <li>at least <strong>two workstations</strong> running desktop operating systems</li>
+                    <li>one computer to be used as a <strong>server</strong> running a server operating system</li>
+                </ul>
+
+                <h4>Install and configure the software and set up the domain <span class="mark-badge">9 marks</span> <span style="font-weight:400; font-size:0.9rem;">(Suggested Time: 6 Hours)</span></h4>
+                <p>Install and configure the operating systems. The computers can be physical or virtual.</p>
+                <p>The server needs to be set up as a <strong>domain controller</strong> running:</p>
+                <ul>
+                    <li><strong>Active Directory Domain Services and DNS</strong></li>
+                    <li><strong>DHCP</strong> to provide workstations with IP addresses</li>
+                </ul>
+                <p>Apply appropriate <strong>security settings</strong>, such as <strong>password policy</strong> and <strong>account lockout</strong>, to the server (or confirm they are active) and <strong>confirm the security settings or features are active</strong>.</p>
+
+                <h4>Set up user accounts, shared folders and permissions <span class="mark-badge">9 marks</span> <span style="font-weight:400; font-size:0.9rem;">(Suggested Time: 6 Hours)</span></h4>
+                <p>The domain needs at least <strong>two user groups</strong>: clinical administration and finance. Create at least one domain user for each group.</p>
+                <p>Shared folders for the whole company and for the clinical administration and finance groups should be created on the server.</p>
+                <p>Set permissions as shown in the table:</p>
+                <table>
+                    <tr><th>Groups</th><th>Company</th><th>Clinical Admin</th><th>Finance</th></tr>
+                    <tr><td>Clinical Admin</td><td>Read/Write</td><td>Write</td><td>None</td></tr>
+                    <tr><td>Finance</td><td>Read/Write</td><td>None</td><td>Write</td></tr>
+                </table>
+                <p>Using the test log template, create a <strong>test plan for the permissions</strong> and <strong>test that permissions are correctly applied</strong> to users in the different groups.</p>
+
+                <h4>Group Policy settings <span class="mark-badge">6 marks</span> <span style="font-weight:400; font-size:0.9rem;">(Suggested Time: 4 Hours)</span></h4>
+                <p>Create and apply <strong>five different Group Policy settings</strong> for users which will make the domain more secure (e.g. password complexity, screen lock, USB restriction, audit policy, Windows Firewall enforcement).</p>
+                <p>Using the test log template, <strong>test the policies</strong> to ensure they have been applied correctly.</p>
+
+                <h4>Configure a backup schedule <span class="mark-badge">6 marks</span> <span style="font-weight:400; font-size:0.9rem;">(Suggested Time: 4 Hours)</span></h4>
+                <p>Configure a <strong>scheduled backup</strong> of the shared folders on the server to an external drive or additional virtual drive. Select an appropriate time and frequency.</p>
+                <p><strong>Test the backup</strong> by restoring one of the backups.</p>
+                <p>You should also create a log that includes suitable <strong>annotated screenshots</strong> demonstrating the steps you followed.</p>
+                <p><strong>Total for Task 2 = 30 marks</strong></p>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <h3>Outcomes for submission (Task 2)</h3>
+                <div class="submission">
+                    <ol>
+                        <li><strong>Development documentation</strong> (including a log of annotated screenshots) — PDF. Naming: <code>Task 2_DI_DevelopmentDocumentation_[document name]_[Registration number #]_[surname]_[first letter of first name]</code></li>
+                        <li><strong>Test log</strong> — PDF. Naming: <code>Task 2_DI_TestLog_[document name]_[Registration number #]_[surname]_[first letter of first name]</code></li>
+                    </ol>
+                </div>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <!-- TASK 3 -->
+                <h2>TASK 3 – Evaluate the system</h2>
+                <p><strong>Time: 2.5 hours</strong> &nbsp;|&nbsp; <strong>Paper Reference:</strong> XXXX/XX</p>
+                <p><strong>Occupational Specialism:</strong> Digital Infrastructure</p>
+                <p><strong>You must have:</strong> a 'read-only' copy of the materials produced in Task 1 and Task 2.</p>
+
+                <h3>Instructions for Students (Task 3)</h3>
+                <p>You must complete <strong>ALL</strong> parts of the activity within the assessment.</p>
+                <p>You will be given <strong>2 hours and 30 minutes</strong> for producing the outcomes for this task.</p>
+                <p>The task must be completed under supervised conditions.</p>
+                <p><strong>You are not allowed access to the internet</strong> during the scheduled supervised session.</p>
+                <p>During this task you are not permitted to use AI or any other tool designed to automate producing a response.</p>
+
+                <h3>Task 3 Brief</h3>
+                <p>Having completed the setup and testing of the network for Northgate Health Trust, the trust has asked you to <strong>evaluate the effectiveness of the test network</strong> and <strong>outline how it could be developed further</strong>.</p>
+                <h4>Activity — Evaluation of the System <span class="mark-badge">18 marks</span></h4>
+                <p>Produce a report that evaluates the work you have carried out.</p>
+                <p>Your evaluation should include:</p>
+                <ul>
+                    <li>the <strong>risk assessment</strong> you created in Task 1, Activity A</li>
+                    <li>the <strong>security requirements</strong> you created in Task 1, Activity B</li>
+                    <li>the <strong>test network</strong> you set up in Task 2</li>
+                </ul>
+                <p>For each of these tasks, you should evaluate:</p>
+                <ul>
+                    <li>the <strong>strengths and weaknesses</strong> of the work you carried out</li>
+                    <li>the <strong>impact your decisions will have on the functionality, usability and security</strong> of the network</li>
+                    <li>how the test network could be <strong>developed to improve functionality, performance and security</strong></li>
+                </ul>
+                <p>Your report must also evaluate the <strong>security effectiveness</strong> of the chosen controls against <strong>confidentiality, integrity and availability (CIA)</strong>, and explain how the design could be <strong>hardened</strong> — e.g. <strong>MFA</strong>, <strong>certificate authority</strong>, <strong>IDS/IPS</strong>, <strong>VLAN hardening against VLAN hopping</strong>. Reference <strong>content area 1</strong> throughout.</p>
+
+                <h3>Outcomes for submission (Task 3)</h3>
+                <div class="submission">
+                    <p><strong>Feedback evaluation report</strong> — PDF. Naming: <code>Task3_DI_Evaluation_[Registration number #]_[surname]_[first letter of first name]</code></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== ASSIGNMENT B ========== -->
+        <div id="tabB" class="panel">
+            <div class="exam-block">
+                <div class="cover-line">
+                    <strong>T Level Technical Qualification in Digital Support and Security: Digital Infrastructure</strong><br>
+                    Specimen Assessment Material — Centre-Adapted Assignment<br><br>
+                    <strong>Time: 15 hours (Task 1) + 20 hours (Task 2) + 2.5 hours (Task 3)</strong><br>
+                    <strong>Paper Reference:</strong> XXXX/XX<br>
+                    <strong>Occupational Specialism:</strong> Digital Infrastructure<br><br>
+                    <strong>Assignment B — “Meridian Logistics” (Infrastructure-framed)</strong><br>
+                    <strong>TASK 1 – Analysing the problem and designing a solution</strong><br><br>
+                    <strong>Task Booklet</strong><br><br>
+                    <strong>You must have:</strong><br>
+                    • Task 1_DI_ML_RiskAssessment.doc<br>
+                    • Task 1_DI_ML_Requirements.docx<br><br>
+                    <strong>Information</strong><br>
+                    • This booklet contains material for the completion of the set task under supervised conditions.<br>
+                    • This booklet must be kept securely until the start of the 1-week assessment window.
+                </div>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <h3>Instructions for Students</h3>
+                <p>You must complete <strong>ALL</strong> parts of the activity within the assessment.</p>
+                <p>You will be given <strong>15 hours</strong> for producing the outcomes for this task.</p>
+                <p>The task must be completed under supervised conditions.</p>
+                <p>You are allowed monitored access to the internet during the scheduled supervised sessions.</p>
+                <p>During this task you are not permitted to use AI or any other tool designed to automate producing a solution.</p>
+                <div class="info-box"><strong>Files provided:</strong> Task 1_DI_ML_RiskAssessment.doc, Task 1_DI_ML_Requirements.docx</div>
+                <p>Your work and any material provided must be kept securely at all times.</p>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <h3>Task 1 Brief</h3>
+                <p>You work for a service provider contracted to set up the IT infrastructure for <strong>Meridian Logistics</strong>, a logistics firm consolidating <strong>two offices onto one test network</strong>.</p>
+                <p>The driver for this design is <strong>service and infrastructure design</strong> — <strong>resilience, addressing, and service placement</strong> — rather than pure security.</p>
+                <p>The consolidated office will provide computing facilities for <strong>20 people</strong>, working in two main departments: <strong>operations</strong> and <strong>finance</strong>.</p>
+                <p>A fileserver will be needed with:</p>
+                <ul>
+                    <li>a common shared area for all users</li>
+                    <li>a shared area for operations users only</li>
+                    <li>a shared area for finance users only</li>
+                </ul>
+                <p>The building is a shared building; Meridian Logistics will occupy <strong>one floor</strong>, with other tenants on other floors.</p>
+                <p>All users require <strong>wired connections</strong> to desktop computers. Operations and finance users must be on <strong>separate VLANs</strong>. A <strong>secure Wi-Fi network</strong> is required.</p>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <h3>Activities</h3>
+                <h4>Quality of Communication <span class="mark-badge">6 marks</span></h4>
+                <p>When producing evidence in these activities, you should use high-quality communication that:</p>
+                <ul>
+                    <li>includes common vocabulary that will be understood within the digital industry</li>
+                    <li>is suitable for the target audience</li>
+                    <li>ensures the different elements of your design are clear, allowing a third party to easily interpret them.</li>
+                </ul>
+
+                <h4>Activity A — Infrastructure Risk Assessment <span class="mark-badge">18 marks</span> <span style="font-weight:400; font-size:0.9rem;">(Suggested Time: 5 Hours)</span></h4>
+                <p>Complete a risk assessment using the file <strong>Task1_DI_ML_RiskAssessment.doc</strong>.</p>
+                <p>This risk assessment is <strong>narrower</strong> than a full security register. It should focus on <strong>technical and environmental threats</strong>, and include a range of risks around:</p>
+                <ul>
+                    <li><strong>single points of failure</strong></li>
+                    <li><strong>network dropouts</strong></li>
+                    <li><strong>server capacity</strong></li>
+                    <li><strong>misconfigured services</strong></li>
+                    <li><strong>power and cooling</strong></li>
+                </ul>
+                <p>For each risk, your risk assessment must cover: threat, likelihood, vulnerabilities, asset, and impact.</p>
+
+                <h4>Activity B — Infrastructure Requirements <span class="mark-badge">18 marks</span> <span style="font-weight:400; font-size:0.9rem;">(Suggested Time: 5 Hours)</span></h4>
+                <p>Complete the infrastructure requirements template using the file <strong>Task1_DI_ML_Requirements.docx</strong>.</p>
+                <p>This activity leans into <strong>content area 2</strong>. Your requirements must cover:</p>
+                <ul>
+                    <li><strong>network topology</strong> — star / client-server, with justification</li>
+                    <li><strong>IP addressing and subnetting</strong> — IPv4 scheme providing for two VLANs (operations and finance), with subnet masks and address ranges</li>
+                    <li><strong>device selection</strong> — switch, wireless access point, server, end-user devices, with justification</li>
+                    <li><strong>server roles</strong> — AD DS, DNS, DHCP, file server</li>
+                    <li><strong>remote access method</strong> — compare <strong>RDP vs VPN vs SSH</strong> and justify the choice</li>
+                    <li><strong>backup criteria</strong> — frequency, source, destination, and type</li>
+                </ul>
+
+                <h4>Activity C — Cisco Packet Tracer Simulation <span class="mark-badge">9 marks</span> <span style="font-weight:400; font-size:0.9rem;">(Suggested Time: 5 Hours)</span></h4>
+                <p>Simulate the network using <strong>Cisco Packet Tracer</strong>. Your network should include:</p>
+                <ul>
+                    <li>the <strong>full VLAN topology</strong> with <strong>WPA2</strong></li>
+                    <li>the <strong>addressing plan</strong> applied to devices</li>
+                    <li>a documented <strong>QoS / segmentation rationale</strong></li>
+                </ul>
+                <p><strong>Total for Task 1 = 51 marks (45 task marks + 6 quality of communication)</strong></p>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <h3>Outcomes for submission (Task 1)</h3>
+                <div class="submission">
+                    <ol>
+                        <li><strong>Completed risk assessment template</strong> — PDF <code>Task 1_DI_RiskAssessment_[document name]_[Registration number #]_[surname]_[first letter of first name]</code></li>
+                        <li><strong>Completed requirements template</strong> — PDF <code>Task 1_DI_Requirements_[Registration number #]_[surname]_[first letter of first name]</code></li>
+                        <li><strong>Cisco Packet Tracer simulation</strong> — .pkt <code>Task 1_DI_NetworkSimulation_[Registration number #]_[surname]_[first letter of first name]</code></li>
+                    </ol>
+                </div>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <!-- TASK 2 -->
+                <h2>TASK 2 – Developing the solution</h2>
+                <p><strong>Time: 20 hours</strong> &nbsp;|&nbsp; <strong>Paper Reference:</strong> XXXX/XX</p>
+                <p><strong>You must have:</strong> Task 2_DI_ML_TestLog.doc</p>
+
+                <h3>Instructions for Students (Task 2)</h3>
+                <p>You must complete <strong>ALL</strong> parts of the activity. You will be given <strong>20 hours</strong>. The task must be completed under supervised conditions. You are allowed monitored internet access. AI use is not permitted.</p>
+                <div class="info-box"><strong>Files provided:</strong> Task 2_DI_ML_TestLog.doc</div>
+
+                <h3>Task 2 Brief</h3>
+                <p>Meridian Logistics has asked you to implement a version of the network for their consolidated office to be used for <strong>testing</strong>.</p>
+                <p>The test network needs to include: at least <strong>two workstations</strong>, one <strong>server</strong> running a server OS, and where resources allow a second server to demonstrate service depth.</p>
+
+                <h4>Install and configure the software and set up the domain <span class="mark-badge">9 marks</span> <span style="font-weight:400; font-size:0.9rem;">(6 Hours)</span></h4>
+                <p>Install and configure the operating systems. The server needs to be set up as a <strong>domain controller</strong> with <strong>AD DS and DNS</strong>, and <strong>DHCP</strong>. Apply and confirm appropriate security settings.</p>
+
+                <h4>Set up user accounts, shared folders and permissions <span class="mark-badge">9 marks</span> <span style="font-weight:400; font-size:0.9rem;">(6 Hours)</span></h4>
+                <p>Create at least two groups (operations and finance), one domain user per group, and the shared folders.</p>
+                <table>
+                    <tr><th>Groups</th><th>Company</th><th>Operations</th><th>Finance</th></tr>
+                    <tr><td>Operations</td><td>Read/Write</td><td>Write</td><td>None</td></tr>
+                    <tr><td>Finance</td><td>Read/Write</td><td>None</td><td>Write</td></tr>
+                </table>
+                <p>Test permissions using the test log template.</p>
+
+                <h4>Configure a service <span style="font-weight:400; font-size:0.9rem;">(included in marks above / 4 Hours where standalone)</span></h4>
+                <p>Configure <strong>one application service</strong> deliberately chosen to demonstrate service depth — e.g. <strong>IIS web server with a DNS record</strong> or <strong>file server with DFS</strong>. Document the choice, configuration, and reachability.</p>
+
+                <h4>Remote access comparison and configuration <span class="mark-badge">6 marks</span> <span style="font-weight:400; font-size:0.9rem;">(4 Hours)</span></h4>
+                <p>Compare <strong>RDP, LOM, SSH, and VPN</strong> for remote access to the server. <strong>Justify</strong> the one you use. Configure and evidence it working.</p>
+
+                <h4>Group Policy settings <span class="mark-badge">6 marks</span> <span style="font-weight:400; font-size:0.9rem;">(4 Hours)</span></h4>
+                <p>Create and apply <strong>five different Group Policy settings</strong> for users which will make the domain more secure. Test and confirm they have been applied.</p>
+
+                <h4>Configure a backup schedule <span class="mark-badge">6 marks</span> <span style="font-weight:400; font-size:0.9rem;">(4 Hours)</span></h4>
+                <p>Configure a <strong>scheduled backup</strong> of the shared folders. Select an appropriate time and frequency. <strong>Test the backup</strong> by restoring one of the backups.</p>
+                <p>Create a log with suitable <strong>annotated screenshots</strong>.</p>
+                <p><strong>Testing emphasis:</strong> functionality and performance — ping / nslookup, service reachability, DHCP lease checks.</p>
+                <p><strong>Total for Task 2 = 30 marks (plus service/remote-access marks where centre allocates)</strong></p>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <h3>Outcomes for submission (Task 2)</h3>
+                <div class="submission">
+                    <ol>
+                        <li><strong>Development documentation</strong> (including a log of annotated screenshots) — PDF <code>Task 2_DI_DevelopmentDocumentation_[document name]_[Registration number #]_[surname]_[first letter of first name]</code></li>
+                        <li><strong>Test log</strong> — PDF <code>Task 2_DI_TestLog_[document name]_[Registration number #]_[surname]_[first letter of first name]</code></li>
+                    </ol>
+                </div>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <!-- TASK 3 -->
+                <h2>TASK 3 – Evaluate the system</h2>
+                <p><strong>Time: 2.5 hours</strong> &nbsp;|&nbsp; <strong>Paper Reference:</strong> XXXX/XX</p>
+                <p><strong>You must have:</strong> 'read-only' copies of Task 1 and Task 2 materials.</p>
+
+                <h3>Instructions for Students (Task 3)</h3>
+                <p>You must complete <strong>ALL</strong> parts. You will be given <strong>2 hours and 30 minutes</strong>. The task must be completed under supervised conditions. <strong>No internet access.</strong> AI use is not permitted.</p>
+
+                <h3>Task 3 Brief</h3>
+                <p>Having completed the setup and testing of the network for Meridian Logistics, the company has asked you to <strong>evaluate the effectiveness of the test network</strong> and <strong>outline how it could be developed further</strong>.</p>
+                <h4>Activity — Evaluation of the System <span class="mark-badge">18 marks</span></h4>
+                <p>Your evaluation should include the <strong>infrastructure risk assessment</strong>, the <strong>infrastructure requirements</strong>, and the <strong>test network</strong>.</p>
+                <p>Evaluate: <strong>strengths and weaknesses</strong> of the topology and addressing choices, <strong>impact on availability and usability</strong>, and improvements — e.g. <strong>HA/clustering, load balancing, QoS, SDN, cloud-hosted virtual server trade-offs</strong>. Reference <strong>content area 2</strong> throughout.</p>
+
+                <h3>Outcomes for submission (Task 3)</h3>
+                <div class="submission">
+                    <p><strong>Feedback evaluation report</strong> — PDF <code>Task3_DI_Evaluation_[Registration number #]_[surname]_[first letter of first name]</code></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== ASSIGNMENT C ========== -->
+        <div id="tabC" class="panel">
+            <div class="exam-block">
+                <div class="cover-line">
+                    <strong>T Level Technical Qualification in Digital Support and Security: Digital Infrastructure</strong><br>
+                    Specimen Assessment Material — Centre-Adapted Assignment<br><br>
+                    <strong>Time: 15 hours (Task 1) + 20 hours (Task 2) + 2.5 hours (Task 3)</strong><br>
+                    <strong>Paper Reference:</strong> XXXX/XX<br>
+                    <strong>Occupational Specialism:</strong> Digital Infrastructure<br><br>
+                    <strong>Assignment C — “Harbourview Media” (Continuity &amp; Knowledge-framed)</strong><br>
+                    <strong>TASK 1 – Analysing the problem and designing a solution</strong><br><br>
+                    <strong>Task Booklet</strong><br><br>
+                    <strong>You must have:</strong><br>
+                    • Task 1_DI_HM_RiskAssessment.doc<br>
+                    • Task 1_DI_HM_Requirements.docx<br><br>
+                    <strong>Information</strong><br>
+                    • This booklet contains material for the completion of the set task under supervised conditions.<br>
+                    • This booklet must be kept securely until the start of the 1-week assessment window.
+                </div>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <h3>Instructions for Students</h3>
+                <p>You must complete <strong>ALL</strong> parts of the activity within the assessment.</p>
+                <p>You will be given <strong>15 hours</strong> for producing the outcomes for this task.</p>
+                <p>The task must be completed under supervised conditions. You are allowed monitored access to the internet during the scheduled supervised sessions.</p>
+                <p>During this task you are not permitted to use AI or any other tool designed to automate producing a solution.</p>
+                <div class="info-box"><strong>Files provided:</strong> Task 1_DI_HM_RiskAssessment.doc, Task 1_DI_HM_Requirements.docx</div>
+                <p>Your work and any material provided must be kept securely at all times.</p>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <h3>Task 1 Brief</h3>
+                <p>You work for a service provider contracted to set up the IT infrastructure for <strong>Harbourview Media</strong>, a media company that has recently <strong>suffered a disk failure</strong>.</p>
+                <p>The company wants a test domain built with <strong>disaster recovery and continuity as the driving concern</strong>.</p>
+                <p>The student must <strong>justify every source used</strong> — manufacturer documentation, NCSC guidance, and vendor whitepapers.</p>
+                <p>The office will provide computing facilities for <strong>20 people</strong>, working in two main departments: <strong>production</strong> and <strong>finance</strong>.</p>
+                <p>A fileserver will be needed with a common shared area, a production-only area, and a finance-only area.</p>
+                <p>The building is shared; Harbourview Media will occupy <strong>one floor</strong>. All users require <strong>wired connections</strong>. Production and finance users must be on <strong>separate VLANs</strong>. A <strong>secure Wi-Fi network</strong> is required.</p>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <h3>Activities</h3>
+                <h4>Quality of Communication <span class="mark-badge">6 marks</span></h4>
+                <ul>
+                    <li>includes common vocabulary that will be understood within the digital industry</li>
+                    <li>is suitable for the target audience</li>
+                    <li>ensures the different elements of your design are clear, allowing a third party to easily interpret them.</li>
+                </ul>
+
+                <h4>Activity A — DRP/BCP-Oriented Risk Assessment <span class="mark-badge">18 marks</span> <span style="font-weight:400; font-size:0.9rem;">(5 Hours)</span></h4>
+                <p>Complete a risk assessment using the file <strong>Task1_DI_HM_RiskAssessment.doc</strong>.</p>
+                <p>This risk assessment is framed around <strong>Disaster Recovery Planning (DRP)</strong> and <strong>Business Continuity Planning (BCP)</strong>. You must:</p>
+                <ul>
+                    <li>define the <strong>scope</strong> of the DRP — organisational / departmental / individual</li>
+                    <li>state the <strong>risk responses</strong> — accept / avoid / mitigate / transfer</li>
+                    <li>incorporate <strong>back-ups</strong> and <strong>off-site alternative storage</strong></li>
+                    <li>calculate and justify <strong>RTO, RPO, MTBF, and MTTR</strong></li>
+                    <li>address <strong>encryption of data at rest and in transit</strong></li>
+                </ul>
+                <p>For each risk, cover: threat, likelihood, vulnerabilities, asset, and impact.</p>
+
+                <h4>Activity B — Requirements with Source Justification <span class="mark-badge">18 marks</span> <span style="font-weight:400; font-size:0.9rem;">(5 Hours)</span></h4>
+                <p>Complete the infrastructure requirements template using the file <strong>Task1_DI_HM_Requirements.docx</strong>.</p>
+                <p>This activity <strong>requires a mandatory sources-of-knowledge log</strong>. For each design decision (e.g. "hourly incremental backup"), you must:</p>
+                <ul>
+                    <li>cite <strong>at least two sources</strong></li>
+                    <li>apply <strong>reliability/validity factors</strong> — authority, date, version, corroboration</li>
+                    <li>flag <strong>potential bias</strong> — vendor bias vs NCSC neutrality</li>
+                </ul>
+                <p>Your requirements must also include hardware, software, server configuration, IPv4 addressing for two VLANs, the <strong>cable-making standard</strong> justified against <strong>TIA/EIA-568</strong>, and the <strong>backup type</strong> chosen and justified.</p>
+
+                <h4>Activity C — Backup Schedule and Restore-Test Plan <span class="mark-badge">9 marks</span> <span style="font-weight:400; font-size:0.9rem;">(Optional, 5 Hours)</span></h4>
+                <p>Produce a <strong>backup schedule and restore-test plan</strong> as the design artefact. Specify frequency and type of backup, source and destination, retention policy, and the restore-test procedure and success criteria.</p>
+                <p><strong>Total for Task 1 = 51 marks (45 task marks + 6 quality of communication)</strong></p>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <h3>Outcomes for submission (Task 1)</h3>
+                <div class="submission">
+                    <ol>
+                        <li><strong>Completed risk assessment template</strong> — PDF <code>Task 1_DI_RiskAssessment_[document name]_[Registration number #]_[surname]_[first letter of first name]</code></li>
+                        <li><strong>Completed requirements template</strong> (including sources-of-knowledge log) — PDF <code>Task 1_DI_Requirements_[Registration number #]_[surname]_[first letter of first name]</code></li>
+                        <li><strong>Backup schedule and restore-test plan</strong> (if Activity C completed) — PDF <code>Task 1_DI_BackupPlan_[Registration number #]_[surname]_[first letter of first name]</code></li>
+                    </ol>
+                </div>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <!-- TASK 2 -->
+                <h2>TASK 2 – Developing the solution</h2>
+                <p><strong>Time: 20 hours</strong> &nbsp;|&nbsp; <strong>Paper Reference:</strong> XXXX/XX</p>
+                <p><strong>You must have:</strong> Task 2_DI_HM_TestLog.doc</p>
+
+                <h3>Instructions for Students (Task 2)</h3>
+                <p>You must complete <strong>ALL</strong> parts. You will be given <strong>20 hours</strong>. Supervised conditions apply. Monitored internet access is allowed. AI use is not permitted.</p>
+                <div class="info-box"><strong>Files provided:</strong> Task 2_DI_HM_TestLog.doc</div>
+
+                <h3>Task 2 Brief</h3>
+                <p>Harbourview Media has asked you to implement a version of the network for their office to be used for <strong>testing</strong>, with <strong>continuity emphasis</strong>.</p>
+                <p>The test network needs to include at least <strong>two workstations</strong> and one <strong>server</strong>.</p>
+
+                <h4>Install and configure the software and set up the domain <span class="mark-badge">9 marks</span> <span style="font-weight:400; font-size:0.9rem;">(6 Hours)</span></h4>
+                <p>Install and configure the operating systems. The server becomes a <strong>domain controller</strong> with <strong>AD DS and DNS</strong>, and <strong>DHCP</strong>. Apply and confirm security settings.</p>
+
+                <h4>Set up user accounts, shared folders and permissions <span class="mark-badge">9 marks</span> <span style="font-weight:400; font-size:0.9rem;">(6 Hours)</span></h4>
+                <p>Create at least two groups (production and finance), one domain user per group, and shared folders.</p>
+                <table>
+                    <tr><th>Groups</th><th>Company</th><th>Production</th><th>Finance</th></tr>
+                    <tr><td>Production</td><td>Read/Write</td><td>Write</td><td>None</td></tr>
+                    <tr><td>Finance</td><td>Read/Write</td><td>None</td><td>Write</td></tr>
+                </table>
+                <p>Test permissions using the test log template.</p>
+
+                <h4>Group Policy settings <span class="mark-badge">6 marks</span> <span style="font-weight:400; font-size:0.9rem;">(4 Hours)</span></h4>
+                <p>Create and apply <strong>five different Group Policy settings</strong> for users. Test and confirm they have been applied.</p>
+
+                <h4>Configure a backup schedule <span class="mark-badge">6 marks</span> <span style="font-weight:400; font-size:0.9rem;">(4 Hours)</span> — CENTREPIECE</h4>
+                <p>Configure a <strong>scheduled backup</strong> of the shared folders to an external drive or additional virtual drive. Choose <strong>hourly or differential vs full</strong>, and justify the choice with reference to <strong>RTO/RPO</strong>. <strong>Test the backup</strong> by restoring one of the backups and document the restore-test evidence.</p>
+
+                <h4>Continuity service and DRP tabletop walkthrough</h4>
+                <p>Configure <strong>one service that supports continuity</strong> (e.g. file server/DFS or web server with a documented recovery path). Produce a <strong>DRP tabletop walkthrough</strong> documenting a simulated failure and recovery.</p>
+
+                <h4>Cable-making (TIA/EIA-568)</h4>
+                <p>Make and test a cable to <strong>TIA/EIA-568</strong>, with <strong>full photographic evidence</strong>.</p>
+                <p>Create a log with suitable <strong>annotated screenshots</strong>.</p>
+                <p><strong>Total for Task 2 = 30 marks (plus continuity walkthrough and cable marks where centre allocates)</strong></p>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <h3>Outcomes for submission (Task 2)</h3>
+                <div class="submission">
+                    <ol>
+                        <li><strong>Development documentation</strong> (including annotated screenshots, DRP tabletop walkthrough, and cable photographic evidence) — PDF <code>Task 2_DI_DevelopmentDocumentation_[document name]_[Registration number #]_[surname]_[first letter of first name]</code></li>
+                        <li><strong>Test log</strong> — PDF <code>Task 2_DI_TestLog_[document name]_[Registration number #]_[surname]_[first letter of first name]</code></li>
+                    </ol>
+                </div>
+
+                <div class="page-break-marker">— PAGE BREAK —</div>
+
+                <!-- TASK 3 -->
+                <h2>TASK 3 – Evaluate the system</h2>
+                <p><strong>Time: 2.5 hours</strong> &nbsp;|&nbsp; <strong>Paper Reference:</strong> XXXX/XX</p>
+                <p><strong>You must have:</strong> 'read-only' copies of Task 1 and Task 2 materials.</p>
+
+                <h3>Instructions for Students (Task 3)</h3>
+                <p>You must complete <strong>ALL</strong> parts. You will be given <strong>2 hours and 30 minutes</strong>. Supervised conditions apply. <strong>No internet access.</strong> AI use is not permitted.</p>
+
+                <h3>Task 3 Brief</h3>
+                <p>Having completed the setup and testing of the network for Harbourview Media, the company has asked you to <strong>evaluate the effectiveness of the test network</strong> and <strong>outline how it could be developed further</strong>.</p>
+                <h4>Activity — Evaluation of the System <span class="mark-badge">18 marks</span></h4>
+                <p>Your evaluation should include the <strong>DRP/BCP-oriented risk assessment</strong>, the <strong>requirements with source justification</strong>, and the <strong>test network</strong> with continuity emphasis.</p>
+                <p>Evaluate: <strong>strengths and weaknesses</strong> of the DRP/BCP design and backup/restore evidence, <strong>impact on availability and integrity</strong>, and improvements — e.g. <strong>off-site replication, RPO tightening, cloud backup, ITIL continual service improvement</strong>.</p>
+                <p><strong>Crucially</strong>, your report must <strong>critically evaluate the sources used in Task 1</strong> — bias, corroboration, reliability. This is where <strong>content area 3</strong> is fully evidenced.</p>
+
+                <h3>Outcomes for submission (Task 3)</h3>
+                <div class="submission">
+                    <p><strong>Feedback evaluation report</strong> — PDF <code>Task3_DI_Evaluation_[Registration number #]_[surname]_[first letter of first name]</code></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-note">
+            Pearson-style specimen assessment material · Centre-adapted assignments A, B and C<br>
+            Digital Support &amp; Security · Digital Infrastructure · Version 1.0
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT TABS -->
+    <script>
+        const tabs = document.querySelectorAll('.tab-btn');
+        const panels = document.querySelectorAll('.panel');
+
+        tabs.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // remove active from all tabs & panels
+                tabs.forEach(t => t.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+
+                // activate current
+                btn.classList.add('active');
+                const targetId = btn.dataset.tab;
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

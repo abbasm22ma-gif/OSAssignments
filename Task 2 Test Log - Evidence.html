@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2 Test Log · Unified Mark Scheme & Exemplars</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: #eef2f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem 4rem;
+        }
+
+        .page-wrapper {
+            max-width: 1400px;
+            width: 100%;
+            background: white;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+            border-radius: 24px;
+            padding: 2.2rem 2rem 2.5rem;
+            border: 1px solid #d9e2ec;
+        }
+
+        /* Pearson-style Header */
+        .doc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 4px solid #333;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .doc-header .logo-area {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            color: #333;
+        }
+
+        .doc-header .t-levels {
+            font-size: 1.6rem;
+            font-weight: 900;
+            font-style: italic;
+            color: #000;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #0b2b44;
+            margin-bottom: 0.4rem;
+        }
+
+        .subhead {
+            font-size: 0.95rem;
+            color: #4a5f73;
+            margin-bottom: 1.8rem;
+            font-weight: 400;
+            border-bottom: 1px solid #d0dde9;
+            padding-bottom: 0.8rem;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.4rem;
+            background: #e3eaf2;
+            padding: 0.4rem;
+            border-radius: 60px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 130px;
+            padding: 0.85rem 1.2rem;
+            border: none;
+            background: transparent;
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: #1f3a4e;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            letter-spacing: 0.01em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn i { font-style: normal; font-size: 1.1rem; }
+        .tab-btn:hover { background: #cfdbe7; color: #0b2b44; }
+        .tab-btn.active {
+            background: #ffffff;
+            color: #0a3b5c;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            font-weight: 700;
+        }
+
+        .panel { display: none; animation: fade 0.18s ease; }
+        .panel.active { display: block; }
+        @keyframes fade { from { opacity: 0.4; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+        h2 {
+            font-size: 1.45rem;
+            font-weight: 600;
+            color: #0b2b44;
+            margin: 1.8rem 0 0.8rem;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.18rem;
+            font-weight: 600;
+            color: #1d4a6b;
+            margin: 1.6rem 0 0.6rem;
+            border-bottom: 1px solid #cbdae8;
+            padding-bottom: 0.25rem;
+        }
+
+        p, li {
+            color: #203a4e;
+            line-height: 1.6;
+            font-size: 0.96rem;
+        }
+
+        .info-box {
+            background: #f4f9ff;
+            border: 1px solid #c5d9eb;
+            border-radius: 12px;
+            padding: 1rem 1.4rem;
+            margin: 1.2rem 0;
+            font-size: 0.94rem;
+        }
+
+        .info-box strong { color: #0d3e60; }
+
+        /* Pearson-style Test Log Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.85rem;
+            border: 1px solid #000;
+        }
+
+        th {
+            background: #d9d9d9; /* Pearson grey header */
+            color: #000;
+            font-weight: 700;
+            padding: 0.6rem 0.8rem;
+            text-align: left;
+            border: 1px solid #000;
+            font-size: 0.88rem;
+        }
+
+        td {
+            padding: 0.6rem 0.8rem;
+            border: 1px solid #000;
+            background: white;
+            vertical-align: top;
+        }
+
+        .test-desc { width: 25%; }
+        .test-expected { width: 25%; }
+        .test-actual { width: 25%; }
+        .test-comments { width: 25%; }
+
+        .badge {
+            display: inline-block;
+            font-weight: 600;
+            font-size: 0.75rem;
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.3rem;
+        }
+        
+        .pass-badge { background: #e6f4ea; color: #1e8e3e; border: 1px solid #1e8e3e; }
+        .fail-badge { background: #fce8e6; color: #c5221f; border: 1px solid #c5221f; }
+
+        .retest-row td {
+            background-color: #fafbfc; /* Slight tint to separate retest rows */
+        }
+
+        /* Unified Mark Scheme Table */
+        .mark-scheme-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.85rem;
+            table-layout: fixed;
+        }
+        .mark-scheme-table th { 
+            background: #1e4b6b; 
+            color: white; 
+            padding: 0.8rem 0.6rem; 
+            text-align: left; 
+            border: 1px solid #1e4b6b; 
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+        .mark-scheme-table td { 
+            border: 1px solid #c5d9eb; 
+            padding: 0.8rem 0.6rem; 
+            vertical-align: top; 
+            color: #111; 
+            line-height: 1.5;
+            background: white;
+        }
+        .mark-scheme-table tr:nth-child(even) td { background-color: #f9fcff; }
+        
+        .col-band { width: 6%; text-align: center; }
+        .col-marks { width: 6%; text-align: center; }
+        .col-generic { width: 28%; }
+        .col-a { width: 20%; }
+        .col-b { width: 20%; }
+        .col-c { width: 20%; }
+
+        .footer-note {
+            margin-top: 2.4rem;
+            font-size: 0.75rem;
+            color: #5d7488;
+            text-align: left;
+            border-top: 1px solid #d2dfeb;
+            padding-top: 1.6rem;
+        }
+
+        @media (max-width: 1100px) {
+            .page-wrapper { padding: 1.2rem; overflow-x: auto; }
+            h1 { font-size: 1.5rem; }
+            .tab-btn { min-width: 100px; font-size: 0.82rem; padding: 0.65rem 0.7rem; }
+            table:not(.mark-scheme-table) { font-size: 0.75rem; min-width: 800px; }
+            .mark-scheme-table { min-width: 950px; }
+            th, td { padding: 0.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        
+        <div class="doc-header">
+            <div class="logo-area">❯ Pearson</div>
+            <div class="t-levels">T-LEVELS</div>
+        </div>
+
+        <h1>Task 2: Test Log — Unified Mark Scheme & Exemplars</h1>
+        <div class="subhead">Unified mark scheme and completed test logs for Assignments A, B and C. Includes initial failures, corrective actions, and successful retests to demonstrate Band 4 competence.</div>
+
+        <!-- TABS -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="tabScheme"><i>📋</i> Unified Mark Scheme</button>
+            <button class="tab-btn" data-tab="tabA"><i>🔒</i> A — Security Testing</button>
+            <button class="tab-btn" data-tab="tabB"><i>🌐</i> B — Infrastructure Testing</button>
+            <button class="tab-btn" data-tab="tabC"><i>📚</i> C — Continuity Testing</button>
+        </div>
+
+        <!-- ========== UNIFIED MARK SCHEME TAB ========== -->
+        <div id="tabScheme" class="panel active">
+            <h2>Unified Mark Scheme — Task 2 Test Log (30 marks)</h2>
+            <p>This single-page mark scheme displays the generic banding criteria alongside the specific, contextualised testing requirements for Assignments A, B, and C. The exemplar logs in the other tabs are designed to meet the Band 4 criteria across all columns, demonstrating iterative troubleshooting (failures, corrective actions, and successful retests).</p>
+
+            <table class="mark-scheme-table">
+                <tr>
+                    <th class="col-band">Band</th>
+                    <th class="col-marks">Marks</th>
+                    <th class="col-generic">Generic Assessment Criteria (All Assignments)</th>
+                    <th class="col-a">Assignment A (Security)</th>
+                    <th class="col-b">Assignment B (Infrastructure)</th>
+                    <th class="col-c">Assignment C (Continuity)</th>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>4</strong></td>
+                    <td class="col-marks"><strong>25–30</strong></td>
+                    <td class="col-generic">Comprehensive test log demonstrating iterative testing. Includes initial failures, accurate diagnosis of root causes, corrective actions applied, and successful retests. Evidence is fully annotated with screenshots. All required test criteria for the specific assignment are met.</td>
+                    <td class="col-a">Focuses on <strong>permission testing and GPO testing</strong>. Proves RBAC matrix, lockout policies, and security GPOs are enforced.</td>
+                    <td class="col-b">Focuses on <strong>functionality and performance</strong>. Proves VLAN routing, DHCP/DNS, service reachability (IIS), and VPN remote access.</td>
+                    <td class="col-c">Focuses on <strong>backup/restore (centrepiece)</strong>, DRP tabletop, and cable testing. Proves data integrity, RTO/RPO, and TIA/EIA-568 standard.</td>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>3</strong></td>
+                    <td class="col-marks"><strong>19–24</strong></td>
+                    <td class="col-generic">Detailed test log. Most tests show expected outcomes and actual outcomes. Some corrective actions are noted, but evidence of retesting may be limited or inconsistent. Annotated screenshots are present but may lack depth.</td>
+                    <td class="col-a">Covers most security tests but misses retests for some failures, or lacks annotated evidence for GPO enforcement.</td>
+                    <td class="col-b">Covers most infrastructure tests but misses retests for some failures, or lacks performance metrics.</td>
+                    <td class="col-c">Covers backup tests but misses the DRP tabletop or cable testing, or lacks retest evidence.</td>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>2</strong></td>
+                    <td class="col-marks"><strong>11–18</strong></td>
+                    <td class="col-generic">Adequate test log. Basic tests are recorded, but there is limited evidence of troubleshooting, corrective actions, or retesting. Screenshots may be missing or lack annotation.</td>
+                    <td class="col-a">Basic security tests recorded, but no evidence of negative testing or GPO verification.</td>
+                    <td class="col-b">Basic infrastructure tests recorded, but no evidence of troubleshooting or performance checks.</td>
+                    <td class="col-c">Basic backup tests recorded, but no evidence of restore proof or DRP validation.</td>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>1</strong></td>
+                    <td class="col-marks"><strong>1–10</strong></td>
+                    <td class="col-generic">Limited test log. Few tests recorded. Little or no evidence of corrective actions or retesting. Screenshots missing or irrelevant.</td>
+                    <td class="col-a">Minimal security testing.</td>
+                    <td class="col-b">Minimal infrastructure testing.</td>
+                    <td class="col-c">Minimal continuity testing.</td>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>0</strong></td>
+                    <td class="col-marks"><strong>0</strong></td>
+                    <td class="col-generic" colspan="4">No creditable response.</td>
+                </tr>
+            </table>
+
+            <div class="info-box">
+                <strong>How the exemplars achieve Band 4 (Distinction):</strong>
+                <ul style="margin-top:0.4rem;">
+                    <li><strong>Iterative Testing:</strong> Each log includes at least one intentional failure, a clear diagnosis of the root cause (e.g., unlinked GPO, wrong VLAN, FAT32 limit), a corrective action, and a successful retest.</li>
+                    <li><strong>Contextual Testing:</strong> The tests are not generic; they prove the specific controls and infrastructure required by the scenario.</li>
+                    <li><strong>Evidence:</strong> The log references annotated screenshots for every step, ensuring the process is fully auditable.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========== ASSIGNMENT A ========== -->
+        <div id="tabA" class="panel">
+            <div class="info-box">
+                <strong>Assignment A (Northgate Health Trust) — Testing Emphasis:</strong> Permission testing and GPO testing — proving the security controls work. <em>Note: Includes an initial failure due to a missing GPO link, demonstrating iterative troubleshooting.</em>
+            </div>
+
+            <table>
+                <tr>
+                    <th class="test-desc">Description of test</th>
+                    <th class="test-expected">Expected outcome</th>
+                    <th class="test-actual">Actual outcome</th>
+                    <th class="test-comments">Comments and corrective actions</th>
+                </tr>
+                <tr>
+                    <td><strong>1. Domain Login & Password Policy</strong><br>Attempt to log in as Clinical_User. Attempt to set a password shorter than 12 characters.</td>
+                    <td>User logs in. The system rejects the short password and displays an error.</td>
+                    <td><span class="badge pass-badge">Pass</span><br>Login successful. Password change rejected with error: "Password does not meet the length requirements of the domain."</td>
+                    <td>Password policy GPO applied correctly at the domain root. No corrective action needed. (Evidence: Screenshot 1)</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Security GPO — USB Restriction</strong><br>Log in as Clinical_User. Insert a USB flash drive and attempt to copy a file to it.</td>
+                    <td>The USB drive is detected, but the system denies write access.</td>
+                    <td><span class="badge fail-badge">Fail</span><br>The file copied to the USB drive successfully without any restriction.</td>
+                    <td><strong>Corrective Action:</strong> Checked Group Policy Management. The GPO was created but not linked to the Clinical Admin OU. Linked the GPO and ran <code>gpupdate /force</code>.</td>
+                </tr>
+                <tr class="retest-row">
+                    <td><strong>2a. Retest — USB Restriction</strong><br>Log out and back in as Clinical_User. Attempt to copy a file to the USB drive again.</td>
+                    <td>The system denies write access to the removable drive.</td>
+                    <td><span class="badge pass-badge">Pass</span><br>File copy failed. Error message: "You do not have permission to save in this location."</td>
+                    <td>Removable Storage Access GPO now applied and enforced correctly. (Evidence: Screenshot 2 & 3)</td>
+                </tr>
+                <tr>
+                    <td><strong>3. Shared Folder Permissions (RBAC)</strong><br>Log in as Finance_User. Attempt to open <code>\\Server\Clinical</code>.</td>
+                    <td>Access Denied for <code>Clinical</code> folder due to RBAC matrix restrictions.</td>
+                    <td><span class="badge fail-badge">Fail</span><br>Access was granted. The user could see and open files in the Clinical share.</td>
+                    <td><strong>Corrective Action:</strong> Found that the <code>Domain Users</code> group was accidentally left in the NTFS permissions with Read access. Removed <code>Domain Users</code> and ensured only the <code>Clinical_Group</code> and <code>Domain Admins</code> had access.</td>
+                </tr>
+                <tr class="retest-row">
+                    <td><strong>3a. Retest — Folder Permissions</strong><br>Log in as Finance_User. Attempt to open <code>\\Server\Clinical</code> and <code>\\Server\Finance</code>.</td>
+                    <td>Access Denied for <code>Clinical</code>. Access Granted for <code>Finance</code>.</td>
+                    <td><span class="badge pass-badge">Pass</span><br>Access denied to Clinical share. Successfully modified a file in the Finance share.</td>
+                    <td>Cross-departmental isolation verified. NTFS permissions corrected. (Evidence: Screenshot 4)</td>
+                </tr>
+                <tr>
+                    <td><strong>4. Account Lockout Policy</strong><br>Attempt to log in as Finance_User with an incorrect password 5 times.</td>
+                    <td>After the 5th attempt, the account locks out for 30 minutes.</td>
+                    <td><span class="badge pass-badge">Pass</span><br>Account locked after 5 failures. A 6th attempt with the correct password was rejected.</td>
+                    <td>Account Lockout GPO applied correctly. No corrective action needed. (Evidence: Screenshot 5)</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ========== ASSIGNMENT B ========== -->
+        <div id="tabB" class="panel">
+            <div class="info-box">
+                <strong>Assignment B (Meridian Logistics) — Testing Emphasis:</strong> Functionality and performance — proving service reachability and network routing. <em>Note: Includes a failed ping test due to VLAN misconfiguration, demonstrating network troubleshooting.</em>
+            </div>
+
+            <table>
+                <tr>
+                    <th class="test-desc">Description of test</th>
+                    <th class="test-expected">Expected outcome</th>
+                    <th class="test-actual">Actual outcome</th>
+                    <th class="test-comments">Comments and corrective actions</th>
+                </tr>
+                <tr>
+                    <td><strong>1. DHCP Lease & Network Connectivity</strong><br>On Operations workstation, run <code>ipconfig /all</code> and <code>ping 192.168.10.1</code>.</td>
+                    <td>Workstation has a 192.168.10.x IP. Ping to the gateway succeeds.</td>
+                    <td><span class="badge pass-badge">Pass</span><br>IP 192.168.10.100 obtained. Ping successful (Average 1ms).</td>
+                    <td>DHCP scope functioning. Basic connectivity established. (Evidence: Screenshot 1)</td>
+                </tr>
+                <tr>
+                    <td><strong>2. VLAN Isolation & Inter-VLAN Routing</strong><br>From Operations PC, ping the Finance PC (192.168.20.100) and ping the Server (192.168.40.10).</td>
+                    <td>Ping to Finance fails (blocked by ACL). Ping to Server succeeds.</td>
+                    <td><span class="badge fail-badge">Fail</span><br>Ping to Finance PC succeeded. Ping to Server failed (Request Timed Out).</td>
+                    <td><strong>Corrective Action:</strong> Checked the L3 switch configuration. The switchport for the Finance PC was incorrectly assigned to VLAN 10, not VLAN 20. The ACL was also applied to the wrong interface. Corrected VLAN assignments and re-applied ACL to VLAN 20 inbound.</td>
+                </tr>
+                <tr class="retest-row">
+                    <td><strong>2a. Retest — VLAN Routing & ACLs</strong><br>From Operations PC, run <code>ping 192.168.20.100</code> and <code>ping 192.168.40.10</code>.</td>
+                    <td>Ping to Finance fails (Request Timed Out). Ping to Server succeeds.</td>
+                    <td><span class="badge pass-badge">Pass</span><br>Finance PC ping failed (100% loss). Server ping succeeded (0% loss).</td>
+                    <td>Inter-VLAN routing and ACLs are functioning as designed. (Evidence: Screenshot 2)</td>
+                </tr>
+                <tr>
+                    <td><strong>3. DNS Resolution (External)</strong><br>On Operations workstation, run <code>nslookup www.bbc.co.uk</code>.</td>
+                    <td>The DNS server resolves the external domain using forwarders.</td>
+                    <td><span class="badge pass-badge">Pass</span><br>Non-authoritative answer returned with multiple public IPs.</td>
+                    <td>DNS Forwarders configured correctly. (Evidence: Screenshot 3)</td>
+                </tr>
+                <tr>
+                    <td><strong>4. Service Reachability (IIS)</strong><br>Open a browser and navigate to <code>http://intranet.meridian.local</code>.</td>
+                    <td>The IIS default page loads successfully.</td>
+                    <td><span class="badge fail-badge">Fail</span><br>Browser displayed "This site can't be reached - DNS_PROBE_FINISHED_NXDOMAIN".</td>
+                    <td><strong>Corrective Action:</strong> The IIS service was installed, but no DNS A record was created for <code>intranet</code>. Opened DNS Manager and created a new A record pointing to the web server's IP.</td>
+                </tr>
+                <tr class="retest-row">
+                    <td><strong>4a. Retest — Service Reachability</strong><br>Refresh the browser at <code>http://intranet.meridian.local</code>.</td>
+                    <td>The internal intranet site loads successfully.</td>
+                    <td><span class="badge pass-badge">Pass</span><br>Intranet site loaded showing "Welcome to Meridian Logistics".</td>
+                    <td>Application service deployed and DNS record correctly mapped. (Evidence: Screenshot 4)</td>
+                </tr>
+                <tr>
+                    <td><strong>5. Remote Access — VPN</strong><br>From external host, connect via VPN and RDP to server.</td>
+                    <td>VPN establishes. RDP over VPN connects to the server.</td>
+                    <td><span class="badge pass-badge">Pass</span><br>VPN connected, and RDP succeeded over the internal IP (192.168.40.10).</td>
+                    <td>VPN provides secure remote access; RDP exposed only internally. (Evidence: Screenshot 5)</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ========== ASSIGNMENT C ========== -->
+        <div id="tabC" class="panel">
+            <div class="info-box">
+                <strong>Assignment C (Harbourview Media) — Testing Emphasis:</strong> Restore-from-backup proof and DRP tabletop walkthrough. <em>Note: Includes a failed backup test due to the external drive being formatted as FAT32 (size limit), demonstrating capacity/format troubleshooting.</em>
+            </div>
+
+            <table>
+                <tr>
+                    <th class="test-desc">Description of test</th>
+                    <th class="test-expected">Expected outcome</th>
+                    <th class="test-actual">Actual outcome</th>
+                    <th class="test-comments">Comments and corrective actions</th>
+                </tr>
+                <tr>
+                    <td><strong>1. Backup Verification — Initial Run</strong><br>Create a 10GB test video file in the Production share. Run the scheduled backup to the external drive.</td>
+                    <td>The backup completes successfully and the file is stored on the external drive.</td>
+                    <td><span class="badge fail-badge">Fail</span><br>Backup job failed with error: "The file is too large for the destination file system."</td>
+                    <td><strong>Corrective Action:</strong> The external drive was pre-formatted as FAT32 (which has a 4GB file size limit). Reformatted the drive as NTFS and encrypted it with BitLocker.</td>
+                </tr>
+                <tr class="retest-row">
+                    <td><strong>1a. Retest — Backup Verification</strong><br>Re-run the backup job to the newly formatted NTFS drive.</td>
+                    <td>The backup completes successfully.</td>
+                    <td><span class="badge pass-badge">Pass</span><br>Backup completed with 0 errors. Windows Server Backup console shows the 10GB file was included.</td>
+                    <td>Backup functioning. RPO maintained. (Evidence: Screenshot 1)</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Restore Test — File Level (Centrepiece)</strong><br>Delete the 10GB video file. Open Windows Server Backup and restore it.</td>
+                    <td>The file is restored to its original location.</td>
+                    <td><span class="badge pass-badge">Pass</span><br>File restored successfully in 3 minutes. Video plays correctly.</td>
+                    <td>Proof that the backup is usable and meets the RTO. (Evidence: Screenshot 2)</td>
+                </tr>
+                <tr>
+                    <td><strong>3. Backup Offline/Encryption Check</strong><br>Verify the external drive is BitLocker encrypted. Attempt to open it on a standalone PC.</td>
+                    <td>The drive prompts for the 48-digit recovery key on the standalone PC.</td>
+                    <td><span class="badge pass-badge">Pass</span><br>BitLocker active. Standalone PC prompted for recovery key.</td>
+                    <td>Mitigates Risk 8 (backup theft). (Evidence: Screenshot 3)</td>
+                </tr>
+                <tr>
+                    <td><strong>4. DRP Tabletop Walkthrough</strong><br>Simulate a disk failure on the server (disconnect virtual disk). Follow the DRP runbook to recover the service.</td>
+                    <td>Steps followed: 1. Identify failure. 2. Provision new storage. 3. Restore from off-site backup. 4. Verify data integrity.</td>
+                    <td><span class="badge pass-badge">Pass</span><br>Walkthrough completed in 45 minutes. Runbook steps were clear.</td>
+                    <td>Identified that the cloud download step needs a faster connection. Corrective action: Recommend upgrading the backup internet link to reduce MTTR. (Evidence: DRP_Walkthrough_Log.pdf)</td>
+                </tr>
+                <tr>
+                    <td><strong>5. Cable Test — TIA/EIA-568</strong><br>Use a cable tester on a newly made Cat 6 patch cable.</td>
+                    <td>Tester shows 1-to-1 continuity for all 8 pins.</td>
+                    <td><span class="badge fail-badge">Fail</span><br>Tester showed lights 1, 2, 3, and 6 only. Pins 4, 5, 7, and 8 were dead.</td>
+                    <td><strong>Corrective Action:</strong> Inspected the RJ45 connector. The wires for pins 4, 5, 7, 8 were not pushed fully into the connector before crimping. Cut the end off and re-crimped with a new RJ45 plug, ensuring all wires pushed to the end.</td>
+                </tr>
+                <tr class="retest-row">
+                    <td><strong>5a. Retest — Cable Test</strong><br>Use the cable tester on the re-crimped patch cable.</td>
+                    <td>Tester shows 1-to-1 continuity for all 8 pins.</td>
+                    <td><span class="badge pass-badge">Pass</span><br>Cable tester lights illuminated sequentially 1 through 8 on both ends.</td>
+                    <td>Standard compliance verified. (Evidence: Photo_Cable_Test.jpg)</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-note">
+            Copyright in this document belongs to, and is used under licence from the Department for Education, © 2026.<br>
+            'T-LEVELS' and 'T Level' are registered trademarks of the Department for Education. Pearson is authorised by the Department for Education to develop and deliver this T Level Technical Qualification.
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT TABS -->
+    <script>
+        const tabs = document.querySelectorAll('.tab-btn');
+        const panels = document.querySelectorAll('.panel');
+
+        tabs.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+
+                btn.classList.add('active');
+                const targetId = btn.dataset.tab;
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
