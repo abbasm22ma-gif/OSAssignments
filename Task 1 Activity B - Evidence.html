@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1 Activity B · Unified Mark Scheme & Exemplars</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: #eef2f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem 4rem;
+        }
+
+        .page-wrapper {
+            max-width: 1400px;
+            width: 100%;
+            background: white;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+            border-radius: 24px;
+            padding: 2.2rem 2rem 2.5rem;
+            border: 1px solid #d9e2ec;
+        }
+
+        h1 {
+            font-size: 1.85rem;
+            font-weight: 600;
+            color: #0b2b44;
+            letter-spacing: -0.01em;
+            border-left: 6px solid #1e6f9f;
+            padding-left: 1.2rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .subhead {
+            font-size: 0.95rem;
+            color: #4a5f73;
+            margin-bottom: 1.8rem;
+            padding-left: 1.8rem;
+            font-weight: 400;
+            border-bottom: 1px solid #d0dde9;
+            padding-bottom: 0.8rem;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.4rem;
+            background: #e3eaf2;
+            padding: 0.4rem;
+            border-radius: 60px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 130px;
+            padding: 0.85rem 1.2rem;
+            border: none;
+            background: transparent;
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: #1f3a4e;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            letter-spacing: 0.01em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn i { font-style: normal; font-size: 1.1rem; }
+        .tab-btn:hover { background: #cfdbe7; color: #0b2b44; }
+        .tab-btn.active {
+            background: #ffffff;
+            color: #0a3b5c;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            font-weight: 700;
+        }
+
+        .panel { display: none; animation: fade 0.18s ease; }
+        .panel.active { display: block; }
+        @keyframes fade { from { opacity: 0.4; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+        h2 {
+            font-size: 1.45rem;
+            font-weight: 600;
+            color: #0b2b44;
+            margin: 1.8rem 0 0.8rem;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.18rem;
+            font-weight: 600;
+            color: #1d4a6b;
+            margin: 1.6rem 0 0.6rem;
+            border-bottom: 1px solid #cbdae8;
+            padding-bottom: 0.25rem;
+        }
+
+        h4 {
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: #1f4b6e;
+            margin: 1.2rem 0 0.3rem;
+        }
+
+        p, li {
+            color: #203a4e;
+            line-height: 1.6;
+            font-size: 0.96rem;
+        }
+
+        ul, ol { padding-left: 1.8rem; margin: 0.5rem 0 0.9rem; }
+        li { margin-bottom: 0.25rem; }
+
+        .info-box {
+            background: #f4f9ff;
+            border: 1px solid #c5d9eb;
+            border-radius: 12px;
+            padding: 1rem 1.4rem;
+            margin: 1.2rem 0;
+            font-size: 0.94rem;
+        }
+
+        .info-box strong { color: #0d3e60; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+
+        th {
+            background: #1e4b6b;
+            color: white;
+            font-weight: 600;
+            padding: 0.65rem 0.85rem;
+            text-align: left;
+            font-size: 0.88rem;
+        }
+
+        td {
+            padding: 0.65rem 0.85rem;
+            border-bottom: 1px solid #d9e2ec;
+            background: white;
+            vertical-align: top;
+        }
+
+        tr:last-child td { border-bottom: none; }
+
+        .mark-badge {
+            display: inline-block;
+            background: #1e6f9f;
+            color: white;
+            font-weight: 600;
+            font-size: 0.78rem;
+            padding: 0.15rem 0.8rem;
+            border-radius: 30px;
+            letter-spacing: 0.01em;
+            margin-left: 0.4rem;
+            vertical-align: middle;
+        }
+
+        .highlight {
+            background: #fff8e5;
+            border-left: 4px solid #e6a817;
+            padding: 0.9rem 1.2rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.94rem;
+        }
+
+        .highlight strong { color: #7a4f00; }
+
+        .model-answer {
+            background: #f9fcff;
+            border: 1px solid #c5d9eb;
+            border-radius: 14px;
+            padding: 1.4rem 1.6rem;
+            margin: 1.4rem 0;
+        }
+
+        .model-answer h4 { margin-top: 0; color: #0a3b5c; }
+
+        .risk-ref {
+            display: inline-block;
+            background: #1e4b6b;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.1rem 0.6rem;
+            border-radius: 20px;
+            letter-spacing: 0.02em;
+            margin-right: 0.4rem;
+        }
+
+        /* Unified Mark Scheme Table Styles */
+        .mark-scheme-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.85rem;
+            table-layout: fixed;
+        }
+        .mark-scheme-table th { 
+            background: #1e4b6b; 
+            color: white; 
+            padding: 0.8rem 0.6rem; 
+            text-align: left; 
+            border: 1px solid #1e4b6b; 
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+        .mark-scheme-table td { 
+            border: 1px solid #c5d9eb; 
+            padding: 0.8rem 0.6rem; 
+            vertical-align: top; 
+            color: #111; 
+            line-height: 1.5;
+            background: white;
+        }
+        .mark-scheme-table tr:nth-child(even) td { background-color: #f9fcff; }
+        
+        .col-band { width: 6%; text-align: center; }
+        .col-marks { width: 6%; text-align: center; }
+        .col-generic { width: 28%; }
+        .col-a { width: 20%; }
+        .col-b { width: 20%; }
+        .col-c { width: 20%; }
+
+        .footer-note {
+            margin-top: 2.4rem;
+            font-size: 0.85rem;
+            color: #5d7488;
+            text-align: center;
+            border-top: 1px solid #d2dfeb;
+            padding-top: 1.6rem;
+        }
+
+        @media (max-width: 1100px) {
+            .page-wrapper { padding: 1.2rem; overflow-x: auto; }
+            h1 { font-size: 1.5rem; }
+            .tab-btn { min-width: 100px; font-size: 0.82rem; padding: 0.65rem 0.7rem; }
+            .mark-scheme-table { min-width: 950px; }
+            table:not(.mark-scheme-table) { font-size: 0.78rem; }
+            th, td { padding: 0.45rem 0.55rem; }
+            .model-answer { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <h1>Task 1 Activity B — Unified Mark Scheme & Exemplars</h1>
+        <div class="subhead">Infrastructure / security requirements documents for all three assignments (A, B, C), structured exactly to the Pearson Distinction-level template.</div>
+
+        <!-- TABS -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="tabMarkScheme"><i>📋</i> Unified Mark Scheme</button>
+            <button class="tab-btn" data-tab="tabA"><i>🔒</i> A — Security</button>
+            <button class="tab-btn" data-tab="tabB"><i>🌐</i> B — Infrastructure</button>
+            <button class="tab-btn" data-tab="tabC"><i>📚</i> C — Continuity</button>
+        </div>
+
+        <!-- ========== UNIFIED MARK SCHEME TAB ========== -->
+        <div id="tabMarkScheme" class="panel active">
+            <h2>Unified Mark Scheme — Task 1 Activity B (18 marks)</h2>
+            <p>This single-page mark scheme displays the generic banding criteria alongside the specific, contextualised requirements for Assignments A, B, and C. The model answers in the other tabs are designed to meet the Band 4 criteria across all columns.</p>
+
+            <table class="mark-scheme-table">
+                <tr>
+                    <th class="col-band">Band</th>
+                    <th class="col-marks">Marks</th>
+                    <th class="col-generic">Generic Assessment Criteria (All Assignments)</th>
+                    <th class="col-a">Assignment A (Security)</th>
+                    <th class="col-b">Assignment B (Infrastructure)</th>
+                    <th class="col-c">Assignment C (Continuity)</th>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>4</strong></td>
+                    <td class="col-marks"><strong>15–18</strong></td>
+                    <td class="col-generic">Comprehensive requirements document. Hardware, software, server configuration, IPv4 scheme and two VLANs all fully specified and justified. Every risk from Activity A is translated into a control.</td>
+                    <td class="col-a">Must include: password policy, lockout, GPOs, RBAC matrix, WPA2/WPA3, backup-as-mitigation.</td>
+                    <td class="col-b">Must include: topology, subnetting, device selection, server roles, remote access comparison, backup criteria.</td>
+                    <td class="col-c">Must include: sources-of-knowledge log with ≥2 sources per decision, reliability factors, bias flags, TIA/EIA-568 cable standard, backup type justified.</td>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>3</strong></td>
+                    <td class="col-marks"><strong>11–14</strong></td>
+                    <td class="col-generic">Detailed requirements document. Most required elements specified and justified. Most risks translated into controls.</td>
+                    <td class="col-a">Minor inaccuracies or missing justifications for one or two security controls.</td>
+                    <td class="col-b">Minor inaccuracies or missing justifications for one or two infrastructure elements.</td>
+                    <td class="col-c">Sources log present but reliability/bias applied inconsistently.</td>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>2</strong></td>
+                    <td class="col-marks"><strong>6–10</strong></td>
+                    <td class="col-generic">Adequate requirements document. Some required elements missing or partially specified. Some risks translated into controls.</td>
+                    <td class="col-a">Security controls are generic and not clearly linked to the risks identified.</td>
+                    <td class="col-b">Infrastructure choices are generic and lack justification for the scenario.</td>
+                    <td class="col-c">Some sources cited but lack reliability analysis or bias flagging.</td>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>1</strong></td>
+                    <td class="col-marks"><strong>1–5</strong></td>
+                    <td class="col-generic">Limited requirements document. Few required elements present. Little translation of risks into controls.</td>
+                    <td class="col-a">Minimal security detail.</td>
+                    <td class="col-b">Minimal infrastructure detail.</td>
+                    <td class="col-c">Minimal source detail.</td>
+                </tr>
+                <tr>
+                    <td class="col-band"><strong>0</strong></td>
+                    <td class="col-marks"><strong>0</strong></td>
+                    <td class="col-generic" colspan="4">No creditable response.</td>
+                </tr>
+            </table>
+
+            <div class="info-box">
+                <strong>How each model answer accesses all bands:</strong>
+                <ul style="margin-top:0.4rem;">
+                    <li><strong>Band 4</strong> — All required elements are present and fully justified; every risk from Activity A is translated into a control; legislation/guidance and source justification are applied accurately. The structure strictly follows the Pearson Distinction template (Hardware, Software, Server Config, IPv4).</li>
+                    <li><strong>Band 3</strong> — A student who covers most elements but misses one or two justifications, or has minor inaccuracies, would sit here.</li>
+                    <li><strong>Band 2</strong> — A student who covers some elements but leaves several partially specified, or translates only some risks into controls, would sit here.</li>
+                    <li><strong>Band 1</strong> — A student who lists a few elements with minimal detail and little risk translation would sit here.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========== ASSIGNMENT A ========== -->
+        <div id="tabA" class="panel">
+            <h2>Assignment A — Northgate Health Trust (Security-framed)</h2>
+            <div class="info-box">
+                <strong>Task 1 Activity B — Security Requirements</strong> <span class="mark-badge">18 marks</span><br>
+                <strong>Scenario:</strong> UK health trust, satellite clinic, patient-adjacent data, 20 users, clinical admin &amp; finance departments, shared building, VLAN separation, WPA2 Wi-Fi.<br>
+                <strong>Requirement:</strong> Translate each risk from Activity A into a control — password policy, account lockout, GPO choices, RBAC permission matrix, WPA2/WPA3, backup-as-mitigation. Cover hardware, software, server configuration, and IPv4 scheme with two VLANs.
+            </div>
+
+            <div class="highlight">
+                <strong>Top-band model answer (Band 4 — 15–18 marks):</strong> The requirements document below is structured exactly to the Pearson Distinction-level template, translating every risk from Activity A into a specific control.
+            </div>
+
+            <h3>Hardware required (including network devices, end user computers and a server)</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th style="width:170px;">Device</th><th>Description/Purpose</th><th>Connection details</th></tr>
+                    <tr>
+                        <td><strong>1 x Onsite Server</strong></td>
+                        <td>Acts as the central storage for patient-adjacent records and sensitive financial data. Includes RAID 1 configuration to ensure redundancy and prevent data loss, and full-disk encryption to protect sensitive information (GDPR compliance).</td>
+                        <td>Connected to the managed switch using UTP Cat6a for stable gigabit-speed connections. Redundant power provided via a UPS. Placed in a secure, lockable cabinet on the occupied floor to reduce physical access risks.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>20 x Desktop Computers</strong></td>
+                        <td>Provide dedicated workstations for Clinical Admin (10) and Finance (10) staff. Sufficient processing power (multi-core CPUs), 16GB RAM, and encrypted SSD storage for speed and security. Supports EDR and BitLocker.</td>
+                        <td>Each desktop connected to the managed switch via UTP Cat6a for high-speed, reliable connectivity. Wired connections reduce exposure to Wi-Fi threats. Organised so Clinical Admin and Finance are logically separated via VLANs.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1 x Network Router</strong></td>
+                        <td>Provides internet connectivity, firewall protection, VLAN support, and traffic monitoring. Isolates internal networks from external threats, enforces secure remote access for staff, and prioritises critical traffic.</td>
+                        <td>Connected via UTP Cat6a to the ISP modem and managed switch. VLANs separate Clinical Admin, Finance, and guest networks to prevent unauthorised access. Logs network activity for monitoring and auditing.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1 x Managed Network Switch</strong></td>
+                        <td>Connects all wired devices. Supports VLANs to segment traffic between Clinical Admin, Finance, and Wi-Fi, and enables port security to prevent rogue devices from connecting (mitigates VLAN hopping).</td>
+                        <td>Connected via UTP Cat6a to all devices. VLAN configuration ensures departmental traffic remains isolated. Port security disables unused ports or requires MAC authentication.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2 x Wireless Access Point</strong></td>
+                        <td>Provides secure Wi-Fi coverage for the clinic, supporting staff mobility. Uses WPA2-Enterprise (or WPA3) encryption, separate SSIDs for staff and guests, and allows seamless roaming.</td>
+                        <td>Connected to the managed switch via UTP Cat6a. Access control lists restrict devices to authorised users. Guest SSID traffic is isolated from internal network VLANs.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4 x Uninterruptible Power Supply (UPS)</strong></td>
+                        <td>Protects critical hardware (server, switch, router) from power surges or outages and allows safe shutdown during prolonged outages, preventing data corruption.</td>
+                        <td>Critical clinical and finance PCs should also be connected to a UPS. UPS units positioned close to connected hardware and regularly tested.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1 x Network Printer</strong></td>
+                        <td>Shared network device for both departments, with user authentication to control access to sensitive documents and restrict guest printing.</td>
+                        <td>Connected via wired network to the switch. Guest printing routed through a separate VLAN to isolate from internal systems. Logs print activity for auditing.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1 x Server Cabinet</strong></td>
+                        <td>Houses the server, switch, router, and UPS, providing physical security, airflow, and cable management. Lockable doors restrict access to authorised personnel.</td>
+                        <td>All devices connected with structured Cat6a cabling. Cabinet placement minimises risk from environmental hazards and restricts physical access by other tenants.</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Software required</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th style="width:170px;">Software</th><th>Description/Purpose</th></tr>
+                    <tr><td><strong>Microsoft Windows Server 2022</strong></td><td>Provides centralised management, hosting Active Directory for user authentication, group policies, and file/print services. Enforces departmental access controls with Clinical Admin-only and Finance-only shared folders. Security policies (password rules, lockout, device restrictions) applied to all branch devices.</td></tr>
+                    <tr><td><strong>Microsoft Windows 11 Pro</strong></td><td>Desktop operating system for all 20 staff members. Provides a secure environment for daily work, access to the server, departmental resources, and productivity software. Supports full-disk encryption (BitLocker) and endpoint security.</td></tr>
+                    <tr><td><strong>Clinical Administration Software</strong></td><td>Enables the Clinical Admin department to manage patient appointments, record notes, and communicate with external clinics. Securely stores patient-adjacent data and allows controlled access only to authorised staff. Data encrypted at rest and in transit.</td></tr>
+                    <tr><td><strong>Finance / Billing Software</strong></td><td>Enables the Finance department to manage payments, billing, payroll, and financial records. Provides role-based access, audit trails, and encryption to ensure compliance with financial regulations.</td></tr>
+                    <tr><td><strong>Database Management Software</strong></td><td>Centralised solution for storing sensitive patient and financial information. Provides role-based access control, audit logs, encryption, and maintains data integrity in compliance with UK GDPR.</td></tr>
+                    <tr><td><strong>Backup and Recovery Software</strong></td><td>Automates regular backups of server data, desktop files, and departmental folders. Supports disaster recovery in case of ransomware, accidental deletion, or hardware failure. Backups stored locally on an encrypted external drive and replicated offsite.</td></tr>
+                    <tr><td><strong>Antivirus / Endpoint Protection (EDR)</strong></td><td>Protects all desktops and the server from malware and ransomware. Provides real-time scanning, scheduled scans, and automated updates. Clinical PCs have additional monitoring to prevent unauthorised data access.</td></tr>
+                    <tr><td><strong>Firewall Software</strong></td><td>Monitors and filters all traffic between the clinic network and the internet. Separates VLANs for Clinical Admin, Finance, and guest Wi-Fi, enforces security rules, and logs activity. Intrusion detection reduces risk of data breaches.</td></tr>
+                    <tr><td><strong>Email / Office Productivity Software</strong></td><td>Provides secure email, document creation, spreadsheets, and collaboration tools. Supports secure internal communication, file sharing, and departmental collaboration.</td></tr>
+                    <tr><td><strong>VPN / Remote Access Software</strong></td><td>Allows staff to securely access internal systems remotely. Uses strong encryption, two-factor authentication, and restricts access based on user roles. VPN access limited to company-issued devices.</td></tr>
+                </table>
+            </div>
+
+            <h3>Server configuration and settings to be applied</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th style="width:200px;">Type of configuration</th><th>Description/Purpose/Configuration details</th></tr>
+                    <tr><td><strong>AD-DS</strong></td><td>Manages authentication and authorisation for all 20 staff members. Enforces departmental access controls. Configuration: top-level domain <code>northgate.local</code>, server name <code>NHT-Server1</code>. Departments represented as Organisational Units (OUs) for granular control.</td></tr>
+                    <tr><td><strong>DNS</strong></td><td>Allows all devices on the clinic network to locate each other using human-readable names. Critical in a shared building with multiple external networks to avoid conflicts. DNS records include hostnames for all departmental servers, printers, and network devices.</td></tr>
+                    <tr><td><strong>DHCP</strong></td><td>Automatically assigns IP addresses to all wired desktops, WAPs, and printers. Separate IP ranges created for Clinical Admin and Finance VLANs to enforce network segregation. DHCP reservations used for critical servers to ensure consistent addressing.</td></tr>
+                    <tr><td><strong>User Groups and Accounts</strong></td><td>Two primary groups: Clinical Admin and Finance. Each group includes the relevant staff accounts (total 20). Allows department-specific folder access, simplified management of user rights, and easier application of security policies.</td></tr>
+                    <tr><td><strong>Shared Folders</strong></td><td>Three main folders created on the server: a Company-wide folder (Read/Write for all), a Clinical Admin-only folder, and a Finance-only folder. Organises data storage, maintains departmental separation, and protects sensitive data from accidental access.</td></tr>
+                    <tr><td><strong>File/Folder Permissions (RBAC)</strong></td><td>Permissions set so Clinical Admin staff cannot access Finance folders and vice versa, while both can read/write to the Company folder. Protects sensitive data from unauthorised access, especially given the shared building environment. Domain Admins retain Full Control.</td></tr>
+                    <tr><td><strong>Anti-Virus Software</strong></td><td>Installed on the server and all desktops. Scheduled weekly full system scans performed, with daily quick scans. Automatic updates ensure virus definitions remain current, reducing the risk of infection from external sources or removable media.</td></tr>
+                    <tr><td><strong>Password Policies</strong></td><td>Strong password enforcement: minimum 12 characters, complexity required (uppercase, lowercase, numbers, symbols), and mandatory changes every 90 days. Password history of 10 prevents reuse. Reduces risk of unauthorised access.</td></tr>
+                    <tr><td><strong>Account Lockout Policies</strong></td><td>Threshold of 5 invalid attempts, lockout duration of 30 minutes, and reset counter after 30 minutes. Slows down brute-force attacks without permanently blocking legitimate users.</td></tr>
+                    <tr><td><strong>Group Policy Objects (GPOs)</strong></td><td>Five distinct GPOs applied: Password Policy (complexity/length), Account Lockout (threshold/duration), Screen Lock (5 min inactivity), USB Restriction (deny write for non-admins), and Audit Policy (logon and file access events).</td></tr>
+                    <tr><td><strong>Software Firewall</strong></td><td>Provides additional protection by filtering inbound and outbound traffic on the server. Helps secure departmental VLANs and prevents unauthorised access attempts from external networks or neighbouring offices.</td></tr>
+                    <tr><td><strong>Windows Updates</strong></td><td>Ensures the server and all desktops remain protected against known software vulnerabilities. Automatic updates enabled, and critical security patches deployed within 24 hours of release.</td></tr>
+                    <tr><td><strong>Wireless Configuration</strong></td><td>WPA2-Enterprise (or WPA3 where supported) with RADIUS authentication. Strong PSK if WPA2-Personal is used (≥20 characters). Guest network isolated on a separate VLAN.</td></tr>
+                    <tr><td><strong>Regular Backups</strong></td><td>Daily incremental backups at 02:00 and weekly full backups on Sunday at 02:00. Backups stored on an encrypted external drive (offline when not in use) with optional off-site copy. Retention: 4 weekly fulls, 30 daily incrementals. Monthly restore tests documented in the test log.</td></tr>
+                </table>
+            </div>
+
+            <h3>IPv4 addressing scheme</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th style="width:180px;">Address or address range</th><th style="width:100px;">Static or dynamic</th><th>Used for Device(s)</th></tr>
+                    <tr>
+                        <td><strong>192.168.40.1</strong></td>
+                        <td>Static</td>
+                        <td>Router gateway for VLAN 40 (Server). Provides a fixed gateway for network management. Placing it in a dedicated server VLAN improves security by isolating admin traffic from user departments.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.10.1</strong></td>
+                        <td>Static</td>
+                        <td>Router gateway for VLAN 10 (Clinical Admin). Ensures a stable gateway for Clinical Admin devices. VLAN separation prevents unnecessary access to Finance resources.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.20.1</strong></td>
+                        <td>Static</td>
+                        <td>Router gateway for VLAN 20 (Finance). Dedicated gateway for Finance enhances security for sensitive financial data. VLAN 20 isolates Finance traffic from other departments.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.30.1</strong></td>
+                        <td>Static</td>
+                        <td>Router gateway for VLAN 30 (Guest Wi-Fi). Isolates guest traffic from clinical and finance data.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.40.2</strong></td>
+                        <td>Static</td>
+                        <td>File server. Fixed IP allows consistent access to shared data. Placing the server in the server VLAN ensures only authorised users can access it.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.40.3 – 192.168.40.4</strong></td>
+                        <td>Static</td>
+                        <td>Wireless Access Points. Fixed addresses make it easier to manage and apply security policies, including VLAN assignments and monitoring.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.40.5 – 192.168.40.10</strong></td>
+                        <td>Static</td>
+                        <td>Reserved for future critical networking hardware. Reserves space for future network infrastructure (firewalls, load balancers) without conflicting with existing devices.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.10.2 – 192.168.10.254</strong></td>
+                        <td>Dynamic</td>
+                        <td>Clinical Admin department devices (computers, printers). DHCP allocation simplifies management. Restricting DHCP to VLAN 10 ensures Clinical Admin devices cannot obtain Finance IPs.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.20.2 – 192.168.20.254</strong></td>
+                        <td>Dynamic</td>
+                        <td>Finance department devices (computers, printers). DHCP simplifies management. VLAN 20 ensures segregation from Clinical Admin traffic, protecting sensitive financial information.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.30.100 – 192.168.30.150</strong></td>
+                        <td>Dynamic</td>
+                        <td>Guest Wi-Fi devices. Isolated from clinical and finance data to prevent unauthorised access.</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Why this accesses all bands</h3>
+            <div class="info-box">
+                <ul>
+                    <li><strong>Band 4 (15–18):</strong> All hardware, software, server configuration, IPv4 scheme and two VLANs are fully specified and justified. Every risk from Activity A is translated into a control. Password policy, lockout, GPOs, RBAC matrix, WPA2/WPA3 and backup-as-mitigation are all present and accurate. The exact Pearson distinction headings are used.</li>
+                    <li><strong>Band 3 (11–14):</strong> A student who covers most elements but misses, for example, the justification for one or two items, or has minor inaccuracies, would sit here.</li>
+                    <li><strong>Band 2 (6–10):</strong> A student who covers some elements but leaves several partially specified, or translates only some risks into controls, would sit here.</li>
+                    <li><strong>Band 1 (1–5):</strong> A student who lists a few elements with minimal detail and little risk translation would sit here.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========== ASSIGNMENT B ========== -->
+        <div id="tabB" class="panel">
+            <h2>Assignment B — Meridian Logistics (Infrastructure-framed)</h2>
+            <div class="info-box">
+                <strong>Task 1 Activity B — Infrastructure Requirements</strong> <span class="mark-badge">18 marks</span><br>
+                <strong>Scenario:</strong> Logistics firm consolidating two offices, 20 users, operations &amp; finance departments, shared building, VLAN separation, WPA2 Wi-Fi.<br>
+                <strong>Requirement:</strong> Lean into content area 2 — network topology (star/client-server), IP addressing and subnetting (two VLANs), device selection, server roles, remote access method comparison (RDP vs VPN vs SSH), and backup criteria.
+            </div>
+
+            <div class="highlight">
+                <strong>Top-band model answer (Band 4 — 15–18 marks):</strong> The requirements document below is structured exactly to the Pearson Distinction-level template, covering topology, subnetting, device selection, server roles, remote access comparison and backup criteria.
+            </div>
+
+            <h3>Hardware required (including network devices, end user computers and a server)</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th style="width:170px;">Device</th><th>Description/Purpose</th><th>Connection details</th></tr>
+                    <tr>
+                        <td><strong>1 x Onsite Server</strong></td>
+                        <td>Acts as the central storage for logistics operational data, customer records, and financial files. Includes RAID 1 configuration to ensure redundancy and prevent data loss, and full-disk encryption.</td>
+                        <td>Connected to the managed switch using UTP Cat6a for stable gigabit-speed connections. Redundant power provided via a UPS. Placed in a secure, lockable cabinet on the occupied floor.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>20 x Desktop Computers</strong></td>
+                        <td>Provide dedicated workstations for Operations (10) and Finance (10) staff. Multi-core CPUs, 16GB RAM, and encrypted SSD storage. Supports EDR and BitLocker.</td>
+                        <td>Each desktop connected to the managed switch via UTP Cat6a for high-speed, reliable connectivity. Wired connections reduce exposure to Wi-Fi threats. Organised so Operations and Finance are logically separated via VLANs.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1 x Network Router</strong></td>
+                        <td>Provides internet connectivity, firewall protection, VLAN support, and traffic monitoring. Isolates internal networks from external threats, enforces VPN for remote staff, and prioritises critical traffic (QoS).</td>
+                        <td>Connected via UTP Cat6a to the ISP modem and managed switch. VLANs separate Operations, Finance, and guest networks. Logs network activity for monitoring and auditing.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1 x Managed Network Switch</strong></td>
+                        <td>Connects all wired devices. Supports VLANs to segment traffic and enables port security to prevent rogue devices from connecting. Supports QoS for prioritising voice/video.</td>
+                        <td>Connected via UTP Cat6a to all devices. VLAN configuration ensures departmental traffic remains isolated. Port security disables unused ports or requires MAC authentication.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2 x Wireless Access Point</strong></td>
+                        <td>Provides secure Wi-Fi coverage, supporting staff mobility. Uses WPA2-Enterprise (or WPA3) encryption, separate SSIDs for staff and guests, and allows seamless roaming.</td>
+                        <td>Connected to the managed switch via UTP Cat6a. Access control lists restrict devices to authorised users. Guest SSID traffic is isolated from internal network VLANs.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4 x Uninterruptible Power Supply (UPS)</strong></td>
+                        <td>Protects critical hardware (server, switch, router) from power surges or outages and allows safe shutdown during prolonged outages.</td>
+                        <td>Critical Operations and Finance PCs should also be connected to a UPS. UPS units positioned close to connected hardware and regularly tested.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1 x Network Printer</strong></td>
+                        <td>Shared network device for both departments, with user authentication to control access to sensitive documents and restrict guest printing.</td>
+                        <td>Connected via wired network to the switch. Guest printing routed through a separate VLAN. Logs print activity for auditing.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1 x Server Cabinet</strong></td>
+                        <td>Houses the server, switch, router, and UPS, providing physical security, airflow, and cable management. Lockable doors restrict access.</td>
+                        <td>All devices connected with structured Cat6a cabling. Cabinet placement minimises risk from environmental hazards.</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Software required</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th style="width:170px;">Software</th><th>Description/Purpose</th></tr>
+                    <tr><td><strong>Microsoft Windows Server 2022</strong></td><td>Provides centralised management, hosting Active Directory for user authentication, group policies, and file/print services. Enforces departmental access controls with Operations-only and Finance-only shared folders.</td></tr>
+                    <tr><td><strong>Microsoft Windows 11 Pro</strong></td><td>Desktop operating system for all 20 staff members. Provides a secure environment for daily work, access to the server, departmental resources, and productivity software. Supports BitLocker and endpoint security.</td></tr>
+                    <tr><td><strong>Logistics Management Software</strong></td><td>Enables the Operations department to track shipments, manage inventory, and coordinate deliveries. Securely stores customer logistics data and allows controlled access only to authorised staff.</td></tr>
+                    <tr><td><strong>Accounting / Finance Software</strong></td><td>Enables the Finance department to manage payments, payroll, and financial records. Provides role-based access, audit trails, and encryption to ensure compliance with financial regulations.</td></tr>
+                    <tr><td><strong>Database Management Software</strong></td><td>Centralised solution for storing sensitive customer and financial information. Provides role-based access control, audit logs, encryption, and maintains data integrity in compliance with UK GDPR.</td></tr>
+                    <tr><td><strong>Backup and Recovery Software</strong></td><td>Automates regular backups of server data, desktop files, and departmental folders. Supports disaster recovery in case of ransomware, accidental deletion, or hardware failure. Backups stored locally on an encrypted external drive and replicated offsite.</td></tr>
+                    <tr><td><strong>Antivirus / Endpoint Protection (EDR)</strong></td><td>Protects all desktops and the server from malware and ransomware. Provides real-time scanning, scheduled scans, and automated updates.</td></tr>
+                    <tr><td><strong>Firewall Software</strong></td><td>Monitors and filters all traffic between the office network and the internet. Separates VLANs for Operations, Finance, and guest Wi-Fi, enforces security rules, and logs activity.</td></tr>
+                    <tr><td><strong>Email / Office Productivity Software</strong></td><td>Provides secure email, document creation, spreadsheets, and collaboration tools. Supports secure internal communication, file sharing, and departmental collaboration.</td></tr>
+                    <tr><td><strong>VPN / Remote Access Software</strong></td><td>Allows staff to securely access internal systems remotely. Uses strong encryption, two-factor authentication, and restricts access based on user roles. VPN access limited to company-issued devices.</td></tr>
+                    <tr><td><strong>IIS / Web Server Role</strong></td><td>Configured to host an internal intranet site for logistics tracking and operational updates. Reached via a specific DNS A record.</td></tr>
+                </table>
+            </div>
+
+            <h3>Server configuration and settings to be applied</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th style="width:200px;">Type of configuration</th><th>Description/Purpose/Configuration details</th></tr>
+                    <tr><td><strong>AD-DS</strong></td><td>Manages authentication and authorisation for all 20 staff members. Enforces departmental access controls. Configuration: top-level domain <code>meridian.local</code>, server name <code>ML-Server1</code>. Departments represented as Organisational Units (OUs).</td></tr>
+                    <tr><td><strong>DNS</strong></td><td>Allows all devices to locate each other using human-readable names. DNS records include hostnames for all departmental servers, printers, and network devices. Forwarders configured for internet access.</td></tr>
+                    <tr><td><strong>DHCP</strong></td><td>Automatically assigns IP addresses to all wired desktops, WAPs, and printers. Separate IP ranges created for Operations and Finance VLANs. DHCP reservations used for critical servers to ensure consistent addressing.</td></tr>
+                    <tr><td><strong>User Groups and Accounts</strong></td><td>Two primary groups: Operations and Finance. Each group includes the relevant staff accounts (total 20). Allows department-specific folder access and easier application of security policies.</td></tr>
+                    <tr><td><strong>Shared Folders</strong></td><td>Three main folders created on the server: a Company-wide folder (Read/Write for all), an Operations-only folder, and a Finance-only folder. Organises data storage and maintains departmental separation.</td></tr>
+                    <tr><td><strong>File/Folder Permissions (RBAC)</strong></td><td>Permissions set so Operations staff cannot access Finance folders and vice versa. Protects sensitive data from unauthorised access.</td></tr>
+                    <tr><td><strong>Anti-Virus Software</strong></td><td>Installed on the server and all desktops. Scheduled weekly full system scans performed, with daily quick scans. Automatic updates ensure virus definitions remain current.</td></tr>
+                    <tr><td><strong>Password Policies</strong></td><td>Strong password enforcement: minimum 12 characters, complexity required, and mandatory changes every 90 days. Password history of 10 prevents reuse.</td></tr>
+                    <tr><td><strong>Account Lockout Policies</strong></td><td>Threshold of 5 invalid attempts, lockout duration of 30 minutes, and reset counter after 30 minutes. Slows down brute-force attacks.</td></tr>
+                    <tr><td><strong>Group Policy Objects (GPOs)</strong></td><td>Five distinct GPOs applied: Password Policy, Account Lockout, Screen Lock (5 min inactivity), USB Restriction (deny write for non-admins), and Audit Policy (logon and file access events).</td></tr>
+                    <tr><td><strong>Remote Access Configuration</strong></td><td>VPN configured for secure remote access (encrypted tunnel, supports MFA). RDP restricted to LAN only. LOM (Lights-Out Management) configured as supplementary out-of-band control for server recovery.</td></tr>
+                    <tr><td><strong>Software Firewall</strong></td><td>Provides additional protection by filtering inbound and outbound traffic on the server. Helps secure departmental VLANs.</td></tr>
+                    <tr><td><strong>Windows Updates</strong></td><td>Ensures the server and all desktops remain protected against known software vulnerabilities. Automatic updates enabled, and critical security patches deployed within 24 hours.</td></tr>
+                    <tr><td><strong>Wireless Configuration</strong></td><td>WPA2-Enterprise (or WPA3 where supported) with RADIUS authentication. Guest network isolated on a separate VLAN.</td></tr>
+                    <tr><td><strong>Regular Backups</strong></td><td>Daily incremental backups at 02:00 and weekly full backups on Sunday at 02:00. Backups stored on an encrypted external drive (offline when not in use) with optional off-site copy. Retention: 4 weekly fulls, 30 daily incrementals. Monthly restore tests documented.</td></tr>
+                    <tr><td><strong>Application Service (IIS)</strong></td><td>IIS role installed and configured to host the internal logistics intranet. A DNS A record <code>intranet.meridian.local</code> points to the server's IP. Service reachability tested and documented.</td></tr>
+                </table>
+            </div>
+
+            <h3>IPv4 addressing scheme</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th style="width:180px;">Address or address range</th><th style="width:100px;">Static or dynamic</th><th>Used for Device(s)</th></tr>
+                    <tr>
+                        <td><strong>192.168.40.1</strong></td>
+                        <td>Static</td>
+                        <td>Router gateway for VLAN 40 (Server). Provides a fixed gateway for network management. Placing it in a dedicated server VLAN improves security.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.10.1</strong></td>
+                        <td>Static</td>
+                        <td>Router gateway for VLAN 10 (Operations). Ensures a stable gateway for Operations devices. VLAN separation prevents unnecessary access to Finance resources.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.20.1</strong></td>
+                        <td>Static</td>
+                        <td>Router gateway for VLAN 20 (Finance). Dedicated gateway for Finance enhances security for sensitive financial data.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.30.1</strong></td>
+                        <td>Static</td>
+                        <td>Router gateway for VLAN 30 (Guest Wi-Fi). Isolates guest traffic from operational and financial data.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.40.2</strong></td>
+                        <td>Static</td>
+                        <td>File server. Fixed IP allows consistent access to shared data. Placing the server in the server VLAN ensures only authorised users can access it.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.40.3 – 192.168.40.4</strong></td>
+                        <td>Static</td>
+                        <td>Wireless Access Points. Fixed addresses make it easier to manage and apply security policies.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.40.5 – 192.168.40.10</strong></td>
+                        <td>Static</td>
+                        <td>Reserved for future critical networking hardware. Reserves space for future network infrastructure without conflicting with existing devices.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.10.2 – 192.168.10.254</strong></td>
+                        <td>Dynamic</td>
+                        <td>Operations department devices (computers, printers). DHCP allocation simplifies management. Restricting DHCP to VLAN 10 ensures Operations devices cannot obtain Finance IPs.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.20.2 – 192.168.20.254</strong></td>
+                        <td>Dynamic</td>
+                        <td>Finance department devices (computers, printers). DHCP simplifies management. VLAN 20 ensures segregation from Operations traffic.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.30.100 – 192.168.30.150</strong></td>
+                        <td>Dynamic</td>
+                        <td>Guest Wi-Fi devices. Isolated from operational and financial data to prevent unauthorised access.</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Why this accesses all bands</h3>
+            <div class="info-box">
+                <ul>
+                    <li><strong>Band 4 (15–18):</strong> Topology, subnetting, device selection, server roles, remote access comparison and backup criteria are all fully specified and justified. The remote access comparison covers RDP, VPN, SSH and LOM with a clear final choice. Subnetting includes masks, gateways and DHCP ranges. The exact Pearson distinction headings are used.</li>
+                    <li><strong>Band 3 (11–14):</strong> A student who covers most elements but misses, for example, the remote access comparison for one method, or has minor inaccuracies in subnetting, would sit here.</li>
+                    <li><strong>Band 2 (6–10):</strong> A student who covers some elements but leaves several partially specified, or provides a weak justification for the topology or backup criteria, would sit here.</li>
+                    <li><strong>Band 1 (1–5):</strong> A student who lists a few elements with minimal detail and little justification would sit here.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========== ASSIGNMENT C ========== -->
+        <div id="tabC" class="panel">
+            <h2>Assignment C — Harbourview Media (Continuity &amp; Knowledge-framed)</h2>
+            <div class="info-box">
+                <strong>Task 1 Activity B — Requirements with Source Justification</strong> <span class="mark-badge">18 marks</span><br>
+                <strong>Scenario:</strong> Media company that has suffered a disk failure, 20 users, production &amp; finance departments, shared building, VLAN separation, WPA2 Wi-Fi.<br>
+                <strong>Requirement:</strong> Mandatory <strong>sources-of-knowledge log</strong> — for each design decision, cite ≥2 sources, apply reliability/validity factors (authority, date, version, corroboration), and flag potential bias (vendor vs NCSC). Also justify the <strong>TIA/EIA-568</strong> cable standard and the <strong>backup type</strong>.
+            </div>
+
+            <div class="highlight">
+                <strong>Top-band model answer (Band 4 — 15–18 marks):</strong> The requirements document below is structured exactly to the Pearson Distinction-level template, and includes a full sources-of-knowledge log with reliability/validity factors and bias flags.
+            </div>
+
+            <h3>Hardware required (including network devices, end user computers and a server)</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th style="width:170px;">Device</th><th>Description/Purpose</th><th>Connection details</th></tr>
+                    <tr>
+                        <td><strong>1 x Onsite Server</strong></td>
+                        <td>Acts as the central storage for media production files and financial records. Includes RAID 1 configuration to ensure redundancy and prevent data loss (mitigating the recent disk failure), and full-disk encryption.</td>
+                        <td>Connected to the managed switch using UTP Cat6a (TIA/EIA-568-B pinout) for stable gigabit-speed connections. Redundant power provided via a UPS. Placed in a secure, lockable cabinet.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>20 x Desktop Computers</strong></td>
+                        <td>Provide dedicated workstations for Production (10) and Finance (10) staff. High-performance CPUs, 32GB RAM (required for media editing), and encrypted SSD storage. Supports EDR and BitLocker.</td>
+                        <td>Each desktop connected to the managed switch via UTP Cat6a. Wired connections reduce exposure to Wi-Fi threats. Organised so Production and Finance are logically separated via VLANs.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1 x Network Router</strong></td>
+                        <td>Provides internet connectivity, firewall protection, VLAN support, and traffic monitoring. Isolates internal networks from external threats and enforces secure remote access.</td>
+                        <td>Connected via UTP Cat6a to the ISP modem and managed switch. VLANs separate Production, Finance, and guest networks. Logs network activity for monitoring.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1 x Managed Network Switch</strong></td>
+                        <td>Connects all wired devices. Supports VLANs to segment traffic and enables port security to prevent rogue devices from connecting.</td>
+                        <td>Connected via UTP Cat6a to all devices. VLAN configuration ensures departmental traffic remains isolated. Port security disables unused ports or requires MAC authentication.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2 x Wireless Access Point</strong></td>
+                        <td>Provides secure Wi-Fi coverage, supporting staff mobility. Uses WPA2-Enterprise (or WPA3) encryption, separate SSIDs for staff and guests.</td>
+                        <td>Connected to the managed switch via UTP Cat6a. Access control lists restrict devices to authorised users. Guest SSID traffic is isolated from internal network VLANs.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4 x Uninterruptible Power Supply (UPS)</strong></td>
+                        <td>Protects critical hardware (server, switch, router) from power surges or outages and allows safe shutdown during prolonged outages.</td>
+                        <td>Critical Production and Finance PCs should also be connected to a UPS. UPS units positioned close to connected hardware and regularly tested.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1 x Network Printer</strong></td>
+                        <td>Shared network device for both departments, with user authentication to control access to sensitive documents.</td>
+                        <td>Connected via wired network to the switch. Logs print activity for auditing.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1 x Server Cabinet</strong></td>
+                        <td>Houses the server, switch, router, and UPS, providing physical security, airflow, and cable management.</td>
+                        <td>All devices connected with structured Cat6a cabling. Cabinet placement minimises risk from environmental hazards.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1 x Backup Drive</strong></td>
+                        <td>External encrypted USB drive (offline when not in use) to provide an air-gapped backup copy, mitigating ransomware targeting connected storage.</td>
+                        <td>Connected only during scheduled backup windows. Encrypted with BitLocker.</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Software required</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th style="width:170px;">Software</th><th>Description/Purpose</th></tr>
+                    <tr><td><strong>Microsoft Windows Server 2022</strong></td><td>Provides centralised management, hosting Active Directory for user authentication, group policies, and file/print services. Enforces departmental access controls with Production-only and Finance-only shared folders.</td></tr>
+                    <tr><td><strong>Microsoft Windows 11 Pro</strong></td><td>Desktop operating system for all 20 staff members. Provides a secure environment for daily work, access to the server, and productivity software. Supports BitLocker and endpoint security.</td></tr>
+                    <tr><td><strong>Media Production Software</strong></td><td>Enables the Production department to edit video, audio, and graphics. Securely stores media files and allows controlled access only to authorised staff.</td></tr>
+                    <tr><td><strong>Accounting / Finance Software</strong></td><td>Enables the Finance department to manage payments, payroll, and financial records. Provides role-based access, audit trails, and encryption.</td></tr>
+                    <tr><td><strong>Database Management Software</strong></td><td>Centralised solution for storing sensitive media project data and financial information. Provides role-based access control, audit logs, and encryption.</td></tr>
+                    <tr><td><strong>Backup and Recovery Software</strong></td><td>Automates regular backups of server data, desktop files, and departmental folders. Supports disaster recovery. Backups stored locally on an encrypted external drive and replicated offsite to the cloud.</td></tr>
+                    <tr><td><strong>Antivirus / Endpoint Protection (EDR)</strong></td><td>Protects all desktops and the server from malware and ransomware. Provides real-time scanning, scheduled scans, and automated updates.</td></tr>
+                    <tr><td><strong>Firewall Software</strong></td><td>Monitors and filters all traffic between the office network and the internet. Separates VLANs for Production, Finance, and guest Wi-Fi.</td></tr>
+                    <tr><td><strong>Email / Office Productivity Software</strong></td><td>Provides secure email, document creation, spreadsheets, and collaboration tools.</td></tr>
+                    <tr><td><strong>VPN / Remote Access Software</strong></td><td>Allows staff to securely access internal systems remotely. Uses strong encryption, two-factor authentication, and restricts access based on user roles.</td></tr>
+                    <tr><td><strong>Cloud Backup Agent</strong></td><td>Replicates local backup data to an off-site cloud provider, providing a compensating control for fire/flood risks and ransomware targeting local backups.</td></tr>
+                </table>
+            </div>
+
+            <h3>Server configuration and settings to be applied</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th style="width:200px;">Type of configuration</th><th>Description/Purpose/Configuration details</th></tr>
+                    <tr><td><strong>AD-DS</strong></td><td>Manages authentication and authorisation for all 20 staff members. Enforces departmental access controls. Configuration: top-level domain <code>harbourview.local</code>, server name <code>HM-Server1</code>. Departments represented as Organisational Units (OUs).</td></tr>
+                    <tr><td><strong>DNS</strong></td><td>Allows all devices to locate each other using human-readable names. DNS records include hostnames for all departmental servers, printers, and network devices.</td></tr>
+                    <tr><td><strong>DHCP</strong></td><td>Automatically assigns IP addresses to all wired desktops, WAPs, and printers. Separate IP ranges created for Production and Finance VLANs. DHCP reservations used for critical servers.</td></tr>
+                    <tr><td><strong>User Groups and Accounts</strong></td><td>Two primary groups: Production and Finance. Each group includes the relevant staff accounts (total 20). Allows department-specific folder access.</td></tr>
+                    <tr><td><strong>Shared Folders</strong></td><td>Three main folders created on the server: a Company-wide folder (Read/Write for all), a Production-only folder, and a Finance-only folder. Organises data storage and maintains departmental separation.</td></tr>
+                    <tr><td><strong>File/Folder Permissions (RBAC)</strong></td><td>Permissions set so Production staff cannot access Finance folders and vice versa. Protects sensitive data from unauthorised access.</td></tr>
+                    <tr><td><strong>Anti-Virus Software</strong></td><td>Installed on the server and all desktops. Scheduled weekly full system scans performed, with daily quick scans. Automatic updates ensure virus definitions remain current.</td></tr>
+                    <tr><td><strong>Password Policies</strong></td><td>Strong password enforcement: minimum 12 characters, complexity required, and mandatory changes every 90 days. Password history of 10 prevents reuse.</td></tr>
+                    <tr><td><strong>Account Lockout Policies</strong></td><td>Threshold of 5 invalid attempts, lockout duration of 30 minutes, and reset counter after 30 minutes. Slows down brute-force attacks.</td></tr>
+                    <tr><td><strong>Group Policy Objects (GPOs)</strong></td><td>Five distinct GPOs applied: Password Policy, Account Lockout, Screen Lock (5 min inactivity), USB Restriction (deny write for non-admins), and Audit Policy.</td></tr>
+                    <tr><td><strong>Software Firewall</strong></td><td>Provides additional protection by filtering inbound and outbound traffic on the server.</td></tr>
+                    <tr><td><strong>Windows Updates</strong></td><td>Ensures the server and all desktops remain protected against known software vulnerabilities. Automatic updates enabled.</td></tr>
+                    <tr><td><strong>Wireless Configuration</strong></td><td>WPA2-Enterprise (or WPA3 where supported) with RADIUS authentication. Guest network isolated on a separate VLAN.</td></tr>
+                    <tr><td><strong>Backup Configuration (Centrepiece)</strong></td><td><strong>Schedule:</strong> Hourly incremental (RPO = 1 hour); weekly full backup on Sunday at 01:00. <br><strong>Destination:</strong> Encrypted external drive (offline) + cloud backup (off-site). <br><strong>Retention:</strong> 4 weekly fulls; 7 daily incrementals; 24 hourly incrementals. <br><strong>Restore test:</strong> Weekly restore of a sample file; monthly full restore test documented.</td></tr>
+                </table>
+            </div>
+
+            <h3>IPv4 addressing scheme</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th style="width:180px;">Address or address range</th><th style="width:100px;">Static or dynamic</th><th>Used for Device(s)</th></tr>
+                    <tr>
+                        <td><strong>192.168.40.1</strong></td>
+                        <td>Static</td>
+                        <td>Router gateway for VLAN 40 (Server). Provides a fixed gateway for network management.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.10.1</strong></td>
+                        <td>Static</td>
+                        <td>Router gateway for VLAN 10 (Production). Ensures a stable gateway for Production devices.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.20.1</strong></td>
+                        <td>Static</td>
+                        <td>Router gateway for VLAN 20 (Finance). Dedicated gateway for Finance enhances security.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.30.1</strong></td>
+                        <td>Static</td>
+                        <td>Router gateway for VLAN 30 (Guest Wi-Fi). Isolates guest traffic from production and financial data.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.40.2</strong></td>
+                        <td>Static</td>
+                        <td>File server. Fixed IP allows consistent access to shared data.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.40.3 – 192.168.40.4</strong></td>
+                        <td>Static</td>
+                        <td>Wireless Access Points. Fixed addresses make it easier to manage and apply security policies.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.40.5 – 192.168.40.10</strong></td>
+                        <td>Static</td>
+                        <td>Reserved for future critical networking hardware.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.10.2 – 192.168.10.254</strong></td>
+                        <td>Dynamic</td>
+                        <td>Production department devices. DHCP allocation simplifies management.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.20.2 – 192.168.20.254</strong></td>
+                        <td>Dynamic</td>
+                        <td>Finance department devices. DHCP simplifies management. VLAN 20 ensures segregation.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>192.168.30.100 – 192.168.30.150</strong></td>
+                        <td>Dynamic</td>
+                        <td>Guest Wi-Fi devices. Isolated from production and financial data.</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Sources-of-knowledge log (summary)</h3>
+            <div class="model-answer">
+                <table>
+                    <tr><th>Design decision</th><th>Source 1</th><th>Source 2</th><th>Reliability applied</th><th>Bias flagged</th></tr>
+                    <tr>
+                        <td>RAID 1 for the server</td>
+                        <td>NCSC guidance on hardware resilience</td>
+                        <td>Server manufacturer documentation</td>
+                        <td>Authority, date, version, corroboration</td>
+                        <td>Vendor bias (manufacturer) flagged; NCSC used as neutral corroboration.</td>
+                    </tr>
+                    <tr>
+                        <td>WPA2-Enterprise / WPA3</td>
+                        <td>NCSC Wi-Fi guidance</td>
+                        <td>Wi-Fi Alliance WPA3 specification</td>
+                        <td>Authority, date, version, corroboration</td>
+                        <td>Wi-Fi Alliance is an industry body — low bias; NCSC neutral.</td>
+                    </tr>
+                    <tr>
+                        <td>Cat 6 / TIA/EIA-568-B</td>
+                        <td>TIA/EIA-568 standard</td>
+                        <td>NCSC cabling guidance</td>
+                        <td>Authority, date, version, corroboration</td>
+                        <td>Vendor whitepaper flagged as high bias; used only for corroboration.</td>
+                    </tr>
+                    <tr>
+                        <td>Hourly incremental + weekly full backup</td>
+                        <td>NCSC backup guidance</td>
+                        <td>ITIL / ISO 22301</td>
+                        <td>Authority, date, version, corroboration</td>
+                        <td>Microsoft vendor documentation flagged as medium bias; used for product-specific steps only.</td>
+                    </tr>
+                    <tr>
+                        <td>RBAC permission matrix</td>
+                        <td>NCSC access control guidance</td>
+                        <td>Microsoft AD documentation</td>
+                        <td>Authority, date, version, corroboration</td>
+                        <td>Vendor bias (Microsoft) flagged; NCSC neutral.</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Why this accesses all bands</h3>
+            <div class="info-box">
+                <ul>
+                    <li><strong>Band 4 (15–18):</strong> A mandatory sources-of-knowledge log is present with ≥2 sources per design decision; reliability/validity factors (authority, date, version, corroboration) are applied; bias is flagged (vendor vs NCSC); the TIA/EIA-568 cable standard is justified; the backup type is justified; hardware, software, server configuration and IPv4 scheme are all specified. The exact Pearson distinction headings are used.</li>
+                    <li><strong>Band 3 (11–14):</strong> A student who includes a sources log but applies reliability/bias inconsistently, or misses one or two justifications, would sit here.</li>
+                    <li><strong>Band 2 (6–10):</strong> A student who includes some sources but does not apply reliability factors or flag bias, or covers only some design decisions, would sit here.</li>
+                    <li><strong>Band 1 (1–5):</strong> A student who lists a few sources with no reliability analysis or bias flagging, and minimal design detail, would sit here.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-note">
+            Pearson-style specimen assessment material · Task 1 Activity B model answers · Assignments A, B and C<br>
+            Digital Support &amp; Security · Digital Infrastructure · Version 1.0
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT TABS -->
+    <script>
+        const tabs = document.querySelectorAll('.tab-btn');
+        const panels = document.querySelectorAll('.panel');
+
+        tabs.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+
+                btn.classList.add('active');
+                const targetId = btn.dataset.tab;
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
